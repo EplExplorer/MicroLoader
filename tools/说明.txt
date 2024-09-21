@@ -1,0 +1,8 @@
+inject.py 用于将epk注入到loader中
+epk_dumper.e 用于dump epk文件
+
+dumper用法
+
+1.编译源代码得到 link.dll
+2.找到易语言根目录,打开 tools 文件夹,并将其中的 link.dll 改名为lnk.dll
+3.打开源代码并点击静态编译,这时epk会自动随静态编译结果输出
