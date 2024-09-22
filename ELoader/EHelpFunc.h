@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <map>
 
 #include "ECommon.h"
 #include "EContext.h"
@@ -9,12 +10,8 @@
 // 核心服务数量
 #define ESERVERCOUNT 13
 
-typedef struct
-{
-	DWORD CmdOffset;
-	PFN_EXECUTE_CMD CmdPoint;
-}
-KernelCmd;
+
+typedef std::map<DWORD, PFN_EXECUTE_CMD> KernelCmd;
 
 typedef void(__stdcall* UNKNOWFUN)(void);
 typedef INT(__stdcall* ERRORCALLBACK)(int nCode, char* errText);
@@ -41,7 +38,18 @@ void _cdecl krnl_MExitProcess(DWORD uExitCode);
 
 void _stdcall krnl_MCallDllCmd(void);
 
-
 void InitServerPointTable(void);
 
-void UpdataServerPointTable(void* pBase, DWORD nHelpOffset);
+void UpdataServerPointTable(void *pBase, DWORD nHelpOffset);
+
+#define REGISTER_FUNCTION(offset,name) \
+namespace { \
+struct Register_##name { \
+Register_##name() { \
+KernelBaseCmd[offset] = name; \
+} \
+}; \
+static Register_##name register_##name; \
+} \
+
+extern KernelCmd KernelBaseCmd;
