@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <map>
 
 #include "ECommon.h"
 #include "EContext.h"
