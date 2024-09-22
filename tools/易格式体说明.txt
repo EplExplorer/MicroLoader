@@ -1,0 +1,446 @@
+/*
+    !!! 版权声明：
+    本文件及其中所有实例的版权均为易语言作者吴涛所有，仅授权给第三方用作了解易语言相
+关技术，禁止用于其他任何场合。
+*/
+
+
+一、易语言3.X可执行数据格式技术资料：
+
+    为了支持跨平台，易语言定义有自己的可执行文件格式，编译器会把易程序编译为此种格式
+的数据，当需要在特定操作系统上运行时，连接器会使用该操作系统的本地格式对易格式可执行
+数据进行封装（在Windows系统中将封装到EXE文件的.ecode代码段中），成为可以在本地执行的
+可执行文件。
+
+具体格式定义如下：
+
+// 编译后的易格式可执行数据头信息
+typedef struct
+{
+    #define    NEW_E_APP_MARK  0x454E5457  // 'WTNE'
+    DWORD m_dwMark;  // 程序标记，应该为 NEW_E_APP_MARK 。
+    #define    E_MARK_TEXT  " / MADE BY E COMPILER - WUTAO "
+    char m_chMark [32];  // 用作放置易语言的说明文本E_MARK_TEXT。
+
+    INT m_nHeaderSize;  // 本头信息的尺寸，为 sizeof (APP_HEADER_INFO) + 附加数据尺寸
+
+    INT m_nVersion;  // 程序版本，从1开始。
+    INT m_nType;  // 程序类型，为 PT_DEBUG_RUN_VER 或 PT_RELEASE_RUN_VER 。
+    DWORD m_dwState;  // 程序的状态标志。
+
+    DWORD m_Reserved;  // 保留
+    INT m_nDllCmdCount;  // 易程序中定义的DllCmd数目。
+
+    // 程序启动入口点的机器代码偏移（相对于本头信息首）。
+    INT m_nStartCodeOffset;
+
+    ///////////////////////////////////	段信息
+
+    // 下面宏指定标准段的段名。
+    #define SN_CONST    _T("@const")
+    #define SN_FORM     _T("@form")
+    #define SN_HELPFUNC _T("@hlpfn")
+    #define SN_CODE     _T("@code")
+    #define SN_VAR      _T("@var")
+
+    // 记录用作快速定位的段信息位置，所有偏移位置均相对相对于本头信息首，
+    // 如果该段不存在，则为 -1 。
+    INT m_nConstSectionOffset;  // 常量数据段位置的偏移量
+    INT m_nWinFormSectionOffset;  // 窗口模板数据段位置的偏移量
+    /* 接口数据段位置的偏移量，接口数据段用作易程序获取来自支持库的支持 */
+    INT m_nHelpFuncSectionOffset;
+    INT m_nCodeSectionOffset;  // 代码数据段位置的偏移量
+    INT m_nVarSectionOffset;  // 未初始化全局变量数据段位置的偏移量
+
+    // 记录所有段信息的链首。
+    // 本成员提供首段的 SECTION_INFO 信息相对于本头信息首的偏移量，如无任何段，为-1。
+    INT m_nBeginSectionOffset;
+
+    // 1、INT m_nDllFileNameConstOffset [m_nDllCmdCount];   // 为在常量段中的偏移。
+    // 2、INT m_nDllCmdNameConstOffset [m_nDllCmdCount];    // 为在常量段中的偏移。
+    // 3、顺序存放程序中所有被使用支持库的支持库指定串，以空文本串结束。
+}
+APP_HEADER_INFO, *PAPP_HEADER_INFO;
+
+
+// 用作记录段数据中的重定位信息项。
+typedef struct
+{
+    // 重定位信息基址类别（宏值不可再改变）。
+    #define    RT_HELP_FUNC     0  // 相对于接口数据段段数据基址重定位
+    #define    RT_CONST         1  // 相对于常量数据段段数据基址重定位
+    #define    RT_GLOBAL_VAR    2  // 相对于全局变量数据段段数据基址重定位
+    #define    RT_CODE          3  // 相对于代码数据段段数据基址重定位
+    unsigned m_btType : 3;
+    // 指定相对某段段数据首的一个偏移INT的位置，该INT内的值在重定位时必须加上由m_btType说明的基址。
+    unsigned m_dwOffset: 29;
+}
+RELOCATION_INF, *PRELOCATION_INF;
+
+
+// 程序数据段信息。
+typedef struct
+{
+    INT m_nSectionSize;  // 本段信息的尺寸，为 sizeof (SECTION_INFO) + 所有附加数据尺寸。
+
+    // 记录下一数据段相对程序头信息首的偏移量，如本段为最后一段，此成员应为-1。
+    INT m_nNextSectionOffset;
+
+    #define    SCN_READ          (1 << 0)  // 本段数据是可读的。
+    #define    SCN_WRITE         (1 << 1)  // 本段数据是可写的。
+    #define    SCN_EXECUTE       (1 << 2)  // 本段数据包含可执行代码。
+    #define    SCN_DISCARDABLE   (1 << 3)  // 本段数据在程序载入完毕后即可被抛弃。
+    #define    SCN_EXTEND        (1 << 4)  //   本段数据载入后尺寸将被扩充（扩充算法为简单
+                                           // 地附加被初始化为0的数据空间）。
+    DWORD m_dwState; // 记录本段的状态标志，见SCN宏。
+    #define    MAX_SECTION_NAME_LEN	20
+    char m_szName [MAX_SECTION_NAME_LEN + 4];	// 段名。
+    /* 段数据的载入后尺寸；
+       如段具有SCN_EXTEND标志，此成员记录段数据将被扩充到的尺寸。
+       否则等同于m_nRecordSize； */
+    INT m_nLoadedSize;
+    /* 段数据的记录尺寸（实际记录在文件中的数据尺寸），有可能为0。
+       如段具有SCN_EXTEND标志，此成员记录段数据被扩充前的尺寸。
+       否则等同于段数据的载入后尺寸。 */
+    INT m_nRecordSize;
+    // 段数据的偏移位置（相对于程序头信息首），如果没有记录段数据(即m_nRecordSize为0)，则为-1。
+    INT m_nRecordOffset;
+
+    //////////////////////////
+
+    INT m_nReLocationItemCount;  // 段数据内所有需要重定位的偏移INT的数目。
+    INT m_nExportSymbolCount;  // 本段输出的符号数目。
+
+    /* 后面顺序为：
+    // 记录具体的所有重定位项。
+    RELOCATION_INF m_aryReLocationItem [m_nReLocationItemCount];
+    // 所输出符号的对应数据基于段数据首的位置偏移。
+    INT m_arySymbolDataOffset [m_nExportSymbolCount];
+    // 顺序存放所有输出符号名称基于段数据首的位置偏移，与m_arySymbolDataOffset相对应。
+    INT m_szarySymbolNameOffset [m_nExportSymbolCount];
+    */
+}
+SECTION_INFO, *PSECTION_INFO;
+
+
+/**********************************************************************************/
+
+
+二、有关易语言程序可跨平台运行的说明：
+
+    如下面的子程序：
+
+        子程序：_按钮1_被单击
+
+        信息框 (“祖国您好!”, 0, )
+
+    编译后的对应机器代码为：
+
+        push        ebp
+        mov         ebp,esp
+
+        // 下面的代码调用支持库中“信息框”命令的实现函数。
+        push        0           // 压入参数3数据
+        push        0
+        push        0
+        push        80000301h   // 压入参数2数据
+        push        0
+        push        0
+        push        80000004h   // 压入参数1数据
+        push        0
+        push        4030CBh     // 指向常量段中的对应文本。
+        push        3
+        mov         ebx,300h
+        call        00403350    // 调用支持库中“信息框”命令的实现函数。
+        add         esp,28h
+
+        mov         esp,ebp
+        pop         ebp
+        ret
+
+    由此可见，易语言程序编译后的结果是与操作系统无关的，所有的外部支持均来自支持库，
+由支持库负责屏蔽各种操作系统之间的差异。这种机制对于实现用户程序跨平台运行非常有利，
+即：
+
+    编译后的用户程序无需作任何更改，只要目的操作系统上具有相同功能的易语言支持库即
+可正常运行。
+
+    大家可能会提出这样一个问题，即不同操作系统上可执行文件的格式可能不一样，这样一
+来还是需要对易语言程序进行重新编译。
+
+    易语言对此问题的解决方案为：易语言具有自己的可执行文件格式（简称易格式），该格
+式在任何操作系统上都是一致的。
+
+    当在某类操作系统上编译易语言程序时，编译器会首先建立易格式编译数据，然后使用该
+操作系统的可执行文件格式对此数据进行封装，从而得到能够在该操作系统上运行的可执行文
+件。
+
+    当需要这个编译后的易语言程序到其他操作系统平台上执行时，只需要一个简单的工具将
+其中的易格式编译数据提取出来，重新使用目的操作系统的可执行文件格式进行封装即可，不
+再需要编译器的介入。
+
+    当然，还有另外一种更便利的方案，即采用类似 java 的 .class 的方法，直接将易格式
+编译数据存为结果执行文件，再在不同的操作系统上由相应的载入工具载入运行。
+
+
+/**********************************************************************************/
+
+
+三、易语言数据库文件格式技术资料：
+
+  易语言支持自己的数据库系统，其数据库文件格式定义信息为：
+
+1、通用宏 //////////////////////////////////////////////////////////////////////////
+
+// 数据库文件的默认后缀为 .EDB 
+// 数据库索引文件的默认后缀为 .ENX
+// 数据库辅助文件（用作存放备注及字节集类型字段的数据）的默认后缀为 .EDT
+#define	DE_DATABASE_FILE   _T("EDB")
+#define	DE_INDEX_FILE      _T("ENX")
+#define	DE_DAT_FILE        _T("EDT")
+
+// 非加密数据库的起始标志。
+#define	DB_BEGIN_MARK            'BDEW'
+// 加密数据库的起始标志。
+#define	ENCRYPTED_DB_BEGIN_MARK  'BDCW'
+// 辅助文件的起始标志。
+#define	DAT_BEGIN_MARK           'TDEW'
+// 索引文件的起始标志
+#define	INDEX_BEGIN_MARK         'XNEW'
+
+// 数据库文件的 1.0 版本号
+#define	DB_VER_01_00    MAKELONG (0, 1)
+// 数据库文件的当前版本号
+#define	DB_CUR_VER      DB_VER_01_00
+
+// 字段名称的最大长度
+#define	MAX_FIELD_NAME_LEN          16
+// 同一数据库文件最多可以同时打开索引文件的数目。
+#define	MAX_OPEN_INDEX_COUNT        10
+// 索引文件对应的最多字段的数目。
+#define	MAX_INDEX_FIELDS_COUNT      8
+// 固定长度文本字段的最小宽度。
+#define	MIN_FIXED_TEXT_FIELD_WIDTH  1
+// 固定长度文本字段的最大宽度。
+#define	MAX_FIXED_TEXT_FIELD_WIDTH  1024
+
+2、.EDB文件格式 ////////////////////////////////////////////////////////////////////
+
+// 数据库.EDB文件起始信息
+struct DB_HEADER
+{
+    // 在加密数据库中，只有此标记在明文区中。
+    DWORD m_dwMark;  // 为 DB_BEGIN_MARK 或 ENCRYPTED_DB_BEGIN_MARK
+
+    INT m_nVer;  // 本数据库的版本号
+    DATE m_dtCreated;  // 创建日期
+
+    // 当前库中记录数及当前未用记录书签值。
+    INT m_nRecordsCount, m_nFreeBookmark;
+
+    INT m_nRecordSize;	// 每一条记录的数据尺寸。
+
+    // 如果为加密数据库，记录正确访问密码的MD5编码以供核对。
+    #define PASSWORD_MD5_BUF_LEN    (32 + 4)
+    char m_szPasswordMD5 [PASSWORD_MD5_BUF_LEN];
+
+    // 保留
+    INT m_nReserved [11];
+};
+typedef DB_HEADER* PDB_HEADER;
+
+/////////////////////////
+
+// 字段类型宏值。
+#define	FDT_BYTE        1
+#define	FDT_SHORT       2
+#define	FDT_INT         3
+#define	FDT_INT64       4
+#define	FDT_FLOAT       5
+#define	FDT_DOUBLE      6
+#define	FDT_BOOL        7
+#define	FDT_DATE_TIME   8
+#define	FDT_SUB_PTR     9
+#define	FDT_FIXED_TEXT  10  // 定长文本
+#define	FDT_BIN         11
+#define	FDT_MEMO        12  // 备注文本
+
+struct FIELD_INF
+{
+    TCHAR m_szName [MAX_FIELD_NAME_LEN + 1];
+
+    INT m_nType;  // 字段的类型
+
+    INT m_nOffset;  // 本字段数据在记录中的偏移量
+    //   字段数据长度，仅对 FDT_FIXED_TEXT 定长文本字段有效，值在
+    // MIN_FIXED_TEXT_FIELD_WIDTH 及 MAX_FIXED_TEXT_FIELD_WIDTH 之间。
+    INT m_nFixedTextWidth;
+
+    // 保留
+    INT m_nReserved [10];
+};
+typedef FIELD_INF* PFIELD_INF;
+
+/////////////////////////
+/*
+
+.EDB数据库文件结构图：
+
+    DB_HEADER （结构）
+    本数据库中的字段总数 （整数值）
+    与字段数目相同数目的 FIELD_INF 结构
+
+    记录书签及删除标记（整数值，如果小于 0 表示已经被标记删除） + 记录数据
+    .
+    .
+    .
+*/
+
+3、.EDT文件格式 ////////////////////////////////////////////////////////////////////
+
+#define	BLK_SIZE    512  // 每一个数据块的尺寸
+
+struct DAT_HEADER
+{
+    DWORD m_dwMark;  // 为 DAT_BEGIN_MARK
+    INT m_nVer;  // 本辅助文件所属数据库的版本号
+    DATE m_dtCreated;  // 创建日期
+
+    INT m_nBlockCount;  // 当前所有块的数目（包括文件头所在块）。
+    INT m_nEmptyBlockCount;  // 当前空块的数目。
+    INT m_nStartEmptyBlockNO;  // 第一个空块的位置（0 表示无空块）。
+};
+typedef DAT_HEADER* PDAT_HEADER;
+
+/////////////////////////
+
+// 块号为 0 的第一块包含 DAT_HEADER 信息。
+
+struct BLOCK_HEADER
+{
+    INT m_nPrevBlockNO;  // 上一块的位置，如果为 0 ，表示为首块。
+    INT m_nNextBlockNO;  // 下一块的位置，如果为 0 ，表示为尾块。
+    INT m_nDataSize;     // 本块中数据的长度，如果为 0 ，表示为空块。
+};
+typedef BLOCK_HEADER* PBLOCK_HEADER;
+
+/////////////////////////
+/*
+
+.EDT辅助文件结构图：
+
+    DAT_HEADER （结构），占据一块
+
+    BLOCK_HEADER （结构）+ 数据
+    .
+    .
+    .
+
+*/
+
+4、.ENX文件格式 ////////////////////////////////////////////////////////////////////
+
+struct ALL_FIELDS_OF_INDEX
+{
+    INT m_nFieldsCount;  // 本索引所对应的字段总数。
+    // 所有字段的名称
+    TCHAR m_szaryFieldName [MAX_INDEX_FIELDS_COUNT][MAX_FIELD_NAME_LEN + 1];
+    // 所有字段的类型，如果小于 0 ，表示为文本型，其绝对值为文本的固定宽度。
+    INT m_naryFieldsType [MAX_INDEX_FIELDS_COUNT];
+};
+typedef ALL_FIELDS_OF_INDEX* PALL_FIELDS_OF_INDEX;
+
+/////////////////////////
+
+#define	MIN_NODE_SIZE  512  // 结点的最小尺寸
+#define	MAX_KEY_SIZE   80   // 关键字数据的最大尺寸
+// 结点中的项目数不能小于 4 。
+
+struct INDEX_HEADER
+{
+    DWORD m_dwMark;  //  为 INDEX_BEGIN_MARK
+    INT m_nVer;  // 本索引文件所属数据库的版本号
+    DATE m_dtCreated;  // 创建日期
+
+    #define    IT_NORMAL           0
+    // 所有文本型字段使用拼音存储。
+    #define    IT_PY_TEXT          1
+    // 所有文本型字段使用南方拼音存储（将相近音转换为统一音）。
+    #define    IT_SOUTH_PY_TEXT    2
+    INT m_nType;
+    #define    IX_NOT_MATCH_CASE_TEXT (1 << 0)  // 所有文本型字段中的字母不区分大小写存储。
+    #define    IX_DISCARD_ALL_SPACE   (1 << 1)  // 所有文本型字段中的全半角空格都被抛弃。
+    DWORD m_dwState;
+
+    INT m_nNodeCount;  // 当前所有结点的数目（包括文件头所在结点）。
+    INT m_nEmptyNodeCount;  // 当前空结点的数目。
+    INT m_nStartEmptyNodeNO;  // 第一个空结点的位置（0 表示无空结点）。
+
+    INT m_nRootNodeNO;  // B+ 树根（树 / 叶）结点的位置。
+
+/////////////////
+
+    INT m_nNodeSize;  // 每一个结点的尺寸。
+    INT m_nKeySize;  // 关键字数据（所有字段的尺寸和）的尺寸。
+
+    ALL_FIELDS_OF_INDEX m_infFields;
+};
+typedef INDEX_HEADER* PINDEX_HEADER;
+
+/////////////////////////
+
+struct NODE_HEAD
+{
+    #define    INS_IS_TREE_NODE   (1 << 0)
+    #define    INS_IS_EMPTY_NODE  (1 << 1)
+    WORD m_wState;
+    SHORT m_shtItemCount;
+};
+typedef NODE_HEAD* PNODE_HEAD;
+
+/////////////////////////
+/*
+    1、树结点的结构：
+
+    NODE_HEAD
+    结点号（INT） + 关键字数据
+    .
+    .
+    .
+
+    最右结点号（INT）
+
+    2、叶结点的结构：
+
+    NODE_HEAD
+    对应记录号（INT） + 关键字数据
+    .
+    .
+    .
+
+    3、空结点的结构：
+    NODE_HEAD，其中 m_shtItemCount 始终为 0 。
+    一个 INT 记录上一个空结点（0 表示无），一个 INT 记录下一个空结点（0 表示无）。
+*/
+/////////////////////////
+
+/*
+
+.ENX索引文件结构图：
+
+    INDEX_HEADER （结构）
+
+    B+ 树结点数据集
+
+*/
+
+
+/**********************************************************************************/
+
+
+                                                        飞扬软件工作室  吴涛
+
+                                                        2003年7月11日
+
+
+
