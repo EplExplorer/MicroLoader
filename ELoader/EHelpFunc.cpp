@@ -114,29 +114,6 @@ void _cdecl krnl_MExitProcess(DWORD uExitCode)
 
 }
 
-__declspec(naked) void _cdecl krnl_MExitProcess2(DWORD uExitCode)
-{
-
-	__asm {
-		push ebp
-		mov ebp, esp
-	}
-
-	if (AppContext->ExitCallBack != 0) {
-		UNKNOWFUN callback = (UNKNOWFUN)AppContext->ExitCallBack;
-		callback();
-	}
-
-	FreeContext();
-
-	ExitProcess(uExitCode);
-	
-	__asm {
-		ret
-	}
-
-}
-
 void _cdecl krnl_MOtherHelp(DWORD lpCallBack) 
 {
 	AppContext->ExitCallBack = (void*)lpCallBack;
