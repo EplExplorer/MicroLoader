@@ -1,4 +1,9 @@
 import lief
+import sys
+
+# 设置运行目录为源码所在目录
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 magic = bytes([
     0x57, 0x54, 0x4E, 0x45, 0x20, 0x2F, 0x20, 0x4D, 0x41, 0x44, 0x45, 0x20, 0x42, 0x59, 0x20, 0x45, 
@@ -6,7 +11,7 @@ magic = bytes([
     0x4F, 0x20, 0x00, 0x00, 
 ])
 
-binary = lief.parse("ELoader.exe")
+binary = lief.parse(sys.argv[1])
 
 # 新建区段
 code_sec = lief.PE.Section()
@@ -17,6 +22,6 @@ code_sec.content = bytearray(magic + open("inject.epk", 'rb').read()[len(magic):
 # 加入区段
 code_sec = binary.add_section(code_sec)
 
-binary.write("ELoader.exe")
+binary.write(sys.argv[1])
 
 print("注入完毕")

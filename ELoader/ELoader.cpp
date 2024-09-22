@@ -26,7 +26,7 @@ DWORD FindECode()
     for (int i = 1; i <= NumberOfSections; i++) {
 
         memcpy(SectionName, SectionHeader->Name, IMAGE_SIZEOF_SHORT_NAME);
-        SectionName[IMAGE_SIZEOF_SHORT_NAME + 1] = 0;
+        SectionName[IMAGE_SIZEOF_SHORT_NAME] = 0;
 
         // 寻找易格式所在节的方法是：简单的比较当前SectionName是否是“.ecode”
         if (strcmp(SectionName, ESECTIONNAME) == 0) {
