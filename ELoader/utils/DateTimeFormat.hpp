@@ -6,25 +6,25 @@
 
 void DateTimeFormat(LPSTR strValue, DATE dt, BOOL bOnlyDatePart = FALSE);
 
-//¸ñÊ½»¯Ê±¼äÎÄ±¾
+//æ ¼å¼åŒ–æ—¶é—´æ–‡æœ¬
 void DateTimeFormat(LPSTR strValue, DATE dtDt, BOOL bOnlyDatePart)
 {
 	SYSTEMTIME st = { 0 };
 	VariantTimeToSystemTime(dtDt, &st);
 
 	char strFormat[128];
-	strcpy(strFormat, "%dÄê%dÔÂ%dÈÕ");
+	strcpy(strFormat, "%då¹´%dæœˆ%dæ—¥");
 
 
-	//¸ñÊ½»¯Ê±¼ä²¿·Ö
+	//æ ¼å¼åŒ–æ—¶é—´éƒ¨åˆ†
 	char strFormatTime[128];
 
 	if (st.wSecond)
-		strcpy(strFormatTime, "%dÊ±%d·Ö%dÃë");
+		strcpy(strFormatTime, "%dæ—¶%dåˆ†%dç§’");
 	else if (st.wMinute && st.wSecond == 0)
-		strcpy(strFormatTime, "%dÊ±%d·Ö");
+		strcpy(strFormatTime, "%dæ—¶%dåˆ†");
 	else if (st.wHour && st.wMinute == 0 && st.wSecond == 0)
-		strcpy(strFormatTime, "%dÊ±");
+		strcpy(strFormatTime, "%dæ—¶");
 	else
 		strFormatTime[0] = 0;
 

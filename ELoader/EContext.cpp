@@ -1,7 +1,7 @@
 
 #include "EContext.h"
 
-// ÒýÈëÈÕÖ¾¿â
+// å¼•å…¥æ—¥å¿—åº“
 #include "logger/easylogging++.h"
 
 EContext* AppContext;
@@ -14,7 +14,7 @@ void InitContext(PFN_NOTIFY_SYS NotifySys)
 	AppContext->IsErrorCallBack = false;
 
 #ifdef _DEBUG
-	LOG(INFO) << "AppContext ³õÊ¼»¯Íê±Ï";
+	LOG(INFO) << "AppContext åˆå§‹åŒ–å®Œæ¯•";
 	LOG(INFO) << "Heap: " << AppContext->Heap;
 #endif
 
@@ -24,10 +24,10 @@ void FreeContext()
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "ÍË³ö³ÌÐò²¢¿ªÊ¼ÊÍ·Å×ÊÔ´";
+	LOG(INFO) << "é€€å‡ºç¨‹åºå¹¶å¼€å§‹é‡Šæ”¾èµ„æº";
 #endif
 
-	// ÊÍ·ÅdllÒýÓÃÊý¾Ý
+	// é‡Šæ”¾dllå¼•ç”¨æ•°æ®
 	if (AppContext->DllCmdHead != NULL) {
 		free(AppContext->DllCmdHead);
 	}
@@ -37,7 +37,7 @@ void FreeContext()
 		for (UINT32 i = 1; i <= AppContext->LibCount; i++) {
 
 #ifdef _DEBUG
-			LOG(INFO) << "ÕýÔÚÐ¶ÔØ" << LibInfo->LibName;
+			LOG(INFO) << "æ­£åœ¨å¸è½½" << LibInfo->LibName;
 #endif
 
 			if (LibInfo->LibHandle == NULL ||
@@ -46,7 +46,7 @@ void FreeContext()
 				continue;
 			}
 
-			// Í¨ÖªÖ§³Ö¿â½«±»Ð¶ÔØ
+			// é€šçŸ¥æ”¯æŒåº“å°†è¢«å¸è½½
 			PFN_NOTIFY_LIB NotifyLib = LibInfo->LibInfo->m_pfnNotify;
 			if (NotifyLib != NULL) {
 				NotifyLib(NL_FREE_LIB_DATA, 0, 0);

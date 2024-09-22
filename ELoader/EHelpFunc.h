@@ -7,7 +7,7 @@
 #include "ECommon.h"
 #include "EContext.h"
 
-// 核心服务数量
+// 鏍稿績鏈嶅姟鏁伴噺
 #define ESERVERCOUNT 13
 
 

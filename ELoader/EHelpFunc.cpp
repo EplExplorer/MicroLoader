@@ -1,6 +1,6 @@
 #include "EHelpFunc.h"
 
-// ÒıÈëÈÕÖ¾¿â
+// å¼•å…¥æ—¥å¿—åº“
 #include "logger/easylogging++.h"
 
 extern EContext* AppContext;
@@ -9,17 +9,17 @@ DWORD ServerPointTable[ESERVERCOUNT];
 
 LPSTR sErrorListForE[] =
 {
-	(LPSTR)"Êı×é³ÉÔ±ÒıÓÃÏÂ±ê³¬³ö¶¨Òå·¶Î§",
-	(LPSTR)"Î´µÃµ½ËùĞèÒªµÄÊıÖµĞÍÊı¾İ",
-	(LPSTR)"ÒıÓÃÊı×é³ÉÔ±Ê±Î¬Êı²»Îª1ÇÒ²»µÈÓÚ¸ÃÊı×éÄ¿Ç°Ëù¾ßÓĞµÄÎ¬Êı",
-	(LPSTR)"Êı×é³ÉÔ±ÒıÓÃÏÂ±ê±ØĞë´óÓÚµÈÓÚ1",
-	(LPSTR)"Êı¾İ»òÊı×éÀàĞÍ²»Æ¥Åä",
-	(LPSTR)"µ÷ÓÃDLLÃüÁîºó·¢ÏÖ¶ÑÕ»´íÎó£¬Í¨³£ÊÇDLL²ÎÊıÊıÄ¿²»ÕıÈ·",
-	(LPSTR)"×ÓÓï¾ä²ÎÊıÎ´·µ»ØÊı¾İ»òÕß·µ»ØÁË·ÇÏµÍ³»ù±¾ÀàĞÍ»òÊı×éĞÍÊı¾İ",
-	(LPSTR)"±»±È½ÏÊı¾İÖ»ÄÜÊ¹ÓÃµÈÓÚ»ò²»µÈÓÚÃüÁî±È½Ï",
-	(LPSTR)"¡°¶àÏîÑ¡Ôñ¡±ÃüÁîµÄË÷ÒıÖµ²ÎÊıĞ¡ÓÚÁã»ò³¬³öÁËËùÌá¹©²ÎÊı±í·¶Î§",
-	(LPSTR)"¡°ÖØ¶¨ÒåÊı×é¡±ÃüÁîµÄÊı×éÎ¬¶¨Òå²ÎÊıÖµ±ØĞë´óÓÚÁã»òµ¥Î¬Ê±´óÓÚµÈÓÚÁã",
-	(LPSTR)"ËùÌá¹©²ÎÊıµÄÊı¾İÀàĞÍ²»·ûºÏÒªÇó"
+	(LPSTR)"æ•°ç»„æˆå‘˜å¼•ç”¨ä¸‹æ ‡è¶…å‡ºå®šä¹‰èŒƒå›´",
+	(LPSTR)"æœªå¾—åˆ°æ‰€éœ€è¦çš„æ•°å€¼å‹æ•°æ®",
+	(LPSTR)"å¼•ç”¨æ•°ç»„æˆå‘˜æ—¶ç»´æ•°ä¸ä¸º1ä¸”ä¸ç­‰äºè¯¥æ•°ç»„ç›®å‰æ‰€å…·æœ‰çš„ç»´æ•°",
+	(LPSTR)"æ•°ç»„æˆå‘˜å¼•ç”¨ä¸‹æ ‡å¿…é¡»å¤§äºç­‰äº1",
+	(LPSTR)"æ•°æ®æˆ–æ•°ç»„ç±»å‹ä¸åŒ¹é…",
+	(LPSTR)"è°ƒç”¨DLLå‘½ä»¤åå‘ç°å †æ ˆé”™è¯¯ï¼Œé€šå¸¸æ˜¯DLLå‚æ•°æ•°ç›®ä¸æ­£ç¡®",
+	(LPSTR)"å­è¯­å¥å‚æ•°æœªè¿”å›æ•°æ®æˆ–è€…è¿”å›äº†éç³»ç»ŸåŸºæœ¬ç±»å‹æˆ–æ•°ç»„å‹æ•°æ®",
+	(LPSTR)"è¢«æ¯”è¾ƒæ•°æ®åªèƒ½ä½¿ç”¨ç­‰äºæˆ–ä¸ç­‰äºå‘½ä»¤æ¯”è¾ƒ",
+	(LPSTR)"â€œå¤šé¡¹é€‰æ‹©â€å‘½ä»¤çš„ç´¢å¼•å€¼å‚æ•°å°äºé›¶æˆ–è¶…å‡ºäº†æ‰€æä¾›å‚æ•°è¡¨èŒƒå›´",
+	(LPSTR)"â€œé‡å®šä¹‰æ•°ç»„â€å‘½ä»¤çš„æ•°ç»„ç»´å®šä¹‰å‚æ•°å€¼å¿…é¡»å¤§äºé›¶æˆ–å•ç»´æ—¶å¤§äºç­‰äºé›¶",
+	(LPSTR)"æ‰€æä¾›å‚æ•°çš„æ•°æ®ç±»å‹ä¸ç¬¦åˆè¦æ±‚"
 };
 
 char* DefaultSystemAPI[] = {
@@ -36,7 +36,7 @@ void _cdecl krnl_MFree(void* lpMem)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "ÄÚ´æÊÍ·Å lpMem: " << (DWORD)lpMem;
+	LOG(INFO) << "å†…å­˜é‡Šæ”¾ lpMem: " << (DWORD)lpMem;
 #endif
 
 	if (HeapValidate(AppContext->Heap, HEAP_NO_SERIALIZE, lpMem) == 0)
@@ -51,7 +51,7 @@ void* _cdecl krnl_MMalloc(DWORD dwSize)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "ÄÚ´æ·ÖÅä dwSize: " << dwSize;
+	LOG(INFO) << "å†…å­˜åˆ†é… dwSize: " << dwSize;
 #endif
 
 	void* pData = HeapAlloc(AppContext->Heap, HEAP_ZERO_MEMORY, dwSize);
@@ -59,9 +59,9 @@ void* _cdecl krnl_MMalloc(DWORD dwSize)
 	if (!pData)
 	{
 		char ErrorString[255];
-		char** pRetnAddr = (char**)(&dwSize - 1); // È¡·µ»ØµØÖ·
-		wsprintf(ErrorString, "ÉêÇë%d×Ö½ÚÄÚ´æÊ§°Ü.\r\n"
-			"Õ»ĞÅÏ¢:\r\n"
+		char** pRetnAddr = (char**)(&dwSize - 1); // å–è¿”å›åœ°å€
+		wsprintf(ErrorString, "ç”³è¯·%då­—èŠ‚å†…å­˜å¤±è´¥.\r\n"
+			"æ ˆä¿¡æ¯:\r\n"
 			"0x%08X\r\n0x%08X\r\n"
 			"0x%08X\r\n0x%08X\r\n"
 			"0x%08X\r\n0x%08X\r\n"
@@ -90,7 +90,7 @@ void _cdecl krnl_MExitProcess(DWORD uExitCode)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "³ÌĞòÍË³ö uExitCode: " << uExitCode;
+	LOG(INFO) << "ç¨‹åºé€€å‡º uExitCode: " << uExitCode;
 #endif
 
 	if (AppContext->ExitCallBack != 0) {
@@ -118,7 +118,7 @@ void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "ÖØ·ÖÅäÄÚ´æ lpMem: " << (DWORD)lpMem << " dwSize: " << dwSize;
+	LOG(INFO) << "é‡åˆ†é…å†…å­˜ lpMem: " << (DWORD)lpMem << " dwSize: " << dwSize;
 #endif
 
 	void* pData;
@@ -131,9 +131,9 @@ void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 	if (!pData)
 	{
 		char ErrorString[255];
-		char** pRetnAddr = (char**)(&dwSize - 2); // È¡·µ»ØµØÖ·
-		wsprintf(ErrorString, "ÉêÇë%d×Ö½ÚÄÚ´æÊ§°Ü.\r\n"
-			"Õ»ĞÅÏ¢:\r\n"
+		char** pRetnAddr = (char**)(&dwSize - 2); // å–è¿”å›åœ°å€
+		wsprintf(ErrorString, "ç”³è¯·%då­—èŠ‚å†…å­˜å¤±è´¥.\r\n"
+			"æ ˆä¿¡æ¯:\r\n"
 			"0x%08X\r\n0x%08X\r\n"
 			"0x%08X\r\n0x%08X\r\n"
 			"0x%08X\r\n0x%08X\r\n"
@@ -151,7 +151,7 @@ void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 			pRetnAddr[10], pRetnAddr[11],
 			pRetnAddr[12], pRetnAddr[13],
 			pRetnAddr[14], pRetnAddr[15]);
-		MessageBox(0, "ÄÚ´æ²»×ã", "error", MB_ICONERROR);
+		MessageBox(0, "å†…å­˜ä¸è¶³", "error", MB_ICONERROR);
 		krnl_MExitProcess(0);
 	}
 
@@ -162,7 +162,7 @@ void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "Ò×ÓïÑÔÅ×³öÒì³£ nMsg: " << nMsg << " dwMethodId: " << dwMethodId << " dwPos: " << dwPos;
+	LOG(INFO) << "æ˜“è¯­è¨€æŠ›å‡ºå¼‚å¸¸ nMsg: " << nMsg << " dwMethodId: " << dwMethodId << " dwPos: " << dwPos;
 #endif
 
 	char ErrorString[255];
@@ -172,17 +172,17 @@ void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 		ptxt = sErrorListForE[nMsg - 1];
 
 	BOOL bThreeParam = FALSE;
-	char* pRetnAddr = (char*)*(&nMsg - 1); // È¡·µ»ØµØÖ·
+	char* pRetnAddr = (char*)*(&nMsg - 1); // å–è¿”å›åœ°å€
 	if (NULL != pRetnAddr)
 	{
-		if (0xC483 == *(unsigned short*)(pRetnAddr)) // ÊÇ·ñÎªadd esp, xxx;
+		if (0xC483 == *(unsigned short*)(pRetnAddr)) // æ˜¯å¦ä¸ºadd esp, xxx;
 		{
-			bThreeParam = (0x0C <= *(pRetnAddr + 2)); // Æ½Õ»ÊıÁ¿Îª12£¬±íÊ¾ÓĞÈı¸ö²ÎÊı
+			bThreeParam = (0x0C <= *(pRetnAddr + 2)); // å¹³æ ˆæ•°é‡ä¸º12ï¼Œè¡¨ç¤ºæœ‰ä¸‰ä¸ªå‚æ•°
 		}
 	}
-	if (bThreeParam) // Ò×ÓïÑÔ5.8°æ±¾¼°ÒÔÉÏ²Å»áÓĞÈı¸ö²ÎÊı£¬¾ÉµÄ°æ±¾Ö»ÓĞÒ»¸ö²ÎÊı¡£
+	if (bThreeParam) // æ˜“è¯­è¨€5.8ç‰ˆæœ¬åŠä»¥ä¸Šæ‰ä¼šæœ‰ä¸‰ä¸ªå‚æ•°ï¼Œæ—§çš„ç‰ˆæœ¬åªæœ‰ä¸€ä¸ªå‚æ•°ã€‚
 	{
-		wsprintf(ErrorString, "program internal error number is %d. \r\n%s\r\n´íÎóÎ»ÖÃ:%d,%d", nMsg, ptxt, dwMethodId, dwPos);
+		wsprintf(ErrorString, "program internal error number is %d. \r\n%s\r\né”™è¯¯ä½ç½®:%d,%d", nMsg, ptxt, dwMethodId, dwPos);
 	}
 	else
 	{
@@ -191,7 +191,7 @@ void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 
 	INT nNoErrorBox = 0;
 
-	// Èç¹ûÔÚ´íÎó»Øµ÷ÖĞÒÀÈ»³öÏÖ´íÎó½«²»»áÔÙ´Îµ÷ÓÃ´íÎó»Øµ÷
+	// å¦‚æœåœ¨é”™è¯¯å›è°ƒä¸­ä¾ç„¶å‡ºç°é”™è¯¯å°†ä¸ä¼šå†æ¬¡è°ƒç”¨é”™è¯¯å›è°ƒ
 	if (AppContext->ErrorCallBack && !AppContext->IsErrorCallBack)
 	{
 
@@ -209,19 +209,19 @@ void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 }
 
 void _cdecl krnl_MReadProperty(void) {
-	MessageBoxA(0, "Ôİ²»Ö§³Ö´°¿ÚÏà¹Ø¹¦ÄÜ", "error", MB_ICONERROR);
+	MessageBoxA(0, "æš‚ä¸æ”¯æŒçª—å£ç›¸å…³åŠŸèƒ½", "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
 	return;
 }
 
 void _cdecl krnl_MWriteProperty(void) {
-	MessageBoxA(0, "Ôİ²»Ö§³Ö´°¿ÚÏà¹Ø¹¦ÄÜ", "error", MB_ICONERROR);
+	MessageBoxA(0, "æš‚ä¸æ”¯æŒçª—å£ç›¸å…³åŠŸèƒ½", "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
 	return;
 }
 
 void _cdecl krnl_MLoadBeginWin(void) {
-	MessageBoxA(0, "Ôİ²»Ö§³Ö´°¿ÚÏà¹Ø¹¦ÄÜ", "error", MB_ICONERROR);
+	MessageBoxA(0, "æš‚ä¸æ”¯æŒçª—å£ç›¸å…³åŠŸèƒ½", "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
 	return;
 }
@@ -251,7 +251,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 			if (pfn != NULL)
 			{
 #ifdef _DEBUG
-				LOG(INFO) << "µ÷ÓÃapi dll: " << DefaultSystemAPI[i] << " symbol: " << DllCmd->DllCmdName;
+				LOG(INFO) << "è°ƒç”¨api dll: " << DefaultSystemAPI[i] << " symbol: " << DllCmd->DllCmdName;
 #endif
 				return pfn;
 			}
@@ -277,7 +277,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 		if (pfn != NULL)
 		{
 #ifdef _DEBUG
-			LOG(INFO) << "µ÷ÓÃapi dll: " << DllCmd->DllFileName << " symbol: " << DllCmd->DllCmdName;
+			LOG(INFO) << "è°ƒç”¨api dll: " << DllCmd->DllFileName << " symbol: " << DllCmd->DllCmdName;
 #endif
 			return pfn;
 		}
@@ -307,13 +307,13 @@ void* _cdecl krnl_GetLibCmdAddress(DWORD LibCmdNO) {
 	LibInfo += LibCmdNO;
 
 #ifdef _DEBUG
-	LOG(INFO) << "µ÷ÓÃÖ§³Ö¿â name: " << LibInfo->LibName << " handle: " << LibInfo->LibHandle;
+	LOG(INFO) << "è°ƒç”¨æ”¯æŒåº“ name: " << LibInfo->LibName << " handle: " << LibInfo->LibHandle;
 #endif
 
 	if (LibInfo->LibHandle == NULL || LibInfo->LibInfo == NULL) {
 		char ErrorString[256];
 
-		sprintf(ErrorString, "%s\n\nIntra error string is \"%s\".", "ÎŞ·¨µ÷ÓÃÖ§³Ö¿â",
+		sprintf(ErrorString, "%s\n\nIntra error string is \"%s\".", "æ— æ³•è°ƒç”¨æ”¯æŒåº“",
 			LibInfo->LibName);
 		MessageBoxA(0, ErrorString, "error", MB_ICONERROR);
 		krnl_MExitProcess(0);
@@ -328,10 +328,10 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 		push ebp
 		mov ebp, esp
 
-		push eax // Ñ¹Èë¿âÎÄ¼şÆ«ÒÆÁ¿
+		push eax // å‹å…¥åº“æ–‡ä»¶åç§»é‡
 		call krnl_GetLibCmdAddress
-		mov esp, ebp  // Çå³ıÕ»ÖĞµÄ²ÎÊı
-		mov edx, eax // ½«µØÖ·´«¸øedx
+		mov esp, ebp  // æ¸…é™¤æ ˆä¸­çš„å‚æ•°
+		mov edx, eax // å°†åœ°å€ä¼ ç»™edx
 
 		add ebx, [edx]
 		lea edx, dword ptr ss : [esp + 0x0c]
@@ -358,7 +358,7 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 void* _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
 
 #ifdef _DEBUG
-	LOG(INFO) << "µ÷ÓÃºËĞÄ¿â offset: " << LibCmdNO;
+	LOG(INFO) << "è°ƒç”¨æ ¸å¿ƒåº“ offset: " << LibCmdNO;
 #endif
 
 	auto it = KernelBaseCmd.find(LibCmdNO);
@@ -368,7 +368,7 @@ void* _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
 
 	char ErrorString[256];
 
-	sprintf(ErrorString, "%s%d", "ºËĞÄ¿âº¯ÊıÎ´ÊµÏÖ: ", LibCmdNO);
+	sprintf(ErrorString, "%s%d", "æ ¸å¿ƒåº“å‡½æ•°æœªå®ç°: ", LibCmdNO);
 	MessageBoxA(0, ErrorString, "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
 
@@ -382,11 +382,11 @@ __declspec(naked) void _cdecl krnl_MCallKrnlLibCmd() {
 		push ebp
 		mov ebp, esp
 
-		// »ñÈ¡µØÖ·
-		push ebx // Ñ¹Èëº¯ÊıÆ«ÒÆÁ¿
+		// è·å–åœ°å€
+		push ebx // å‹å…¥å‡½æ•°åç§»é‡
 		call krnl_GetKrnlnCmdAddress
-		mov esp, ebp // Çå³ıÕ»ÖĞµÄ²ÎÊı
-		mov ebx, eax // ½«µØÖ·´«¸øebx
+		mov esp, ebp // æ¸…é™¤æ ˆä¸­çš„å‚æ•°
+		mov ebx, eax // å°†åœ°å€ä¼ ç»™ebx
 
 		lea eax, dword ptr ss : [esp + 0x0c]
 		sub esp, 0x0c

@@ -1,13 +1,11 @@
-#pragma once
-
 #include "krnln.h"
 
-//λ���� - λȡ��
+//位运算 - 位取反
 /*
-	���ø�ʽ�� �������͡� λȡ�� �������� ��ȡ������ֵ�� - ϵͳ����֧�ֿ�->λ����
-	Ӣ�����ƣ�bnot
-	��ָ����ֵÿһ������λ��ֵȡ���󷵻ء�������Ϊ�м����
-	����<1>������Ϊ����ȡ������ֵ��������Ϊ�������ͣ�int������
+	调用格式： 〈整数型〉 位取反 （整数型 欲取反的数值） - 系统核心支持库->位运算
+	英文名称：bnot
+	将指定数值每一个比特位的值取反后返回。本命令为中级命令。
+	参数<1>的名称为“欲取反的数值”，类型为“整数型（int）”。
 */
 void _cdecl krnln_bnot(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf) {
 	pRetData->m_int = ~(pArgInf[0].m_int);

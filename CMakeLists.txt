@@ -12,8 +12,7 @@ add_executable(MicroLoader
         ELoader/ELoader.cpp
         ELoader/ENotifySys.cpp
         ELoader/logger/easylogging++.cc
-        ${KRNLN_SOURCE}
-        ELoader/krnln/krnln_MsgBox.cpp)
+        ${KRNLN_SOURCE})
 
 add_custom_command(TARGET MicroLoader POST_BUILD
         COMMAND python ${CMAKE_SOURCE_DIR}/tools/inject.py $<TARGET_FILE:MicroLoader>

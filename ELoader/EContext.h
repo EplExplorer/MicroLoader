@@ -4,23 +4,23 @@
 
 #include "ECommon.h"
 
-// ╩╥╬Ёиообнд
+// Г▌╞Е╒┐Д╦┼Д╦▀Ф√┤
 typedef struct
 {
 	HANDLE Heap;
 	PFN_NOTIFY_SYS NotifySys;
 
-	// ╫╚тзмкЁЖж╝г╟╠╩╣Всц
+	// Е╟├Е°╗И──Е┤╨Д╧▀Е┴█Х╒╚Х╟┐Г■╗
 	void* ExitCallBack;
 
 	char EFileName[MAX_PATH];
 	char EFilePath[MAX_PATH];
 
-	// ╢МнС╩ь╣В
+	// И■≥Х╞╞Е⌡·Х╟┐
 	void* ErrorCallBack;
 	bool IsErrorCallBack;
 
-	// рюю╣пео╒
+	// Д╬²Х╣√Д©║Ф│╞
 	PDLLCMD DllCmdHead;
 	DWORD DllCount;
 
@@ -29,8 +29,8 @@ typedef struct
 }
 EContext;
 
-// ЁУй╪╩╞иообнд
+// Е┬²Е╖▀Е▄√Д╦┼Д╦▀Ф√┤
 void InitContext(PFN_NOTIFY_SYS NotifySys);
 
-// йм╥еиообнд
+// И┤┼Ф■╬Д╦┼Д╦▀Ф√┤
 void FreeContext();

@@ -1,7 +1,7 @@
 
 #include "EArray.h"
 
-void FreeAryElement(void* pAryData)//¶ÔÓÚÎÄ±¾ºÍ×Ö½Ú¼¯Êý×éÓÐÐ§
+void FreeAryElement(void* pAryData)//å¯¹äºŽæ–‡æœ¬å’Œå­—èŠ‚é›†æ•°ç»„æœ‰æ•ˆ
 {
 	DWORD AryElementCount = 0;
 	LPINT* pArryPtr = (LPINT*)GetAryElementInf(pAryData, AryElementCount);
@@ -28,10 +28,10 @@ void* GetAryElementInf(void* pAryData, DWORD& AryElementCount)
 
 	pnData = (LPINT)pAryData;
 
-	nArys = *pnData; //È¡µÃÎ¬Êý¡£
+	nArys = *pnData; //å–å¾—ç»´æ•°ã€‚
 	pnData += 1;
 
-	// ¼ÆËã³ÉÔ±ÊýÄ¿¡£
+	// è®¡ç®—æˆå‘˜æ•°ç›®ã€‚
 	nElementCount = 1;
 	while (nArys > 0)
 	{
