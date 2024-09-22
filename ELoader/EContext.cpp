@@ -1,19 +1,23 @@
+
 #include "EContext.h"
 
-EContext *AppContext;
+EContext* AppContext;
 
-void InitContext(PFN_NOTIFY_SYS NotifySys) {
-    AppContext = (EContext *) malloc(sizeof(EContext));
-    AppContext->Heap = GetProcessHeap();
-    AppContext->NotifySys = NotifySys;
+void InitContext(PFN_NOTIFY_SYS NotifySys)
+{
+	AppContext = (EContext*)malloc(sizeof(EContext));
+	AppContext->Heap = GetProcessHeap();
+	AppContext->NotifySys = NotifySys;
     AppContext->IsErrorCallBack = false;
 }
 
-void FreeContext() {
-    // 释放dll引用数据
-    if (AppContext->DllCmdHead != NULL) {
-        free(AppContext->DllCmdHead);
-    }
+void FreeContext()
+{
+
+	// 释放dll引用数据
+	if (AppContext->DllCmdHead != NULL) {
+		free(AppContext->DllCmdHead);
+	}
 
     if (AppContext->LibInfoHead != NULL) {
         PLIBINFO LibInfo = AppContext->LibInfoHead;
@@ -36,4 +40,5 @@ void FreeContext() {
             LibInfo++;
         }
     }
+
 }

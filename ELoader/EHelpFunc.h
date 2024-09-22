@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stdio.h>
-#include <map>
 #include <windows.h>
 
 #include "ECommon.h"
@@ -13,17 +12,16 @@
 
 typedef std::map<DWORD, PFN_EXECUTE_CMD> KernelCmd;
 
-typedef void (__stdcall*UNKNOWFUN)(void);
+typedef void(__stdcall* UNKNOWFUN)(void);
+typedef INT(__stdcall* ERRORCALLBACK)(int nCode, char* errText);
 
-typedef INT (__stdcall*ERRORCALLBACK)(int nCode, char *errText);
+void _cdecl krnl_MFree(void* lpMem);
 
-void _cdecl krnl_MFree(void *lpMem);
-
-void * _cdecl krnl_MMalloc(DWORD dwSize);
+void* _cdecl krnl_MMalloc(DWORD dwSize);
 
 void _cdecl krnl_MOtherHelp(DWORD lpCallBack);
 
-void * _cdecl krnl_MRealloc(void *lpMem, DWORD dwSize);
+void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize);
 
 void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos);
 

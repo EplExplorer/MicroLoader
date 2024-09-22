@@ -1,5 +1,4 @@
-﻿
-#include "ELoader.h"
+﻿#include "ELoader.h"
 
 extern EContext* AppContext;
 
@@ -17,7 +16,7 @@ DWORD FindECode()
 
     UINT32 NumberOfSections = NtHeader->FileHeader.NumberOfSections;
 
-    PIMAGE_SECTION_HEADER SectionHeader = 
+    PIMAGE_SECTION_HEADER SectionHeader =
         (PIMAGE_SECTION_HEADER)((UINT32)NtHeader + sizeof(IMAGE_NT_HEADERS));
 
     bool FindOK = false;
@@ -49,15 +48,15 @@ ESections LoadSections(PAPP_HEADER_INFO lpHeader)
 {
     ESections result;
 
-    result.pConstSectionOffset = (void*)((UINT32)lpHeader + 
+    result.pConstSectionOffset = (void*)((UINT32)lpHeader +
         lpHeader->m_nConstSectionOffset);
-    result.pWinFormSectionOffset = (void*)((UINT32)lpHeader + 
+    result.pWinFormSectionOffset = (void*)((UINT32)lpHeader +
         lpHeader->m_nWinFormSectionOffset);
-    result.pHelpFuncSectionOffset = (void*)((UINT32)lpHeader + 
+    result.pHelpFuncSectionOffset = (void*)((UINT32)lpHeader +
         lpHeader->m_nHelpFuncSectionOffset);
-    result.pCodeSectionOffset = (void*)((UINT32)lpHeader + 
+    result.pCodeSectionOffset = (void*)((UINT32)lpHeader +
         lpHeader->m_nCodeSectionOffset);
-    result.pVarSectionOffset = (void*)((UINT32)lpHeader + 
+    result.pVarSectionOffset = (void*)((UINT32)lpHeader +
         lpHeader->m_nVarSectionOffset);
 
     return result;
@@ -306,8 +305,22 @@ int main()
     InitServerPointTable();
     UpdataServerPointTable(ECodeHeaderInfo, ((PSECTION_INFO)ECodeSections.pHelpFuncSectionOffset)->m_nRecordOffset);
 
+
     // 至此初始化操作全部完成，转交控制权给易程序
-    ECodeStart();
+    INT nProtectESP = 0;
+    INT nProtectEBP = 0;
+
+    // 备份 esp 与 ebp
+    _asm {
+        mov nProtectESP, esp;
+        mov nProtectEBP, ebp;
+        call ECodeStart;
+        mov ebp, nProtectEBP;
+        mov esp, nProtectESP;
+    }
+
     krnl_MExitProcess(0);
+
     return 0;
+
 }
