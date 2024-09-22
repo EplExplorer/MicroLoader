@@ -40,7 +40,7 @@ void _stdcall krnl_MCallDllCmd(void);
 
 void InitServerPointTable(void);
 
-void UpdataServerPointTable(void *pBase, DWORD nHelpOffset);
+void UpdataServerPointTable(void* pBase, DWORD nHelpOffset);
 
 #define REGISTER_FUNCTION(offset,name) \
 namespace { \

@@ -3,38 +3,34 @@
 // 引入日志库
 #include "logger/easylogging++.h"
 
-extern EContext *AppContext;
+extern EContext* AppContext;
 
 DWORD ServerPointTable[ESERVERCOUNT];
 
 LPSTR sErrorListForE[] =
 {
-    (LPSTR) "数组成员引用下标超出定义范围",
-    (LPSTR) "未得到所需要的数值型数据",
-    (LPSTR) "引用数组成员时维数不为1且不等于该数组目前所具有的维数",
-    (LPSTR) "数组成员引用下标必须大于等于1",
-    (LPSTR) "数据或数组类型不匹配",
-    (LPSTR) "调用DLL命令后发现堆栈错误，通常是DLL参数数目不正确",
-    (LPSTR) "子语句参数未返回数据或者返回了非系统基本类型或数组型数据",
-    (LPSTR) "被比较数据只能使用等于或不等于命令比较",
-    (LPSTR) "“多项选择”命令的索引值参数小于零或超出了所提供参数表范围",
-    (LPSTR) "“重定义数组”命令的数组维定义参数值必须大于零或单维时大于等于零",
-    (LPSTR) "所提供参数的数据类型不符合要求"
+	(LPSTR)"数组成员引用下标超出定义范围",
+	(LPSTR)"未得到所需要的数值型数据",
+	(LPSTR)"引用数组成员时维数不为1且不等于该数组目前所具有的维数",
+	(LPSTR)"数组成员引用下标必须大于等于1",
+	(LPSTR)"数据或数组类型不匹配",
+	(LPSTR)"调用DLL命令后发现堆栈错误，通常是DLL参数数目不正确",
+	(LPSTR)"子语句参数未返回数据或者返回了非系统基本类型或数组型数据",
+	(LPSTR)"被比较数据只能使用等于或不等于命令比较",
+	(LPSTR)"“多项选择”命令的索引值参数小于零或超出了所提供参数表范围",
+	(LPSTR)"“重定义数组”命令的数组维定义参数值必须大于零或单维时大于等于零",
+	(LPSTR)"所提供参数的数据类型不符合要求"
 };
 
-char *DefaultSystemAPI[] = {
-    (char *) "kernel32.dll",
-    (char *) "user32.dll",
-    (char *) "ntdll.dll",
-    (char *) "advapi32.dll",
-    NULL
+char* DefaultSystemAPI[] = {
+	(char*)"kernel32.dll",
+	(char*)"user32.dll",
+	(char*)"ntdll.dll",
+	(char*)"advapi32.dll",
+	NULL
 };
-
-
-
 
 KernelCmd KernelBaseCmd;
-
 
 void _cdecl krnl_MFree(void* lpMem)
 {
@@ -359,16 +355,16 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 
 }
 
-void * _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
+void* _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
 
 #ifdef _DEBUG
 	LOG(INFO) << "调用核心库 offset: " << LibCmdNO;
 #endif
 
-    auto it = KernelBaseCmd.find(LibCmdNO);
-    if (it != KernelBaseCmd.end()) {
-        return &(it->second);
-    }
+	auto it = KernelBaseCmd.find(LibCmdNO);
+	if (it != KernelBaseCmd.end()) {
+		return &(it->second);
+	}
 
 	char ErrorString[256];
 

@@ -1,26 +1,26 @@
 
 void LTrimZeroChr(char* str)
 {
-	char *z = NULL;
-	char *p = NULL;
+	char* z = NULL;
+	char* p = NULL;
 
 	//找小数点
-	for (; *str ; str++)
+	for (; *str; str++)
 	{
-		if(*str == '.')
+		if (*str == '.')
 		{
 			p = str++;
 			break;
 		}
 	}
 	//
-	if(p) //存在小数点
+	if (p) //存在小数点
 	{
 		for (; *str; str++)
 		{
 			if (*str == '0')
 			{
-				if(!z)
+				if (!z)
 				{
 					z = str;
 				}
@@ -33,8 +33,8 @@ void LTrimZeroChr(char* str)
 		//
 		if (z)
 		{
-			
-			if(z == p + 1) //以小数点结尾则删除小数点
+
+			if (z == p + 1) //以小数点结尾则删除小数点
 			{
 				*p = '\0';
 			}
