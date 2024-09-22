@@ -4,6 +4,6 @@
 
 #include "EHelpFunc.h"
 
-void FreeAryElement(void *pAryData);
+void FreeAryElement(void* pAryData);
 
-void *GetAryElementInf(void *pAryData, DWORD &AryElementCount);
+void* GetAryElementInf(void* pAryData, DWORD& AryElementCount);

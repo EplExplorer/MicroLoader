@@ -6,7 +6,7 @@
 // 易格式数据区段
 #define ESECTIONNAME ".ecode"
 
-typedef int(__stdcall* ECODESTART)(void);
+typedef void(__stdcall* ECODESTART)(void);
 
 typedef struct
 {
