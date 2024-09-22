@@ -1341,7 +1341,7 @@ LIBINFO, * PLIBINFO;
 typedef struct
 {
 	char LibName[256];
-	char ThisGUID[256];
+	char GUID[256];
 }
 LIBSTRINGINFO;
 

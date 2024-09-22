@@ -24,7 +24,8 @@ char* DefaultSystemAPI[] = {
 	(char*)"kernel32.dll",
 	(char*)"user32.dll",
 	(char*)"ntdll.dll",
-	(char*)"advapi32.dll"
+	(char*)"advapi32.dll",
+	NULL
 };
 
 #include "krnln/krnln_bnot.hpp"
@@ -35,8 +36,12 @@ KernelCmd KernelBaseCmd[] = {
 	// 在这里添加偏移量对应的函数指针
 	// {偏移量, 指针}
 	{0xc0, krnln_bnot},
-	{0xa08, krnln_SetErrorManger},
+
+	// 不知道什么情况偏移量对不上
+	// {0xa08, krnln_SetErrorManger},
 	{0x282, krnln_SetErrorManger},
+
+
 	//{0xc4, band},
 	//{0xc8, bor},
 	//{0xcc, bxor},
@@ -228,110 +233,100 @@ void _cdecl krnl_MMessageLoop(UINT32 Param1) {
 	return;
 }
 
-UINT32 DllCmdNO_CallDll;
+void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
+{
 
-PDLLCMD DllCmd_CallDll;
+	PDLLCMD DllCmd = AppContext->DllCmdHead;
+	DllCmd += DllCmdNO;
 
-DWORD temp_CallDll;
+	void* pfn = NULL;
 
-DWORD i_CallDll;
+	if ((*DllCmd->DllFileName) == NULL)
+	{
+		DWORD i = 0;
+		while ((*DefaultSystemAPI[i]) != NULL)
+		{
+			HMODULE Library = LoadLibrary(DefaultSystemAPI[i]);
 
-HMODULE ThisLibrary_CallDll;
-
-UNKNOWFUN UnKnowFun_CallDll;
-
-__declspec(naked) void _stdcall krnl_MCallDllCmd(void) {
-
-	__asm {
-		pop temp_CallDll
-		push eax
-		pop DllCmdNO_CallDll
-	}
-
-	DllCmd_CallDll = AppContext->DllCmdHead;
-	DllCmd_CallDll += DllCmdNO_CallDll;
-
-	if ((*DllCmd_CallDll->DllFileName) == NULL) {
-		i_CallDll = 0;
-		while ((*DefaultSystemAPI[i_CallDll]) != NULL) {
-			ThisLibrary_CallDll = LoadLibrary(DefaultSystemAPI[i_CallDll]);
-			UnKnowFun_CallDll =
-				(UNKNOWFUN)GetProcAddress(ThisLibrary_CallDll, DllCmd_CallDll->DllCmdName);
-			if (UnKnowFun_CallDll != NULL) {
-				__asm {
-					// call UnKnowFun
-					// 这个地方可能会引起杀毒软件的误报，如果有必要的话，需要处理一下
-					push temp_CallDll
-					jmp UnKnowFun_CallDll
-				}
-				break;
+			if (Library)
+				pfn = GetProcAddress(Library, DllCmd->DllCmdName);
+			
+			if (pfn != NULL)
+			{
+				return pfn;
 			}
-			else {
-				FreeLibrary(ThisLibrary_CallDll);
-				i_CallDll++;
+			else
+			{
+				if (Library)
+					FreeLibrary(Library);
+				i++;
 			}
 		}
 
-		if (UnKnowFun_CallDll == NULL) {
+		if (pfn == NULL) {
 			krnl_MExitProcess(0);
 		}
-
 	}
-	else {
-		ThisLibrary_CallDll = LoadLibrary(DllCmd_CallDll->DllFileName);
-		UnKnowFun_CallDll = (UNKNOWFUN)GetProcAddress(ThisLibrary_CallDll, DllCmd_CallDll->DllCmdName);
-		if (UnKnowFun_CallDll != NULL) {
-			__asm {
-				// call UnKnowFun
-				push temp_CallDll
-				jmp UnKnowFun_CallDll
-			}
+	else
+	{
+		HMODULE Library = LoadLibrary(DllCmd->DllFileName);
+
+		if (Library)
+			pfn = GetProcAddress(Library, DllCmd->DllCmdName);
+
+		if (pfn != NULL)
+		{
+			return pfn;
 		}
-		else {
+		else
+		{
 			krnl_MExitProcess(0);
 		}
 	}
 
-	__asm {
-		push eax
-	}
-
-	FreeLibrary(ThisLibrary_CallDll);
-
-	__asm {
-		pop eax
-		push temp_CallDll
-		ret
-	}
+	return NULL;
 }
 
-
-PLIBINFO LibInfo_CallLib;
-PFN_EXECUTE_CMD** CmdsFuncHead_CallLib;
-
-__declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
-
-	DWORD LibCmdNO;
-
+__declspec(naked) void _stdcall krnl_MCallDllCmd() {
+	
 	__asm {
-		push ebp
-		mov ebp, esp
-		mov LibCmdNO, eax
+		push eax
+		call krnl_GetDllCmdAddress
+		add esp, 4
+		jmp eax
 	}
-	LibInfo_CallLib = AppContext->LibInfoHead;
-	LibInfo_CallLib += LibCmdNO;
-	if (LibInfo_CallLib->LibHandle == NULL || LibInfo_CallLib->LibInfo == NULL) {
+
+}
+
+void* _cdecl krnl_GetLibCmdAddress(DWORD LibCmdNO) {
+
+	PLIBINFO LibInfo = AppContext->LibInfoHead;
+	LibInfo += LibCmdNO;
+	if (LibInfo->LibHandle == NULL || LibInfo->LibInfo == NULL) {
 		char ErrorString[256];
 
 		sprintf(ErrorString, "%s\n\nIntra error string is \"%s\".", "无法调用支持库",
-			LibInfo_CallLib->LibName);
+			LibInfo->LibName);
 		MessageBoxA(0, ErrorString, "error", MB_ICONERROR);
 		krnl_MExitProcess(0);
 	}
-	CmdsFuncHead_CallLib = &(LibInfo_CallLib->LibInfo->m_pCmdsFunc);
+	return &(LibInfo->LibInfo->m_pCmdsFunc);
+}
+
+// 还有问题
+__declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
+
 	__asm {
-		mov edx, [CmdsFuncHead_CallLib]
-		add ebx, [edx]
+
+		push ebp
+		mov ebp, esp
+
+		push eax // 压入库文件偏移量
+		call krnl_GetLibCmdAddress
+		mov esp, ebp  // 清除栈中的参数
+		mov edx, eax // 将地址传给edx
+
+		add ebx, [edx] // 计算有问题
 		lea edx, dword ptr ss : [esp + 0x0c]
 		sub esp, 0x0c
 		push edx
@@ -348,59 +343,43 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 		mov esp, ebp
 		pop ebp
 		retn
+
 	}
+
 }
 
-int temp_CallKrnl;
-bool FindOK_CallKrnl;
-DWORD ThisBaseCmdOffset_CallKrnl;
-PFN_EXECUTE_CMD* ThisExecuteCmdPoint_CallKrnl;
-PLIBINFO ThisLibInfo_CallKrnl;
-DWORD LibCmdNO;
-char ErrorString_CallKrnl[256];
-PFN_EXECUTE_CMD** ThisCmdsFuncHead_CallKrnl;
+void* _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
 
-__declspec(naked) void _cdecl krnl_MCallKrnlLibCmd(void) {
+	DWORD i = 0;
+	while (KernelBaseCmd[i].CmdOffset != -1) {
+		if (KernelBaseCmd[i].CmdOffset == LibCmdNO) {
+			return &(KernelBaseCmd[i].CmdPoint);
+		}
+		i++;
+	}
+
+	char ErrorString[256];
+
+	sprintf(ErrorString, "%s%d", "核心库函数未实现: ", LibCmdNO);
+	MessageBoxA(0, ErrorString, "error", MB_ICONERROR);
+	krnl_MExitProcess(0);
+
+	return NULL;
+}
+
+__declspec(naked) void _cdecl krnl_MCallKrnlLibCmd() {
 
 	__asm {
+
 		push ebp
 		mov ebp, esp
-		mov LibCmdNO, 0
-		mov ThisBaseCmdOffset_CallKrnl, ebx
-	}
-	temp_CallKrnl = 0;
-	FindOK_CallKrnl = false;
-	while (KernelBaseCmd[temp_CallKrnl].CmdOffset != -1) {
-		if (KernelBaseCmd[temp_CallKrnl].CmdOffset == ThisBaseCmdOffset_CallKrnl) {
-			FindOK_CallKrnl = true;
-			ThisExecuteCmdPoint_CallKrnl = &(KernelBaseCmd[temp_CallKrnl].CmdPoint);
-			break;
-		}
-		temp_CallKrnl++;
-	}
-	if (FindOK_CallKrnl == false) {
-		ThisLibInfo_CallKrnl = AppContext->LibInfoHead;
-		ThisLibInfo_CallKrnl += LibCmdNO;
-		if (ThisLibInfo_CallKrnl->LibHandle == NULL ||
-			ThisLibInfo_CallKrnl->LibInfo == NULL) {
-			sprintf(ErrorString_CallKrnl, "%s\n\nIntra error string is \"%s\".", "无法调用支持库",
-				ThisLibInfo_CallKrnl->LibName);
-			MessageBoxA(0, ErrorString_CallKrnl, "error", MB_ICONERROR);
-			krnl_MExitProcess(0);
-		}
-		ThisCmdsFuncHead_CallKrnl = &(ThisLibInfo_CallKrnl->LibInfo->m_pCmdsFunc);
 
-		__asm {
-			mov eax, [ThisCmdsFuncHead_CallKrnl]
-			add ebx, dword ptr ds : [eax]
-		}
-	}
-	else {
-		__asm {
-			mov ebx, ThisExecuteCmdPoint_CallKrnl
-		}
-	}
-	__asm {
+		// 获取地址
+		push ebx // 压入函数偏移量
+		call krnl_GetKrnlnCmdAddress
+		mov esp, ebp // 清除栈中的参数
+		mov ebx, eax // 将地址传给ebx
+
 		lea eax, dword ptr ss : [esp + 0x0c]
 		sub esp, 0x0c
 		push eax
@@ -418,6 +397,7 @@ __declspec(naked) void _cdecl krnl_MCallKrnlLibCmd(void) {
 		mov esp, ebp
 		pop ebp
 		retn
+
 	}
 
 }

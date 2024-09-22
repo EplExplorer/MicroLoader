@@ -130,11 +130,11 @@ PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
         // 读取第二个字段 支持库uuid
         temp += 1;
         while ((*(LibString + temp)) != 0x0d) {
-            LibStringInfo.ThisGUID[temp - strlen(LibStringInfo.LibName) - 1] =
+            LibStringInfo.GUID[temp - strlen(LibStringInfo.LibName) - 1] =
                 (*(LibString + temp));
             temp++;
         }
-        LibStringInfo.ThisGUID[temp] = 0;
+        LibStringInfo.GUID[temp - strlen(LibStringInfo.LibName) - 1] = 0;
 
         // 初始化装载信息
         LibInfo->LibHandle = NULL;
@@ -195,7 +195,7 @@ PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
                 }
                 else {
                     if (strcmp(LibInfo->LibInfo->m_szGuid,
-                        LibStringInfo.ThisGUID) != 0) {
+                        LibStringInfo.GUID) != 0) {
                         // 加载的支持库和需要的支持库GUID不同，需要卸载支持库
                         FreeLibrary(LibInfo->LibHandle);
                         LibInfo->LibHandle = NULL;
