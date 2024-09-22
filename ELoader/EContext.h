@@ -5,27 +5,26 @@
 #include "ECommon.h"
 
 // 环境上下文
-typedef struct
-{
-	HANDLE Heap;
-	PFN_NOTIFY_SYS NotifySys;
+typedef struct {
+    HANDLE Heap;
+    PFN_NOTIFY_SYS NotifySys;
 
-	// 将在退出之前被调用
-	void* ExitCallBack;
+    // 将在退出之前被调用
+    void *ExitCallBack;
 
-	char EFileName[MAX_PATH];
-	char EFilePath[MAX_PATH];
+    char EFileName[MAX_PATH];
+    char EFilePath[MAX_PATH];
 
-	// 错误回调
-	void* ErrorCallBack;
-	bool IsErrorCallBack;
+    // 错误回调
+    void *ErrorCallBack;
+    bool IsErrorCallBack;
 
-	// 依赖信息
-	PDLLCMD DllCmdHead;
-	DWORD DllCount;
+    // 依赖信息
+    PDLLCMD DllCmdHead;
+    DWORD DllCount;
 
-	PLIBINFO LibInfoHead;
-	DWORD LibCount;
+    PLIBINFO LibInfoHead;
+    DWORD LibCount;
 }
 EContext;
 

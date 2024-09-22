@@ -78,12 +78,12 @@
 #define	_FORM_BASE_CLASS	            CFrameWnd
 #endif
 
-typedef	SHORT		DTBOOL;		// SDT_BOOLÀàÐÍµÄÖµÀàÐÍ
-typedef	DTBOOL* PDTBOOL;
+typedef SHORT DTBOOL; // SDT_BOOLÀàÐÍµÄÖµÀàÐÍ
+typedef DTBOOL *PDTBOOL;
 #define	BL_TRUE		-1			// SDT_BOOLÀàÐÍµÄÕæÖµ
 #define	BL_FALSE	0			// SDT_BOOLÀàÐÍµÄ¼ÙÖµ
 
-typedef DATE* PDATE;
+typedef DATE *PDATE;
 
 ///////////////////////////////////
 
@@ -96,8 +96,8 @@ typedef DATE* PDATE;
 	(¼´ÓÃ»§»ò¿â×Ô¶¨ÒåÊý¾ÝÀàÐÍµ«²»°üº¬´°¿Ú»ò²Ëµ¥×é¼þ)£¬ËùÒÔ_SDT_ALLÀàÐÍµÄÊý¾ÝÖ»
 	¿ÉÄÜÎª·ÇÊý×éµÄÏµÍ³Êý¾ÝÀàÐÍ»ò´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ¡£*/
 #define		_SDT_ALL		MAKELONG (MAKEWORD (0, 0), 0x8000)	// £¨ÄÚ²¿Ê¹ÓÃ£©
-	// ÊýÖµ£¬Æ¥ÅäËùÓÐÀàÐÍÊý×Ö£¬½öÓÃÓÚ¿âÃüÁî¶¨ÒåÆä²ÎÊý¼°·µ»ØÖµµÄÊý¾ÝÀàÐÍ¡£
-	//#define		_SDT_NUM		MAKELONG (MAKEWORD (1, 0), 0x8000)	// £¨ÄÚ²¿Ê¹ÓÃ£©£¬3.0°æ±¾ÖÐÒÑ¾­·ÏÆú¡£
+// ÊýÖµ£¬Æ¥ÅäËùÓÐÀàÐÍÊý×Ö£¬½öÓÃÓÚ¿âÃüÁî¶¨ÒåÆä²ÎÊý¼°·µ»ØÖµµÄÊý¾ÝÀàÐÍ¡£
+//#define		_SDT_NUM		MAKELONG (MAKEWORD (1, 0), 0x8000)	// £¨ÄÚ²¿Ê¹ÓÃ£©£¬3.0°æ±¾ÖÐÒÑ¾­·ÏÆú¡£
 #define		SDT_BYTE		MAKELONG (MAKEWORD (1, 1), 0x8000)		// ×Ö½Ú
 #define		SDT_SHORT		MAKELONG (MAKEWORD (1, 2), 0x8000)		// ¶ÌÕûÊý
 #define		SDT_INT			MAKELONG (MAKEWORD (1, 3), 0x8000)		// ÕûÊý
@@ -111,39 +111,39 @@ typedef DATE* PDATE;
 #define		SDT_SUB_PTR		MAKELONG (MAKEWORD (6, 0),	0x8000)		// ×Ó³ÌÐòÖ¸Õë
 //#define		_SDT_VAR_REF	MAKELONG (MAKEWORD (7, 0),	0x8000)		// ²Î¿¼£¬3.0°æ±¾ÖÐÒÑ¾­·ÏÆú¡£
 #define		SDT_STATMENT	MAKELONG (MAKEWORD (8, 0),	0x8000)
-	// ×ÓÓï¾äÐÍ£¬½öÓÃÓÚ¿âÃüÁî¶¨ÒåÆä²ÎÊýµÄÊý¾ÝÀàÐÍ¡£ÆäÊý¾Ý³¤¶ÈÎªÁ½¸öINT£¬
-	// µÚÒ»¸ö¼ÇÂ¼´æ¸ù×Ó³ÌÐòµØÖ·£¬µÚ¶þ¸ö¼ÇÂ¼¸Ã×ÓÓï¾äËùÔÚ×Ó³ÌÐòµÄ±äÁ¿Õ»Ê×¡£
-	// !!! ×¢ÒâÔÚÓÃ×÷¿âÃüÁî²ÎÊýÊ±£¬±àÒëÆ÷ÔÊÐíÆä¿ÉÒÔ½ÓÊÕËùÓÐ»ù±¾Êý¾ÝÀàÐÍ£¬ËùÒÔ±ØÐëÊ×ÏÈÅÐ¶Ï´¦Àí
-	/* µ÷ÓÃÀý×Ó£º
-		if (pArgInf->m_dtDataType == SDT_BOOL)
-			return pArgInf->m_bool;
+// ×ÓÓï¾äÐÍ£¬½öÓÃÓÚ¿âÃüÁî¶¨ÒåÆä²ÎÊýµÄÊý¾ÝÀàÐÍ¡£ÆäÊý¾Ý³¤¶ÈÎªÁ½¸öINT£¬
+// µÚÒ»¸ö¼ÇÂ¼´æ¸ù×Ó³ÌÐòµØÖ·£¬µÚ¶þ¸ö¼ÇÂ¼¸Ã×ÓÓï¾äËùÔÚ×Ó³ÌÐòµÄ±äÁ¿Õ»Ê×¡£
+// !!! ×¢ÒâÔÚÓÃ×÷¿âÃüÁî²ÎÊýÊ±£¬±àÒëÆ÷ÔÊÐíÆä¿ÉÒÔ½ÓÊÕËùÓÐ»ù±¾Êý¾ÝÀàÐÍ£¬ËùÒÔ±ØÐëÊ×ÏÈÅÐ¶Ï´¦Àí
+/* µ÷ÓÃÀý×Ó£º
+    if (pArgInf->m_dtDataType == SDT_BOOL)
+        return pArgInf->m_bool;
 
-		if (pArgInf->m_dtDataType == SDT_STATMENT)
-		{
-			DWORD dwEBP = pArgInf->m_statment.m_dwSubEBP;
-			DWORD dwSubAdr = pArgInf->m_statment.m_dwStatmentSubCodeAdr;
-			DWORD dwECX, dwEAX;
+    if (pArgInf->m_dtDataType == SDT_STATMENT)
+    {
+        DWORD dwEBP = pArgInf->m_statment.m_dwSubEBP;
+        DWORD dwSubAdr = pArgInf->m_statment.m_dwStatmentSubCodeAdr;
+        DWORD dwECX, dwEAX;
 
-			_asm
-			{
-				mov eax, dwEBP
-				call dwSubAdr
-				mov dwECX, ecx
-				mov dwEAX, eax
-			}
+        _asm
+        {
+            mov eax, dwEBP
+            call dwSubAdr
+            mov dwECX, ecx
+            mov dwEAX, eax
+        }
 
-			if (dwECX == SDT_BOOL)
-				return dwEAX != 0;
+        if (dwECX == SDT_BOOL)
+            return dwEAX != 0;
 
-			// ÊÍ·ÅÎÄ±¾»ò×Ö½Ú¼¯Êý¾ÝËù·ÖÅäµÄÄÚ´æ¡£
-			if (dwECX == SDT_TEXT || dwECX == SDT_BIN)
-				MFree ((void*)dwEAX);
-		}
+        // ÊÍ·ÅÎÄ±¾»ò×Ö½Ú¼¯Êý¾ÝËù·ÖÅäµÄÄÚ´æ¡£
+        if (dwECX == SDT_TEXT || dwECX == SDT_BIN)
+            MFree ((void*)dwEAX);
+    }
 
-		GReportError ("ÓÃ×÷½øÐÐÌõ¼þÅÐ¶ÏµÄ×ÓÓï¾ä²ÎÊýÖ»ÄÜ½ÓÊÜÂß¼­ÐÍÊý¾Ý");
-	*/
+    GReportError ("ÓÃ×÷½øÐÐÌõ¼þÅÐ¶ÏµÄ×ÓÓï¾ä²ÎÊýÖ»ÄÜ½ÓÊÜÂß¼­ÐÍÊý¾Ý");
+*/
 
-	// ÓÃ×÷Çø·ÖÏµÍ³ÀàÐÍ¡¢ÓÃ»§×Ô¶¨ÒåÀàÐÍ¡¢¿â¶¨ÒåÊý¾ÝÀàÐÍ
+// ÓÃ×÷Çø·ÖÏµÍ³ÀàÐÍ¡¢ÓÃ»§×Ô¶¨ÒåÀàÐÍ¡¢¿â¶¨ÒåÊý¾ÝÀàÐÍ
 #define	DTM_SYS_DATA_TYPE_MASK		0x80000000
 #define	DTM_USER_DATA_TYPE_MASK		0x40000000
 #define	DTM_LIB_DATA_TYPE_MASK		0x00000000
@@ -164,7 +164,7 @@ typedef DATE* PDATE;
 #define	DT_IS_VAR					0x20000000
 
 typedef DWORD DATA_TYPE;
-typedef DATA_TYPE* PDATA_TYPE;
+typedef DATA_TYPE *PDATA_TYPE;
 
 ////////////////////////////////////////////////////////////////
 
@@ -186,50 +186,49 @@ typedef DATA_TYPE* PDATA_TYPE;
 //		   ×Ô¶¨Òå±äÁ¿µÄ³ÉÔ±±äÁ¿µÈ£©£»
 //      3¡¢Õû¸ö±äÁ¿Êý×éÌá¹©·½Ê½£¨Ìá¹©Õû¸ö±äÁ¿Êý×éµÄËùÓÐÔªËØ£©£»
 //      4¡¢²ÎÊýÃüÁîÌá¹©·½Ê½£¨ÓÉÃüÁîµÄ·µ»ØÖµÀ´Ìá¹©²ÎÊýÊý¾Ý£©¡£
-typedef struct
-{
-	LPTSTR		m_szName;				// ²ÎÊýÃû³Æ
-	LPTSTR		m_szExplain;			// ²ÎÊýÏêÏ¸½âÊÍ
-	SHORT		m_shtBitmapIndex;		// Ö¸¶¨Í¼ÏñË÷Òý,´Ó1¿ªÊ¼,0±íÊ¾ÎÞ.
-	SHORT		m_shtBitmapCount;		// Í¼ÏñÊýÄ¿(ÓÃ×÷¶¯»­).
+typedef struct {
+    LPTSTR m_szName; // ²ÎÊýÃû³Æ
+    LPTSTR m_szExplain; // ²ÎÊýÏêÏ¸½âÊÍ
+    SHORT m_shtBitmapIndex; // Ö¸¶¨Í¼ÏñË÷Òý,´Ó1¿ªÊ¼,0±íÊ¾ÎÞ.
+    SHORT m_shtBitmapCount; // Í¼ÏñÊýÄ¿(ÓÃ×÷¶¯»­).
 
-	DATA_TYPE	m_dtType;
+    DATA_TYPE m_dtType;
 
-	INT			m_nDefault;
-	// ÏµÍ³»ù±¾ÀàÐÍ²ÎÊýµÄÄ¬ÈÏÖ¸¶¨Öµ£¨ÔÚ±à¼­³ÌÐòÊ±ÒÑ±»´¦Àí£¬±àÒëÊ±²»ÐèÔÙ´¦Àí£©£º
-	//     1¡¢Êý×ÖÐÍ£ºÖ±½ÓÎªÊý×ÖÖµ£¨ÈçÎªÐ¡Êý£¬Ö»ÄÜÖ¸¶¨ÆäÕûÊý²¿·Ö£¬
-	//		  ÈçÎª³¤ÕûÊý£¬Ö»ÄÜÖ¸¶¨²»³¬¹ýINTÏÞÖµµÄ²¿·Ö£©£»
-	//     2¡¢Âß¼­ÐÍ£º1µÈÓÚÕæ£¬0µÈÓÚ¼Ù£»
-	//     3¡¢ÎÄ±¾ÐÍ£º±¾±äÁ¿´ËÊ±ÎªLPTSTRÖ¸Õë£¬Ö¸ÏòÄ¬ÈÏÎÄ±¾´®£»
-	//     4¡¢ÆäËüËùÓÐÀàÐÍ²ÎÊý£¨°üÀ¨×Ô¶¨ÒåÀàÐÍ£©Ò»ÂÉÎÞÄ¬ÈÏÖ¸¶¨Öµ¡£
+    INT m_nDefault;
+    // ÏµÍ³»ù±¾ÀàÐÍ²ÎÊýµÄÄ¬ÈÏÖ¸¶¨Öµ£¨ÔÚ±à¼­³ÌÐòÊ±ÒÑ±»´¦Àí£¬±àÒëÊ±²»ÐèÔÙ´¦Àí£©£º
+    //     1¡¢Êý×ÖÐÍ£ºÖ±½ÓÎªÊý×ÖÖµ£¨ÈçÎªÐ¡Êý£¬Ö»ÄÜÖ¸¶¨ÆäÕûÊý²¿·Ö£¬
+    //		  ÈçÎª³¤ÕûÊý£¬Ö»ÄÜÖ¸¶¨²»³¬¹ýINTÏÞÖµµÄ²¿·Ö£©£»
+    //     2¡¢Âß¼­ÐÍ£º1µÈÓÚÕæ£¬0µÈÓÚ¼Ù£»
+    //     3¡¢ÎÄ±¾ÐÍ£º±¾±äÁ¿´ËÊ±ÎªLPTSTRÖ¸Õë£¬Ö¸ÏòÄ¬ÈÏÎÄ±¾´®£»
+    //     4¡¢ÆäËüËùÓÐÀàÐÍ²ÎÊý£¨°üÀ¨×Ô¶¨ÒåÀàÐÍ£©Ò»ÂÉÎÞÄ¬ÈÏÖ¸¶¨Öµ¡£
 
-	DWORD		m_dwState;				// ²ÎÊýMASK
+    DWORD m_dwState; // ²ÎÊýMASK
 #define		AS_HAS_DEFAULT_VALUE				(1 << 0)
-	// ±¾²ÎÊýÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÔÚm_nDefaultÖÐËµÃ÷¡£±¾²ÎÊýÔÚ±à¼­³ÌÐòÊ±ÒÑ±»´¦Àí£¬±àÒëÊ±²»ÐèÔÙ´¦Àí¡£
+    // ±¾²ÎÊýÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÔÚm_nDefaultÖÐËµÃ÷¡£±¾²ÎÊýÔÚ±à¼­³ÌÐòÊ±ÒÑ±»´¦Àí£¬±àÒëÊ±²»ÐèÔÙ´¦Àí¡£
 #define		AS_DEFAULT_VALUE_IS_EMPTY			(1 << 1)
-		//   ±¾²ÎÊýÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÎª¿Õ£¬ÓëAS_HAS_DEFAULT_VALUE±êÖ¾»¥³â£¬
-		// ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾ÝÀàÐÍ¿ÉÄÜÎª_SDT_NULL¡£
+    //   ±¾²ÎÊýÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÎª¿Õ£¬ÓëAS_HAS_DEFAULT_VALUE±êÖ¾»¥³â£¬
+    // ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾ÝÀàÐÍ¿ÉÄÜÎª_SDT_NULL¡£
 #define		AS_RECEIVE_VAR      				(1 << 2)
-		//   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©µ¥Ò»±äÁ¿£¬¶ø²»ÄÜÌá¹©Õû¸ö±äÁ¿Êý×é¡¢Á¢¼´Êý
-		// »òÃüÁî·µ»ØÖµ¡£ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾Ý¿Ï¶¨ÊÇÄÚÈÝ²»ÎªÊý×éµÄ±äÁ¿µØÖ·¡£
+    //   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©µ¥Ò»±äÁ¿£¬¶ø²»ÄÜÌá¹©Õû¸ö±äÁ¿Êý×é¡¢Á¢¼´Êý
+    // »òÃüÁî·µ»ØÖµ¡£ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾Ý¿Ï¶¨ÊÇÄÚÈÝ²»ÎªÊý×éµÄ±äÁ¿µØÖ·¡£
 #define		AS_RECEIVE_VAR_ARRAY				(1 << 3)
-		//   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©Õû¸ö±äÁ¿Êý×é£¬¶ø²»ÄÜÌá¹©µ¥Ò»±äÁ¿¡¢Á¢¼´Êý
-		// »òÃüÁî·µ»ØÖµ¡£
+    //   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©Õû¸ö±äÁ¿Êý×é£¬¶ø²»ÄÜÌá¹©µ¥Ò»±äÁ¿¡¢Á¢¼´Êý
+    // »òÃüÁî·µ»ØÖµ¡£
 #define		AS_RECEIVE_VAR_OR_ARRAY     		(1 << 4)
-		//   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©µ¥Ò»±äÁ¿»òÕû¸ö±äÁ¿Êý×é£¬¶ø²»ÄÜÌá¹©Á¢¼´Êý
-		// »òÃüÁî·µ»ØÖµ¡£Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_ARY
-		// À´±êÖ¾ÆäÊÇ·ñÎªÊý×é¡£
+    //   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©µ¥Ò»±äÁ¿»òÕû¸ö±äÁ¿Êý×é£¬¶ø²»ÄÜÌá¹©Á¢¼´Êý
+    // »òÃüÁî·µ»ØÖµ¡£Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_ARY
+    // À´±êÖ¾ÆäÊÇ·ñÎªÊý×é¡£
 #define		AS_RECEIVE_ARRAY_DATA   			(1 << 5)
-		//   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©Êý×éÊý¾Ý£¬Èç²»Ö¸¶¨±¾±êÖ¾£¬Ä¬ÈÏÎªÖ»ÄÜÌá¹©·ÇÊý×éÊý¾Ý¡£
-		// ÈçÖ¸¶¨ÁË±¾±êÖ¾£¬ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾Ý¿Ï¶¨ÎªÊý×é¡£
+    //   Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±Ö»ÄÜÌá¹©Êý×éÊý¾Ý£¬Èç²»Ö¸¶¨±¾±êÖ¾£¬Ä¬ÈÏÎªÖ»ÄÜÌá¹©·ÇÊý×éÊý¾Ý¡£
+    // ÈçÖ¸¶¨ÁË±¾±êÖ¾£¬ÔËÐÐÊ±Ëù´«µÝ¹ýÀ´µÄ²ÎÊýÊý¾Ý¿Ï¶¨ÎªÊý×é¡£
 #define		AS_RECEIVE_ALL_TYPE_DATA            (1 << 6)
-		// Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±¿ÉÒÔÍ¬Ê±Ìá¹©·ÇÊý×é»òÊý×éÊý¾Ý£¬ÓëÉÏ±êÖ¾»¥³â¡£
-		// Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_ARYÀ´±êÖ¾ÆäÊÇ·ñÎªÊý×é¡£
+    // Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±¿ÉÒÔÍ¬Ê±Ìá¹©·ÇÊý×é»òÊý×éÊý¾Ý£¬ÓëÉÏ±êÖ¾»¥³â¡£
+    // Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_ARYÀ´±êÖ¾ÆäÊÇ·ñÎªÊý×é¡£
 #define		AS_RECEIVE_VAR_OR_OTHER      		(1 << 9)
-		// Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±¿ÉÒÔÌá¹©µ¥Ò»±äÁ¿»òÁ¢¼´Êý»òÃüÁî·µ»ØÖµ£¬²»ÄÜÌá¹©Êý×é¡£
-		// Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_VARÀ´±êÖ¾ÆäÊÇ·ñÎª±äÁ¿µØÖ·¡£
+    // Îª±¾²ÎÊýÌá¹©Êý¾ÝÊ±¿ÉÒÔÌá¹©µ¥Ò»±äÁ¿»òÁ¢¼´Êý»òÃüÁî·µ»ØÖµ£¬²»ÄÜÌá¹©Êý×é¡£
+    // Èç¹û¾ßÓÐ´Ë±êÖ¾£¬Ôò´«µÝ¸ø¿âÃüÁî²ÎÊýµÄÊý¾ÝÀàÐÍ½«»áÍ¨¹ýDT_IS_VARÀ´±êÖ¾ÆäÊÇ·ñÎª±äÁ¿µØÖ·¡£
 }
-ARG_INFO, * PARG_INFO;
+        ARG_INFO, *PARG_INFO;
 
 #ifndef __GCC_
 struct CMD_INFO
@@ -237,115 +236,114 @@ struct CMD_INFO
 typedef struct
 #endif
 {
-	LPTSTR		m_szName;			// ÃüÁîÖÐÎÄÃû³Æ
-	LPTSTR		m_szEgName;			// ÃüÁîÓ¢ÎÄÃû³Æ£¬¿ÉÒÔÎª¿Õ»òNULL¡£
+    LPTSTR m_szName; // ÃüÁîÖÐÎÄÃû³Æ
+    LPTSTR m_szEgName; // ÃüÁîÓ¢ÎÄÃû³Æ£¬¿ÉÒÔÎª¿Õ»òNULL¡£
 
-	LPTSTR		m_szExplain;		// ÃüÁîÏêÏ¸½âÊÍ
-	SHORT		m_shtCategory;		// È«¾ÖÃüÁîµÄËùÊôÀà±ð£¬´Ó1¿ªÊ¼¡£¶ÔÏó³ÉÔ±ÃüÁîµÄ´ËÖµÎª-1¡£
+    LPTSTR m_szExplain; // ÃüÁîÏêÏ¸½âÊÍ
+    SHORT m_shtCategory; // È«¾ÖÃüÁîµÄËùÊôÀà±ð£¬´Ó1¿ªÊ¼¡£¶ÔÏó³ÉÔ±ÃüÁîµÄ´ËÖµÎª-1¡£
 
 #define		CT_IS_HIDED			(1 << 2)
-	//   ±¾ÃüÁîÊÇ·ñÎªÒþº¬ÃüÁî£¨¼´²»ÐèÒªÓÉÓÃ»§Ö±½Ó²åÈëµÄÃüÁî£¬ÈçÑ­»·½áÊøÃüÁî¡¢±»·ÏÆú
-	// µ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÃüÁî£©¡£
+    //   ±¾ÃüÁîÊÇ·ñÎªÒþº¬ÃüÁî£¨¼´²»ÐèÒªÓÉÓÃ»§Ö±½Ó²åÈëµÄÃüÁî£¬ÈçÑ­»·½áÊøÃüÁî¡¢±»·ÏÆú
+    // µ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÃüÁî£©¡£
 #define		CT_IS_ERROR			(1 << 3)
-	// ±¾ÃüÁîÔÚ±¾¿âÖÐ²»ÄÜÊ¹ÓÃ£¬¾ßÓÐ´Ë±êÖ¾Ò»¶¨Òþº¬£¬Ö÷ÒªÓÃ×÷ÔÚ²»Í¬ÓïÑÔ°æ±¾µÄÏàÍ¬¿âÖÐÊ¹ÓÃ£¬
-	// ¼´£ºAÃüÁîÔÚAÓïÑÔ°æ±¾¿âÖÐ¿ÉÄÜÐèÒªÊµÏÖ²¢Ê¹ÓÃ£¬µ«ÔÚBÓïÑÔ°æ±¾¿âÖÐ¿ÉÄÜ¾Í²»ÐèÒª¡£Èç¹û
-	// ³ÌÐòÖÐÊ¹ÓÃÁË¾ßÓÐ´Ë±êÖ¾µÄÃüÁî£¬ÔòÖ»ÄÜÖ§³Ö¸Ã³ÌÐòµ÷ÈëºÍ±àÒë£¬¶ø²»ÄÜÖ§³ÖÔËÐÐ¡£
-	// Èç¾ßÓÐ´Ë±êÖ¾£¬±¾ÃüÁî¿ÉÒÔ²»ÊµÏÖÆäÖ´ÐÐ²¿·Ö¡£
+    // ±¾ÃüÁîÔÚ±¾¿âÖÐ²»ÄÜÊ¹ÓÃ£¬¾ßÓÐ´Ë±êÖ¾Ò»¶¨Òþº¬£¬Ö÷ÒªÓÃ×÷ÔÚ²»Í¬ÓïÑÔ°æ±¾µÄÏàÍ¬¿âÖÐÊ¹ÓÃ£¬
+    // ¼´£ºAÃüÁîÔÚAÓïÑÔ°æ±¾¿âÖÐ¿ÉÄÜÐèÒªÊµÏÖ²¢Ê¹ÓÃ£¬µ«ÔÚBÓïÑÔ°æ±¾¿âÖÐ¿ÉÄÜ¾Í²»ÐèÒª¡£Èç¹û
+    // ³ÌÐòÖÐÊ¹ÓÃÁË¾ßÓÐ´Ë±êÖ¾µÄÃüÁî£¬ÔòÖ»ÄÜÖ§³Ö¸Ã³ÌÐòµ÷ÈëºÍ±àÒë£¬¶ø²»ÄÜÖ§³ÖÔËÐÐ¡£
+    // Èç¾ßÓÐ´Ë±êÖ¾£¬±¾ÃüÁî¿ÉÒÔ²»ÊµÏÖÆäÖ´ÐÐ²¿·Ö¡£
 #define		CT_DISABLED_IN_RELEASE		(1 << 4)
-	// ±¾ÃüÁîÔÚRELEASE°æ±¾³ÌÐòÖÐ²»±»Ê¹ÓÃ£¨Ïàµ±ÓÚ¿ÕÃüÁî£©£¬±¾ÀàÐÍÃüÁî±ØÐëÎÞ·µ»ØÖµ¡£
+    // ±¾ÃüÁîÔÚRELEASE°æ±¾³ÌÐòÖÐ²»±»Ê¹ÓÃ£¨Ïàµ±ÓÚ¿ÕÃüÁî£©£¬±¾ÀàÐÍÃüÁî±ØÐëÎÞ·µ»ØÖµ¡£
 #define		CT_ALLOW_APPEND_NEW_ARG		(1 << 5)
-	//   ÔÚ±¾ÃüÁîµÄ²ÎÊý±íµÄÄ©Î²ÊÇ·ñ¿ÉÒÔÌí¼ÓÐÂµÄ²ÎÊý£¬ÐÂ²ÎÊýµÈÍ¬ÓÚ²ÎÊý±íÖÐµÄ×îºóÒ»¸ö²ÎÊý£¬
-	// ±¾ÀàÐÍÃüÁîµÄ²ÎÊý±ØÐë×îÉÙÓÐÒ»¸ö¡£
+    //   ÔÚ±¾ÃüÁîµÄ²ÎÊý±íµÄÄ©Î²ÊÇ·ñ¿ÉÒÔÌí¼ÓÐÂµÄ²ÎÊý£¬ÐÂ²ÎÊýµÈÍ¬ÓÚ²ÎÊý±íÖÐµÄ×îºóÒ»¸ö²ÎÊý£¬
+    // ±¾ÀàÐÍÃüÁîµÄ²ÎÊý±ØÐë×îÉÙÓÐÒ»¸ö¡£
 #define		CT_RETRUN_ARY_TYPE_DATA		(1 << 6)
-	// ÓÃÓÚËµÃ÷m_dtRetValType£¬ËµÃ÷ÊÇ·ñÎª·µ»ØÊý×éÊý¾Ý¡£
+    // ÓÃÓÚËµÃ÷m_dtRetValType£¬ËµÃ÷ÊÇ·ñÎª·µ»ØÊý×éÊý¾Ý¡£
 #define		CT_IS_OBJ_COPY_CMD              (1 << 7)   // !!! ×¢ÒâÃ¿¸öÊý¾ÝÀàÐÍ×î¶àÖ»ÄÜÓÐÒ»¸ö·½·¨¾ßÓÐ´Ë±ê¼Ç¡£
-	//   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄ¸´ÖÆº¯Êý(Ö´ÐÐ½«ÁíÒ»Í¬ÀàÐÍÊý¾ÝÀàÐÍÊý¾Ý¸´ÖÆµ½±¾¶ÔÏóÊ±ËùÐèÒªµÄ
-	// ¶îÍâ²Ù×÷£¬ÔÚ±àÒë´ËÊý¾ÝÀàÐÍ¶ÔÏóµÄ¸³ÖµÓï¾äÊ±±àÒëÆ÷ÏÈÊÍ·Å¸Ã¶ÔÏóµÄÔ­ÓÐÄÚÈÝ£¬È»ºóÉú³Éµ÷ÓÃ´Ë
-	// ÃüÁîµÄ´úÂë£¬¶ø²»»áÔÙÉú³ÉÆäËüÈÎºÎ³£¹æ¸³Öµ¼°¸´ÖÆ´úÂë)¡£
-	// !!! 1¡¢´ËÃüÁî±ØÐë½ö½ÓÊÜÒ»¸öÍ¬Êý¾ÝÀàÐÍ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
-	//     2¡¢Ö´ÐÐ±¾ÃüÁîÊ±¶ÔÏóµÄÄÚÈÝÊý¾ÝÎªÎ´³õÊ¼»¯×´Ì¬£¬ÃüÁîÄÚ±ØÐë¸ºÔð³õÊ¼»¯ÆäÈ«²¿³ÉÔ±Êý¾Ý¡£
-	//     3¡¢ËùÌá¹©¹ýÀ´µÄ´ý¸´ÖÆÊý¾ÝÀàÐÍ²ÎÊýÊý¾Ý¿ÉÄÜÎªÈ«Áã×´Ì¬£¨ÓÉ±àÒëÆ÷×Ô¶¯Éú³ÉµÄ¶ÔÏó³õÊ¼´úÂëÉèÖÃ£©£¬
-	//     ¸´ÖÆÊ±ÐèÒª¶Ô´ËÇé¿ö½øÐÐÇø±ð´¦Àí¡£
+    //   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄ¸´ÖÆº¯Êý(Ö´ÐÐ½«ÁíÒ»Í¬ÀàÐÍÊý¾ÝÀàÐÍÊý¾Ý¸´ÖÆµ½±¾¶ÔÏóÊ±ËùÐèÒªµÄ
+    // ¶îÍâ²Ù×÷£¬ÔÚ±àÒë´ËÊý¾ÝÀàÐÍ¶ÔÏóµÄ¸³ÖµÓï¾äÊ±±àÒëÆ÷ÏÈÊÍ·Å¸Ã¶ÔÏóµÄÔ­ÓÐÄÚÈÝ£¬È»ºóÉú³Éµ÷ÓÃ´Ë
+    // ÃüÁîµÄ´úÂë£¬¶ø²»»áÔÙÉú³ÉÆäËüÈÎºÎ³£¹æ¸³Öµ¼°¸´ÖÆ´úÂë)¡£
+    // !!! 1¡¢´ËÃüÁî±ØÐë½ö½ÓÊÜÒ»¸öÍ¬Êý¾ÝÀàÐÍ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
+    //     2¡¢Ö´ÐÐ±¾ÃüÁîÊ±¶ÔÏóµÄÄÚÈÝÊý¾ÝÎªÎ´³õÊ¼»¯×´Ì¬£¬ÃüÁîÄÚ±ØÐë¸ºÔð³õÊ¼»¯ÆäÈ«²¿³ÉÔ±Êý¾Ý¡£
+    //     3¡¢ËùÌá¹©¹ýÀ´µÄ´ý¸´ÖÆÊý¾ÝÀàÐÍ²ÎÊýÊý¾Ý¿ÉÄÜÎªÈ«Áã×´Ì¬£¨ÓÉ±àÒëÆ÷×Ô¶¯Éú³ÉµÄ¶ÔÏó³õÊ¼´úÂëÉèÖÃ£©£¬
+    //     ¸´ÖÆÊ±ÐèÒª¶Ô´ËÇé¿ö½øÐÐÇø±ð´¦Àí¡£
 #define		CT_IS_OBJ_FREE_CMD              (1 << 8)   // !!! ×¢ÒâÃ¿¸öÊý¾ÝÀàÐÍ×î¶àÖ»ÄÜÓÐÒ»¸ö·½·¨¾ßÓÐ´Ë±ê¼Ç¡£
-	//   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄÎö¹¹º¯Êý(Ö´ÐÐµ±¸ÃÊý¾ÝÀàÐÍÊý¾ÝÏú»ÙÊ±ËùÐèÒªµÄÈ«²¿²Ù×÷£¬
-	// µ±¶ÔÏó³¬³öÆä×÷ÓÃÇøÓòÊ±±àÒëÆ÷½ö½öÉú³Éµ÷ÓÃ´ËÃüÁîµÄ´úÂë£¬¶ø²»»áÉú³ÉÈÎºÎ³£¹æÏú»Ù´úÂë)¡£
-	//   !!! 1¡¢´ËÃüÁî±ØÐëÃ»ÓÐÈÎºÎ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
-	//       2¡¢´ËÃüÁî±»Ö´ÐÐÊ±¶ÔÏóµÄÄÚÈÝÊý¾Ý¿ÉÄÜÎªÈ«Áã×´Ì¬£¨ÓÉ±àÒëÆ÷×Ô¶¯Éú³ÉµÄ¶ÔÏó³õÊ¼´úÂëÉèÖÃ£©£¬
-	//   ÊÍ·ÅÊ±ÐèÒª¶Ô´ËÇé¿ö½øÐÐÇø±ð´¦Àí¡£
+    //   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄÎö¹¹º¯Êý(Ö´ÐÐµ±¸ÃÊý¾ÝÀàÐÍÊý¾ÝÏú»ÙÊ±ËùÐèÒªµÄÈ«²¿²Ù×÷£¬
+    // µ±¶ÔÏó³¬³öÆä×÷ÓÃÇøÓòÊ±±àÒëÆ÷½ö½öÉú³Éµ÷ÓÃ´ËÃüÁîµÄ´úÂë£¬¶ø²»»áÉú³ÉÈÎºÎ³£¹æÏú»Ù´úÂë)¡£
+    //   !!! 1¡¢´ËÃüÁî±ØÐëÃ»ÓÐÈÎºÎ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
+    //       2¡¢´ËÃüÁî±»Ö´ÐÐÊ±¶ÔÏóµÄÄÚÈÝÊý¾Ý¿ÉÄÜÎªÈ«Áã×´Ì¬£¨ÓÉ±àÒëÆ÷×Ô¶¯Éú³ÉµÄ¶ÔÏó³õÊ¼´úÂëÉèÖÃ£©£¬
+    //   ÊÍ·ÅÊ±ÐèÒª¶Ô´ËÇé¿ö½øÐÐÇø±ð´¦Àí¡£
 #define		CT_IS_OBJ_CONSTURCT_CMD         (1 << 9)   // !!! ×¢ÒâÃ¿¸öÊý¾ÝÀàÐÍ×î¶àÖ»ÄÜÓÐÒ»¸ö·½·¨¾ßÓÐ´Ë±ê¼Ç¡£
-	//   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄ¹¹Ôìº¯Êý(Ö´ÐÐµ±¸ÃÊý¾ÝÀàÐÍÊý¾Ý³õÊ¼»¯Ê±ËùÐèÒªµÄÈ«²¿²Ù×÷£¬
-	//   !!! 1¡¢´ËÃüÁî±ØÐëÃ»ÓÐÈÎºÎ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
-	//       2¡¢´ËÃüÁî±»Ö´ÐÐÊ±¶ÔÏóµÄÄÚÈÝÊý¾ÝÎªÈ«Áã×´Ì¬¡£
-	//       3¡¢Ö¸¶¨ÀàÐÍ³ÉÔ±£¨¸´ºÏÊý¾ÝÀàÐÍ³ÉÔ±¡¢Êý×é³ÉÔ±£©£¬±ØÐë°´ÕÕ¶ÔÓ¦¸ñÊ½¼ÌÐø½øÐÐÏÂÒ»²½³õÊ¼»¯¡£
+    //   ËµÃ÷±¾ÃüÁîÎªÄ³Êý¾ÝÀàÐÍµÄ¹¹Ôìº¯Êý(Ö´ÐÐµ±¸ÃÊý¾ÝÀàÐÍÊý¾Ý³õÊ¼»¯Ê±ËùÐèÒªµÄÈ«²¿²Ù×÷£¬
+    //   !!! 1¡¢´ËÃüÁî±ØÐëÃ»ÓÐÈÎºÎ²ÎÊý¶øÇÒ²»·µ»ØÈÎºÎÊý¾Ý¡£
+    //       2¡¢´ËÃüÁî±»Ö´ÐÐÊ±¶ÔÏóµÄÄÚÈÝÊý¾ÝÎªÈ«Áã×´Ì¬¡£
+    //       3¡¢Ö¸¶¨ÀàÐÍ³ÉÔ±£¨¸´ºÏÊý¾ÝÀàÐÍ³ÉÔ±¡¢Êý×é³ÉÔ±£©£¬±ØÐë°´ÕÕ¶ÔÓ¦¸ñÊ½¼ÌÐø½øÐÐÏÂÒ»²½³õÊ¼»¯¡£
 #define _CMD_OS(os)     ((os) >> 16)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_wState¡£
 #define _TEST_CMD_OS(m_wState,os)    ((_CMD_OS (os) & m_wState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨ÃüÁîÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
-	WORD		m_wState;
+    WORD m_wState;
 
-	/*  !!!!! Ç§Íò×¢Òâ£ºÈç¹û·µ»ØÖµÀàÐÍÎª _SDT_ALL , ¾ø¶Ô²»ÄÜ·µ»ØÊý×é(¼´CT_RETRUN_ARY_TYPE_DATA
-		ÖÃÎ»)»ò¸´ºÏÊý¾ÝÀàÐÍµÄÊý¾Ý(¼´ÓÃ»§»ò¿â×Ô¶¨ÒåÊý¾ÝÀàÐÍµ«²»°üº¬´°¿Ú»ò²Ëµ¥×é¼þ),
-		ÒòÎªÎÞ·¨×Ô¶¯É¾³ý¸´ºÏÀàÐÍÖÐËù·ÖÅäµÄ¶îÍâ¿Õ¼ä(ÈçÎÄ±¾ÐÍ»òÕß×Ö½Ú¼¯ÐÍ³ÉÔ±µÈ).
-		ÓÉÓÚÍ¨ÓÃÐÍÊý¾ÝÖ»¿ÉÄÜÍ¨¹ý¿âÃüÁî·µ»Ø£¬Òò´ËËùÓÐ_SDT_ALLÀàÐÍµÄÊý¾ÝÖ»¿ÉÄÜÎª·ÇÊý×éµÄ
-		ÏµÍ³Êý¾ÝÀàÐÍ»ò´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ¡£
-	*/
-	// ·µ»ØÖµÀàÐÍ£¬Ê¹ÓÃÇ°×¢Òâ×ª»»HIWORDÎª0µÄÄÚ²¿Êý¾ÝÀàÐÍÖµµ½³ÌÐòÖÐÊ¹ÓÃµÄÊý¾ÝÀàÐÍÖµ¡£
-	DATA_TYPE	m_dtRetValType;
+    /*  !!!!! Ç§Íò×¢Òâ£ºÈç¹û·µ»ØÖµÀàÐÍÎª _SDT_ALL , ¾ø¶Ô²»ÄÜ·µ»ØÊý×é(¼´CT_RETRUN_ARY_TYPE_DATA
+        ÖÃÎ»)»ò¸´ºÏÊý¾ÝÀàÐÍµÄÊý¾Ý(¼´ÓÃ»§»ò¿â×Ô¶¨ÒåÊý¾ÝÀàÐÍµ«²»°üº¬´°¿Ú»ò²Ëµ¥×é¼þ),
+        ÒòÎªÎÞ·¨×Ô¶¯É¾³ý¸´ºÏÀàÐÍÖÐËù·ÖÅäµÄ¶îÍâ¿Õ¼ä(ÈçÎÄ±¾ÐÍ»òÕß×Ö½Ú¼¯ÐÍ³ÉÔ±µÈ).
+        ÓÉÓÚÍ¨ÓÃÐÍÊý¾ÝÖ»¿ÉÄÜÍ¨¹ý¿âÃüÁî·µ»Ø£¬Òò´ËËùÓÐ_SDT_ALLÀàÐÍµÄÊý¾ÝÖ»¿ÉÄÜÎª·ÇÊý×éµÄ
+        ÏµÍ³Êý¾ÝÀàÐÍ»ò´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ¡£
+    */
+    // ·µ»ØÖµÀàÐÍ£¬Ê¹ÓÃÇ°×¢Òâ×ª»»HIWORDÎª0µÄÄÚ²¿Êý¾ÝÀàÐÍÖµµ½³ÌÐòÖÐÊ¹ÓÃµÄÊý¾ÝÀàÐÍÖµ¡£
+    DATA_TYPE m_dtRetValType;
 
-	WORD		m_wReserved;
+    WORD m_wReserved;
 
-	SHORT		m_shtUserLevel;	// ÃüÁîµÄÓÃ»§Ñ§Ï°ÄÑ¶È¼¶±ð£¬±¾±äÁ¿µÄÖµÎª¼¶±ðºê¡£
+    SHORT m_shtUserLevel; // ÃüÁîµÄÓÃ»§Ñ§Ï°ÄÑ¶È¼¶±ð£¬±¾±äÁ¿µÄÖµÎª¼¶±ðºê¡£
 
 #ifndef __GCC_
-	BOOL IsInObj()
-	{
-		return m_shtCategory == -1;
-	}
+    BOOL IsInObj() {
+        return m_shtCategory == -1;
+    }
 #endif
 
-	SHORT		m_shtBitmapIndex;	// Ö¸¶¨Í¼ÏñË÷Òý,´Ó1¿ªÊ¼,0±íÊ¾ÎÞ.
-	SHORT		m_shtBitmapCount;	// Í¼ÏñÊýÄ¿(ÓÃ×÷¶¯»­).
+    SHORT m_shtBitmapIndex; // Ö¸¶¨Í¼ÏñË÷Òý,´Ó1¿ªÊ¼,0±íÊ¾ÎÞ.
+    SHORT m_shtBitmapCount; // Í¼ÏñÊýÄ¿(ÓÃ×÷¶¯»­).
 
-	INT			m_nArgCount;		// ÃüÁîµÄ²ÎÊýÊýÄ¿
-	PARG_INFO	m_pBeginArgInfo;
+    INT m_nArgCount; // ÃüÁîµÄ²ÎÊýÊýÄ¿
+    PARG_INFO m_pBeginArgInfo;
 #ifndef __GCC_
 };
 #else
 } CMD_INFO;
 #endif
-typedef CMD_INFO* PCMD_INFO;
+typedef CMD_INFO *PCMD_INFO;
 
 // Êý¾ÝÀàÐÍÊ¹ÓÃµÄ½á¹¹¡£
-typedef struct
-{
-	// !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±±ØÐëÎªSDT_INT¡£
-	DATA_TYPE m_dtType;
-	//   ×ÓÊý¾Ý×é¼þµÄÊý¾ÝÀàÐÍ
-// !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±±ØÐëÎªNULL¡£
-	LPBYTE m_pArySpec;
-	// Êý×éÖ¸¶¨´®£¬Èç¹û²»ÎªÊý×é£¬´ËÖµÎªNULL¡£×¢Òâ¾ø¶Ô²»ÄÜÖ¸¶¨Ä³Î¬ÊýÉÏÏÞÎª0µÄÊý×é¡£
-	LPTSTR m_szName;
-	//     ×ÓÊý¾Ý×é¼þµÄÖÐÎÄ±äÁ¿Ãû³Æ£¬Èç¹ûËùÊôµÄÊý¾ÝÀàÐÍÖ»ÓÐÒ»¸ö×ÓÊý¾Ý×é¼þ£¬
-	// Ôò´ËÖµÓ¦¸ÃÎªNULL¡£
-	LPTSTR m_szEgName;
-	// ×ÓÊý¾Ý×é¼þµÄÓ¢ÎÄ±äÁ¿Ãû³Æ£¬¿ÉÒÔÎª¿Õ»òNULL¡£
-	LPTSTR m_szExplain;
+typedef struct {
+    // !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±±ØÐëÎªSDT_INT¡£
+    DATA_TYPE m_dtType;
+    //   ×ÓÊý¾Ý×é¼þµÄÊý¾ÝÀàÐÍ
+    // !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±±ØÐëÎªNULL¡£
+    LPBYTE m_pArySpec;
+    // Êý×éÖ¸¶¨´®£¬Èç¹û²»ÎªÊý×é£¬´ËÖµÎªNULL¡£×¢Òâ¾ø¶Ô²»ÄÜÖ¸¶¨Ä³Î¬ÊýÉÏÏÞÎª0µÄÊý×é¡£
+    LPTSTR m_szName;
+    //     ×ÓÊý¾Ý×é¼þµÄÖÐÎÄ±äÁ¿Ãû³Æ£¬Èç¹ûËùÊôµÄÊý¾ÝÀàÐÍÖ»ÓÐÒ»¸ö×ÓÊý¾Ý×é¼þ£¬
+    // Ôò´ËÖµÓ¦¸ÃÎªNULL¡£
+    LPTSTR m_szEgName;
+    // ×ÓÊý¾Ý×é¼þµÄÓ¢ÎÄ±äÁ¿Ãû³Æ£¬¿ÉÒÔÎª¿Õ»òNULL¡£
+    LPTSTR m_szExplain;
 
-	// !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±Ä¬ÈÏ¾ßÓÐLES_HAS_DEFAULT_VALUE±ê¼Ç¡£
-	// ±¾×ÓÊý¾Ý³ÉÔ±ÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÔÚm_nDefaultÖÐËµÃ÷¡£
+    // !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±Ä¬ÈÏ¾ßÓÐLES_HAS_DEFAULT_VALUE±ê¼Ç¡£
+    // ±¾×ÓÊý¾Ý³ÉÔ±ÓÐÄ¬ÈÏÖµ£¬Ä¬ÈÏÖµÔÚm_nDefaultÖÐËµÃ÷¡£
 #define		LES_HAS_DEFAULT_VALUE		(1 << 0)
-// ±¾×ÓÊý¾Ý³ÉÔ±±»Òþ²Ø¡£
+    // ±¾×ÓÊý¾Ý³ÉÔ±±»Òþ²Ø¡£
 #define		LES_HIDED				    (1 << 1)
-	DWORD m_dwState;
+    DWORD m_dwState;
 
-	// !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±Îª¾ßÌåµÄÃ¶¾ÙÊýÖµ¡£
-	INT m_nDefault;
-	// ÏµÍ³»ù±¾ÀàÐÍ×ÓÊý¾Ý×é¼þ£¨·ÇÊý×é£©µÄÄ¬ÈÏÖ¸¶¨Öµ£º
-	//     1¡¢Êý×ÖÐÍ£ºÖ±½ÓÎªÊý×ÖÖµ£¨ÈçÎªÐ¡Êý£¬Ö»ÄÜÖ¸¶¨ÆäÕûÊý²¿·Ö£¬
-	//		  ÈçÎª³¤ÕûÊý£¬Ö»ÄÜÖ¸¶¨²»³¬¹ýINTÏÞÖµµÄ²¿·Ö£©£»
-	//     2¡¢Âß¼­ÐÍ£º1µÈÓÚÕæ£¬0µÈÓÚ¼Ù£»
-	//     3¡¢ÎÄ±¾ÐÍ£º±¾±äÁ¿´ËÊ±ÎªLPTSTRÖ¸Õë£¬Ö¸ÏòÄ¬ÈÏÎÄ±¾´®£»
-	//     4¡¢ÆäËüËùÓÐÀàÐÍ²ÎÊý£¨°üÀ¨×Ô¶¨ÒåÀàÐÍ£©Ò»ÂÉÎÞÄ¬ÈÏÖ¸¶¨Öµ¡£
+    // !!! Èç¹ûÎ»ÓÚÃ¶¾ÙÊý¾ÝÀàÐÍÖÐ£¬Ôò±¾³ÉÔ±Îª¾ßÌåµÄÃ¶¾ÙÊýÖµ¡£
+    INT m_nDefault;
+    // ÏµÍ³»ù±¾ÀàÐÍ×ÓÊý¾Ý×é¼þ£¨·ÇÊý×é£©µÄÄ¬ÈÏÖ¸¶¨Öµ£º
+    //     1¡¢Êý×ÖÐÍ£ºÖ±½ÓÎªÊý×ÖÖµ£¨ÈçÎªÐ¡Êý£¬Ö»ÄÜÖ¸¶¨ÆäÕûÊý²¿·Ö£¬
+    //		  ÈçÎª³¤ÕûÊý£¬Ö»ÄÜÖ¸¶¨²»³¬¹ýINTÏÞÖµµÄ²¿·Ö£©£»
+    //     2¡¢Âß¼­ÐÍ£º1µÈÓÚÕæ£¬0µÈÓÚ¼Ù£»
+    //     3¡¢ÎÄ±¾ÐÍ£º±¾±äÁ¿´ËÊ±ÎªLPTSTRÖ¸Õë£¬Ö¸ÏòÄ¬ÈÏÎÄ±¾´®£»
+    //     4¡¢ÆäËüËùÓÐÀàÐÍ²ÎÊý£¨°üÀ¨×Ô¶¨ÒåÀàÐÍ£©Ò»ÂÉÎÞÄ¬ÈÏÖ¸¶¨Öµ¡£
 } LIB_DATA_TYPE_ELEMENT;
-typedef LIB_DATA_TYPE_ELEMENT* PLIB_DATA_TYPE_ELEMENT;
+
+typedef LIB_DATA_TYPE_ELEMENT *PLIB_DATA_TYPE_ELEMENT;
 
 // ¹Ì¶¨ÊôÐÔµÄÊýÄ¿
 #define	FIXED_WIN_UNIT_PROPERTY_COUNT	8
@@ -362,14 +360,13 @@ typedef LIB_DATA_TYPE_ELEMENT* PLIB_DATA_TYPE_ELEMENT;
 	{	_WT("Êó±êÖ¸Õë"),_WT("MousePointer"),NULL,	UD_CURSOR,	_PROP_OS (OS_ALL),	NULL }
 
 // ×é¼þµÄÉèÖÃÊôÐÔ£¬×¢Òâ²»ÒªÔö¼ÓÊý×éÊôÐÔÖ§³Ö¡£
-typedef struct
-{
-	LPTSTR m_szName;
-	// ÊôÐÔÃû³Æ£¬×¢ÒâÎªÀûÓÚÔÚÊôÐÔ±íÖÐÍ¬Ê±ÉèÖÃ¶à¶ÔÏóµÄÊôÐÔ£¬ÊôÐÔÃû³Æ±ØÐë¸ß¶ÈÒ»ÖÂ¡£
-	LPTSTR m_szEgName;
-	LPTSTR m_szExplain;		// ÊôÐÔ½âÊÍ¡£
+typedef struct {
+    LPTSTR m_szName;
+    // ÊôÐÔÃû³Æ£¬×¢ÒâÎªÀûÓÚÔÚÊôÐÔ±íÖÐÍ¬Ê±ÉèÖÃ¶à¶ÔÏóµÄÊôÐÔ£¬ÊôÐÔÃû³Æ±ØÐë¸ß¶ÈÒ»ÖÂ¡£
+    LPTSTR m_szEgName;
+    LPTSTR m_szExplain; // ÊôÐÔ½âÊÍ¡£
 
-	// ×¢Òâ£ºÊý¾Ý¸ñÊ½½öÔÚPFN_NOTIFY_PROPERTY_CHANGEDÖÐÓÃ×÷Í¨Öª¡£
+    // ×¢Òâ£ºÊý¾Ý¸ñÊ½½öÔÚPFN_NOTIFY_PROPERTY_CHANGEDÖÐÓÃ×÷Í¨Öª¡£
 #define		UD_PICK_SPEC_INT    1000	// Êý¾ÝÎªINTÖµ£¬ÓÃ»§Ö»ÄÜÑ¡Ôñ£¬²»ÄÜ±à¼­¡£
 
 #define		UD_INT			1001	// Êý¾ÝÎªINTÖµ
@@ -385,138 +382,135 @@ typedef struct
 #define		UD_PIC			1009	// ÎªÍ¼Æ¬ÎÄ¼þÄÚÈÝ
 #define		UD_ICON			1010	// ÎªÍ¼±êÎÄ¼þÄÚÈÝ
 #define		UD_CURSOR		1011
-	//   µÚÒ»¸öINT¼ÇÂ¼Êó±êÖ¸ÕëÀàÐÍ£¬¾ßÌåÖµ¼ûLoadCursorº¯Êý¡£ÈçÎª-1£¬Ôò
-	// Îª×Ô¶¨ÒåÊó±êÖ¸Õë£¬´ËÊ±ºó¸úÏàÓ¦³¤¶ÈµÄÊó±êÖ¸ÕëÎÄ¼þÄÚÈÝ¡£
+    //   µÚÒ»¸öINT¼ÇÂ¼Êó±êÖ¸ÕëÀàÐÍ£¬¾ßÌåÖµ¼ûLoadCursorº¯Êý¡£ÈçÎª-1£¬Ôò
+    // Îª×Ô¶¨ÒåÊó±êÖ¸Õë£¬´ËÊ±ºó¸úÏàÓ¦³¤¶ÈµÄÊó±êÖ¸ÕëÎÄ¼þÄÚÈÝ¡£
 #define		UD_MUSIC		1012	// ÎªÉùÒôÎÄ¼þÄÚÈÝ
 
 #define		UD_FONT			1013
-	//   ÎªÒ»¸öLOGFONTÊý¾Ý½á¹¹£¬²»ÄÜÔÙ¸Ä¡£
+    //   ÎªÒ»¸öLOGFONTÊý¾Ý½á¹¹£¬²»ÄÜÔÙ¸Ä¡£
 #define		UD_COLOR		1014
-	// Êý¾ÝÎªCOLORREFÖµ¡£
+    // Êý¾ÝÎªCOLORREFÖµ¡£
 #define		UD_COLOR_TRANS	1015
-	// Êý¾ÝÎªCOLORREFÖµ£¬ÔÊÐíÍ¸Ã÷ÑÕÉ«(ÓÃCLR_DEFAULT´ú±í)¡£
+    // Êý¾ÝÎªCOLORREFÖµ£¬ÔÊÐíÍ¸Ã÷ÑÕÉ«(ÓÃCLR_DEFAULT´ú±í)¡£
 #define		UD_FILE_NAME	1016
-	// Êý¾ÝÎªÎÄ¼þÃû×Ö·û´®¡£´ËÊ±m_szzPickStrÖÐµÄÊý¾ÝÎª£º
-	//   ¶Ô»°¿ò±êÌâ\0 + ÎÄ¼þ¹ýÂËÆ÷´®\0 + Ä¬ÈÏºó×º\0 +
-	//   "1"£¨È¡±£´æÎÄ¼þÃû£©»ò"0"£¨È¡¶ÁÈëÎÄ¼þÃû£©\0
+    // Êý¾ÝÎªÎÄ¼þÃû×Ö·û´®¡£´ËÊ±m_szzPickStrÖÐµÄÊý¾ÝÎª£º
+    //   ¶Ô»°¿ò±êÌâ\0 + ÎÄ¼þ¹ýÂËÆ÷´®\0 + Ä¬ÈÏºó×º\0 +
+    //   "1"£¨È¡±£´æÎÄ¼þÃû£©»ò"0"£¨È¡¶ÁÈëÎÄ¼þÃû£©\0
 #define		UD_COLOR_BACK	1017
-	// Êý¾ÝÎªCOLORREFÖµ£¬ÔÊÐíÏµÍ³Ä¬ÈÏ±³¾°ÑÕÉ«(ÓÃCLR_DEFAULT´ú±í)¡£
+    // Êý¾ÝÎªCOLORREFÖµ£¬ÔÊÐíÏµÍ³Ä¬ÈÏ±³¾°ÑÕÉ«(ÓÃCLR_DEFAULT´ú±í)¡£
 #define		UD_IMAGE_LIST		1023
-	// Í¼Æ¬×é£¬Êý¾Ý½á¹¹Îª£º
+    // Í¼Æ¬×é£¬Êý¾Ý½á¹¹Îª£º
 #define	IMAGE_LIST_DATA_MARK	(MAKELONG ('IM', 'LT'))
-/*
-DWORD: ±êÖ¾Êý¾Ý£ºÎª IMAGE_LIST_DATA_MARK
-COLORREF: Í¸Ã÷ÑÕÉ«£¨¿ÉÒÔÎªCLR_DEFAULT£©
-ºóÃæÎªÍ¼Æ¬×éÊý¾Ý.ÓÃCImageList::ReadºÍCImageList::Write¶ÁÐ´¡£
-*/
+    /*
+    DWORD: ±êÖ¾Êý¾Ý£ºÎª IMAGE_LIST_DATA_MARK
+    COLORREF: Í¸Ã÷ÑÕÉ«£¨¿ÉÒÔÎªCLR_DEFAULT£©
+    ºóÃæÎªÍ¼Æ¬×éÊý¾Ý.ÓÃCImageList::ReadºÍCImageList::Write¶ÁÐ´¡£
+    */
 #define		UD_CUSTOMIZE		1024
 
 #define	UD_BEGIN	UD_PICK_SPEC_INT
 #define	UD_END		UD_CUSTOMIZE
 
-	SHORT m_shtType;	// ÊôÐÔµÄÊý¾ÝÀàÐÍ¡£
+    SHORT m_shtType; // ÊôÐÔµÄÊý¾ÝÀàÐÍ¡£
 
 #define	UW_HAS_INDENT		(1 << 0)	// ÔÚÊôÐÔ±íÖÐÏÔÊ¾Ê±ÏòÍâËõ½øÒ»¶Î£¬Ò»°ãÓÃÓÚ×ÓÊôÐÔ¡£
 #define	UW_GROUP_LINE		(1 << 1)	// ÔÚÊôÐÔ±íÖÐ±¾ÊôÐÔÏÂÏÔÊ¾·Ö×éµ×·âÏß¡£
 #define	UW_ONLY_READ		(1 << 2)
-	// Ö»¶ÁÊôÐÔ£¬Éè¼ÆÊ±²»¿ÉÓÃ£¬ÔËÐÐÊ±²»ÄÜÐ´¡£
+    // Ö»¶ÁÊôÐÔ£¬Éè¼ÆÊ±²»¿ÉÓÃ£¬ÔËÐÐÊ±²»ÄÜÐ´¡£
 #define	UW_CANNOT_INIT		(1 << 3)
-	// Éè¼ÆÊ±²»¿ÉÓÃ£¬µ«ÔËÐÐÊ±¿ÉÒÔÕý³£¶ÁÐ´¡£ÓëÉÏ±êÖ¾»¥³â¡£
+    // Éè¼ÆÊ±²»¿ÉÓÃ£¬µ«ÔËÐÐÊ±¿ÉÒÔÕý³£¶ÁÐ´¡£ÓëÉÏ±êÖ¾»¥³â¡£
 #define UW_IS_HIDED         (1 << 4)    // 3.2 ÐÂÔö
-	// Òþ²Øµ«¿ÉÓÃ¡£
-//!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊôÐÔËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
+    // Òþ²Øµ«¿ÉÓÃ¡£
+    //!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊôÐÔËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
 #define _PROP_OS(os)     ((os) >> 16)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_wState¡£
 #define _TEST_PROP_OS(m_wState,os)    ((_PROP_OS (os) & m_wState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨ÊôÐÔÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
-	WORD m_wState;
+    WORD m_wState;
 
-	LPTSTR m_szzPickStr;
-	// Ë³Ðò¼ÇÂ¼ËùÓÐµÄ±¸Ñ¡ÎÄ±¾£¨³ý¿ªUD_FILE_NAME£©£¬ÒÔÒ»¸ö¿Õ´®½áÊø¡£
-	// µ±m_nTypeÎªUP_PICK_INT¡¢UP_PICK_TEXT¡¢UD_EDIT_PICK_TEXT¡¢UD_FILE_NAMEÊ±²»ÎªNULL¡£
-	// µ±m_nTypeÎªUD_PICK_SPEC_INTÊ±£¬Ã¿Ò»Ïî±¸Ñ¡ÎÄ±¾µÄ¸ñÊ½Îª ÊýÖµÎÄ±¾ + "\0" + ËµÃ÷ÎÄ±¾ + "\0" ¡£
+    LPTSTR m_szzPickStr;
+    // Ë³Ðò¼ÇÂ¼ËùÓÐµÄ±¸Ñ¡ÎÄ±¾£¨³ý¿ªUD_FILE_NAME£©£¬ÒÔÒ»¸ö¿Õ´®½áÊø¡£
+    // µ±m_nTypeÎªUP_PICK_INT¡¢UP_PICK_TEXT¡¢UD_EDIT_PICK_TEXT¡¢UD_FILE_NAMEÊ±²»ÎªNULL¡£
+    // µ±m_nTypeÎªUD_PICK_SPEC_INTÊ±£¬Ã¿Ò»Ïî±¸Ñ¡ÎÄ±¾µÄ¸ñÊ½Îª ÊýÖµÎÄ±¾ + "\0" + ËµÃ÷ÎÄ±¾ + "\0" ¡£
 } UNIT_PROPERTY;
-typedef UNIT_PROPERTY* PUNIT_PROPERTY;
+
+typedef UNIT_PROPERTY *PUNIT_PROPERTY;
 
 ///////////////////////////////// 3.2 ÒÔÇ°ËùÊ¹ÓÃµÄÊÂ¼þ¶¨ÒåÐÅÏ¢µÚÒ»¸ö°æ±¾
 
-typedef struct
-{
-	LPTSTR		m_szName;				// ²ÎÊýÃû³Æ
-	LPTSTR		m_szExplain;			// ²ÎÊýÏêÏ¸½âÊÍ
+typedef struct {
+    LPTSTR m_szName; // ²ÎÊýÃû³Æ
+    LPTSTR m_szExplain; // ²ÎÊýÏêÏ¸½âÊÍ
 
 #define EAS_IS_BOOL_ARG     (1 << 0)	// ÎªÂß¼­ÐÍ²ÎÊý£¬ÈçÎÞ´Ë±êÖ¾£¬Ä¬ÈÏÎªÕûÊýÐÍ²ÎÊý
-	DWORD		m_dwState;		// ²ÎÊýMASK
+    DWORD m_dwState; // ²ÎÊýMASK
 }
-EVENT_ARG_INFO, * PEVENT_ARG_INFO;
+        EVENT_ARG_INFO, *PEVENT_ARG_INFO;
 
-typedef struct
-{
-	LPTSTR		m_szName;			// ÊÂ¼þÃû³Æ
-	LPTSTR		m_szExplain;		// ÊÂ¼þÏêÏ¸½âÊÍ
+typedef struct {
+    LPTSTR m_szName; // ÊÂ¼þÃû³Æ
+    LPTSTR m_szExplain; // ÊÂ¼þÏêÏ¸½âÊÍ
 
-	// ±¾ÊÂ¼þÊÇ·ñÎªÒþº¬ÊÂ¼þ£¨¼´²»ÄÜ±»Ò»°ãÓÃ»§ËùÊ¹ÓÃ»ò±»·ÏÆúµ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÊÂ¼þ£©¡£
+    // ±¾ÊÂ¼þÊÇ·ñÎªÒþº¬ÊÂ¼þ£¨¼´²»ÄÜ±»Ò»°ãÓÃ»§ËùÊ¹ÓÃ»ò±»·ÏÆúµ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÊÂ¼þ£©¡£
 #define		EV_IS_HIDED			(1 << 0)
 
-// #define		EV_IS_MOUSE_EVENT	(1 << 1)    // 3.2±»·ÏÆú¡£
+    // #define		EV_IS_MOUSE_EVENT	(1 << 1)    // 3.2±»·ÏÆú¡£
 #define		EV_IS_KEY_EVENT		(1 << 2)
 
 #define		EV_RETURN_INT		(1 << 3)	// ·µ»ØÒ»¸öÕûÊý
 #define		EV_RETURN_BOOL		(1 << 4)	// ·µ»ØÒ»¸öÂß¼­Öµ£¬ÓëÉÏ±êÖ¾»¥³â¡£
-//!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊÂ¼þËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
+    //!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊÂ¼þËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
 #define _EVENT_OS(os)     ((os) >> 1)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_dwState¡£
 #define _TEST_EVENT_OS(m_dwState,os)    ((_EVENT_OS (os) & m_dwState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨ÊÂ¼þÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
-	DWORD		m_dwState;  // ¾ø¶Ô²»ÄÜ¶¨Òå³É·µ»ØÎÄ±¾¡¢×Ö½Ú¼¯¡¢¸´ºÏÀàÐÍµÈÐèÒª¿Õ¼äÊÍ·Å´úÂëµÄÊý¾ÝÀàÐÍ¡£
+    DWORD m_dwState; // ¾ø¶Ô²»ÄÜ¶¨Òå³É·µ»ØÎÄ±¾¡¢×Ö½Ú¼¯¡¢¸´ºÏÀàÐÍµÈÐèÒª¿Õ¼äÊÍ·Å´úÂëµÄÊý¾ÝÀàÐÍ¡£
 
-	INT             m_nArgCount;		// ÊÂ¼þµÄ²ÎÊýÊýÄ¿
-	PEVENT_ARG_INFO m_pEventArgInfo;	// ÊÂ¼þ²ÎÊý
+    INT m_nArgCount; // ÊÂ¼þµÄ²ÎÊýÊýÄ¿
+    PEVENT_ARG_INFO m_pEventArgInfo; // ÊÂ¼þ²ÎÊý
 }
-EVENT_INFO, * PEVENT_INFO;
+        EVENT_INFO, *PEVENT_INFO;
 
 ///////////////////////////////// 3.2 ¼°ÒÔºóËùÊ¹ÓÃµÄÊÂ¼þ¶¨ÒåÐÅÏ¢µÚ¶þ¸ö°æ±¾
 
 // ×¢ÒâÊ×²¿±ØÐëÍêÈ«°üº¬ EVENT_ARG_INFO ¡£
-typedef struct
-{
-	LPTSTR		m_szName;       // ²ÎÊýÃû³Æ
-	LPTSTR		m_szExplain;    // ²ÎÊýÏêÏ¸½âÊÍ
+typedef struct {
+    LPTSTR m_szName; // ²ÎÊýÃû³Æ
+    LPTSTR m_szExplain; // ²ÎÊýÏêÏ¸½âÊÍ
 
-	// ÊÇ·ñÐèÒªÒÔ²Î¿¼·½Ê½´«Öµ£¬Èç¹ûÖÃÎ»£¬ÔòÖ§³Ö¿âÖÐÅ×³öÊÂ¼þµÄ´úÂë±ØÐëÈ·±£ÆäÄÜ¹»±»ÏµÍ³Ëù·ÃÎÊ
-	// £¨¼´·ÖÅäÄÚ´æµÄ·½·¨ºÍÊý¾ÝµÄ¸ñÊ½±ØÐë·ûºÏÒªÇó£©¡£
+    // ÊÇ·ñÐèÒªÒÔ²Î¿¼·½Ê½´«Öµ£¬Èç¹ûÖÃÎ»£¬ÔòÖ§³Ö¿âÖÐÅ×³öÊÂ¼þµÄ´úÂë±ØÐëÈ·±£ÆäÄÜ¹»±»ÏµÍ³Ëù·ÃÎÊ
+    // £¨¼´·ÖÅäÄÚ´æµÄ·½·¨ºÍÊý¾ÝµÄ¸ñÊ½±ØÐë·ûºÏÒªÇó£©¡£
 #define     EAS_BY_REF      (1 << 1)    // ²»Ê¹ÓÃ (1 << 0)
-	DWORD		m_dwState;		// ²ÎÊýMASK
+    DWORD m_dwState; // ²ÎÊýMASK
 
-	DATA_TYPE	m_dtDataType;
+    DATA_TYPE m_dtDataType;
 }
-EVENT_ARG_INFO2, * PEVENT_ARG_INFO2;
+        EVENT_ARG_INFO2, *PEVENT_ARG_INFO2;
 
 // ×¢ÒâÊ×²¿±ØÐëÍêÈ«°üº¬ EVENT_INFO ¡£
-typedef struct
-{
-	LPTSTR		m_szName;			// ÊÂ¼þÃû³Æ
-	LPTSTR		m_szExplain;		// ÊÂ¼þÏêÏ¸½âÊÍ
+typedef struct {
+    LPTSTR m_szName; // ÊÂ¼þÃû³Æ
+    LPTSTR m_szExplain; // ÊÂ¼þÏêÏ¸½âÊÍ
 
-	// ÒÔÏÂ»ù±¾×´Ì¬ÖµºêÓë EVENT_INFO ÖÐµÄ¶¨ÒåÏàÍ¬¡£
-	// #define		EV_IS_HIDED			(1 << 0)    // ±¾ÊÂ¼þÊÇ·ñÎªÒþº¬ÊÂ¼þ£¨¼´²»ÄÜ±»Ò»°ãÓÃ»§ËùÊ¹ÓÃ»ò±»·ÏÆúµ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÊÂ¼þ£©¡£
-	// #define		EV_IS_KEY_EVENT		(1 << 2)
+    // ÒÔÏÂ»ù±¾×´Ì¬ÖµºêÓë EVENT_INFO ÖÐµÄ¶¨ÒåÏàÍ¬¡£
+    // #define		EV_IS_HIDED			(1 << 0)    // ±¾ÊÂ¼þÊÇ·ñÎªÒþº¬ÊÂ¼þ£¨¼´²»ÄÜ±»Ò»°ãÓÃ»§ËùÊ¹ÓÃ»ò±»·ÏÆúµ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÊÂ¼þ£©¡£
+    // #define		EV_IS_KEY_EVENT		(1 << 2)
 #define     EV_IS_VER2  (1 << 31)   // ±íÊ¾±¾½á¹¹ÎªEVENT_INFO2£¬!!!Ê¹ÓÃ±¾½á¹¹Ê±±ØÐë¼ÓÉÏ´Ë×´Ì¬Öµ¡£
-//!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊÂ¼þËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
-// #define _EVENT_OS(os)     ((os) >> 1)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_dwState¡£
-// #define _TEST_EVENT_OS(m_dwState,os)    ((_EVENT_OS (os) & m_dwState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨ÊÂ¼þÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
-	DWORD		m_dwState;
+    //!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾ÊÂ¼þËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
+    // #define _EVENT_OS(os)     ((os) >> 1)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_dwState¡£
+    // #define _TEST_EVENT_OS(m_dwState,os)    ((_EVENT_OS (os) & m_dwState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨ÊÂ¼þÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
+    DWORD m_dwState;
 
-	INT				    m_nArgCount;		// ÊÂ¼þµÄ²ÎÊýÊýÄ¿
-	PEVENT_ARG_INFO2    m_pEventArgInfo;	// ÊÂ¼þ²ÎÊý
+    INT m_nArgCount; // ÊÂ¼þµÄ²ÎÊýÊýÄ¿
+    PEVENT_ARG_INFO2 m_pEventArgInfo; // ÊÂ¼þ²ÎÊý
 
-	//!!! Èç¹û¸ÃÊý¾ÝÀàÐÍÓÐ¶îÍâµÄÊý¾ÝÐèÒªÊÍ·Å£¬ÐèÒªÓÉÖ§³Ö¿âÖÐÅ×³öÊÂ¼þµÄ´úÂë¸ºÔð½«ÆäÊÍ·Å¡£
-	DATA_TYPE m_dtRetDataType;
+    //!!! Èç¹û¸ÃÊý¾ÝÀàÐÍÓÐ¶îÍâµÄÊý¾ÝÐèÒªÊÍ·Å£¬ÐèÒªÓÉÖ§³Ö¿âÖÐÅ×³öÊÂ¼þµÄ´úÂë¸ºÔð½«ÆäÊÍ·Å¡£
+    DATA_TYPE m_dtRetDataType;
 }
-EVENT_INFO2, * PEVENT_INFO2;
+        EVENT_INFO2, *PEVENT_INFO2;
 
 ////////////////////////////////////
 
-typedef DWORD  HUNIT;
+typedef DWORD HUNIT;
 
 // Í¨ÓÃ½Ó¿ÚÖ¸Õë¡£
-typedef void (WINAPI* PFN_INTERFACE) ();
+typedef void (WINAPI*PFN_INTERFACE)();
 
 // È¡Ö¸¶¨µÄ½Ó¿Ú¡£
 #define	ITF_CREATE_UNIT					1		// ´´½¨×é¼þ
@@ -527,28 +521,31 @@ typedef void (WINAPI* PFN_INTERFACE) ();
 #define	ITF_GET_PROPERTY_DATA			6		// È¡Ä³ÊôÐÔÊý¾Ý
 #define	ITF_GET_ICON_PROPERTY_DATA		7		// È¡´°¿ÚµÄÍ¼±êÊôÐÔÊý¾Ý£¨½öÓÃÓÚ´°¿Ú£©
 #define	ITF_IS_NEED_THIS_KEY			8		// Ñ¯ÎÊ×é¼þÊÇ·ñÐèÒªÖ¸¶¨µÄ°´¼üÐÅÏ¢£¬ÓÃ×÷×é¼þ
-		// ½Ø»ñ´¦ÀíÄ¬ÈÏÎªÏµÍ³´¦ÀíµÄ°´¼ü£¬ÈçTAB¡¢SHIFT+TAB¡¢UP¡¢DOWNµÈ¡£
+// ½Ø»ñ´¦ÀíÄ¬ÈÏÎªÏµÍ³´¦ÀíµÄ°´¼ü£¬ÈçTAB¡¢SHIFT+TAB¡¢UP¡¢DOWNµÈ¡£
 #define ITF_LANG_CNV                    9       // ×é¼þÊý¾ÝÓïÑÔ×ª»»
 #define ITF_MSG_FILTER                  11      // ÏûÏ¢¹ýÂË
 #define ITF_GET_NOTIFY_RECEIVER         12      // È¡×é¼þµÄ¸½¼ÓÍ¨Öª½ÓÊÕÕß(PFN_ON_NOTIFY_UNIT)
-typedef INT(WINAPI* PFN_ON_NOTIFY_UNIT) (INT nMsg, DWORD dwParam1, DWORD dwParam2);
+
+typedef INT (WINAPI*PFN_ON_NOTIFY_UNIT)(INT nMsg, DWORD dwParam1, DWORD dwParam2);
+
 #define NU_GET_CREATE_SIZE_IN_DESIGNER		0
 // È¡Éè¼ÆÊ±×é¼þ±»µ¥»÷·ÅÖÃµ½´°ÌåÉÏÊ±µÄÄ¬ÈÏ´´½¨³ß´ç.
 // dwParam1: ÀàÐÍ: INT*, ·µ»Ø¿í¶È(µ¥Î»ÏñËØ)
 // dwParam2: ÀàÐÍ: INT*, ·µ»Ø¸ß¶È(µ¥Î»ÏñËØ)
 // ³É¹¦·µ»Ø1,Ê§°Ü·µ»Ø0.
 
-typedef PFN_INTERFACE(WINAPI* PFN_GET_INTERFACE) (INT nInterfaceNO);
+typedef PFN_INTERFACE (WINAPI*PFN_GET_INTERFACE)(INT nInterfaceNO);
 
 //////////////////////////////////// ½Ó¿Ú£º
 
 // ´´½¨×é¼þ£¬³É¹¦Ê±·µ»Ø´°¿Ú¾ä±ú£¬phUnitÖÐ·µ»Ø×é¼þ¾ä±ú£¬Ê§°Ü·µ»ØNULL¡£
 // hDesignWnd½öÔÚblInDesignModeÎªÕæÊ±²ÅÓÐÐ§£¬ÎªÉè¼Æ´°ÌåµÄ´°¿Ú¾ä±ú¡£
-typedef HUNIT(WINAPI* PFN_CREATE_UNIT) (LPBYTE pAllData, INT nAllDataSize,
-	DWORD dwStyle, HWND hParentWnd, UINT uID, HMENU hMenu, INT x, INT y, INT cx, INT cy,
-	DWORD dwWinFormID, DWORD dwUnitID,			// ÓÃ×÷Í¨Öªµ½ÏµÍ³
+typedef HUNIT (WINAPI*PFN_CREATE_UNIT)(LPBYTE pAllData, INT nAllDataSize,
+                                       DWORD dwStyle, HWND hParentWnd, UINT uID, HMENU hMenu, INT x, INT y, INT cx,
+                                       INT cy,
+                                       DWORD dwWinFormID, DWORD dwUnitID, // ÓÃ×÷Í¨Öªµ½ÏµÍ³
 #ifndef __GCC_
-	HWND hDesignWnd, BOOL blInDesignMode);
+                                       HWND hDesignWnd, BOOL blInDesignMode);
 #else
 	HWND hDesignWnd, BOOL blInDesignMode);
 #endif
@@ -556,54 +553,55 @@ typedef HUNIT(WINAPI* PFN_CREATE_UNIT) (LPBYTE pAllData, INT nAllDataSize,
 // dwState¿ÉÒÔÎªÒÔÏÂºêÖµµÄ×éºÏ¡£
 #define CNV_NULL        0
 #define CNV_FONTNAME    (1 << 0)    // Îª×ª»»×ÖÌåÃûµÄÓïÑÔ(ÓÉÓÚ¿ÉÄÜ±ä³¤£¬
-									// psÖÐ±ØÐë±£Ö¤ÓÐ×ã¹»µÄ¿Õ¼ä´æ·Å×ª»»ºóµÄ×ÖÌåÃû)¡£
-typedef void (WINAPI* PFN_CNV)(char* ps, DWORD dwState, int nParam);
+
+// psÖÐ±ØÐë±£Ö¤ÓÐ×ã¹»µÄ¿Õ¼ä´æ·Å×ª»»ºóµÄ×ÖÌåÃû)¡£
+typedef void (WINAPI*PFN_CNV)(char *ps, DWORD dwState, int nParam);
+
 // ×é¼þÊý¾ÝÓïÑÔ×ª»»£¬·µ»Ø°üº¬×ª»»ºó×é¼þÊý¾ÝµÄHGLOBAL¾ä±ú£¬Ê§°Ü·µ»ØNULL¡£
-typedef HGLOBAL(WINAPI* PFN_LANG_CNV) (LPBYTE pAllData, LPINT pnAllDataSize,
-	PFN_CNV fnCnv, int nParam);  // nParam±ØÐëÔ­Öµ´«µÝ¸øfnCnvµÄ¶ÔÓ¦²ÎÊý¡£
+typedef HGLOBAL (WINAPI*PFN_LANG_CNV)(LPBYTE pAllData, LPINT pnAllDataSize,
+                                      PFN_CNV fnCnv, int nParam); // nParam±ØÐëÔ­Öµ´«µÝ¸øfnCnvµÄ¶ÔÓ¦²ÎÊý¡£
 
 // ÒÔÏÂº¯Êý½öÔÚÉè¼ÆÊ±Ê¹ÓÃ¡£
 
 //   Èç¹ûÖ¸¶¨ÊôÐÔÄ¿Ç°¿ÉÒÔ±»²Ù×÷£¬·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
-typedef BOOL(WINAPI* PFN_PROPERTY_UPDATE_UI) (HUNIT hUnit, INT nPropertyIndex);
+typedef BOOL (WINAPI*PFN_PROPERTY_UPDATE_UI)(HUNIT hUnit, INT nPropertyIndex);
 
 //   ÈçÓÐ¸½¼Ó¶¨ÖÆÊý¾Ý£¬Ê¹ÓÃ¶Ô»°¿òÉèÖÃÕâÐ©Êý¾Ý£¬¸ù¾ÝÉèÖÃÐÞ¸ÄÄÚ²¿Êý¾Ý¼°ÍâÐÎ£¬
 // Èç¹ûÐèÒªÖØÐÂ´´½¨²ÅÄÜÐÞ¸ÄÍâÐÎ£¬·µ»ØÕæ¡£Èç¹ûpblModified²»ÎªNULL£¬ÔÚÆäÖÐ·µ»Ø
 // ÐÞ¸Ä×´Ì¬¡£
-typedef BOOL(WINAPI* PFN_DLG_INIT_CUSTOMIZE_DATA) (HUNIT hUnit, INT nPropertyIndex,
+typedef BOOL (WINAPI*PFN_DLG_INIT_CUSTOMIZE_DATA)(HUNIT hUnit, INT nPropertyIndex,
 #ifndef __GCC_
-	BOOL* pblModified, LPVOID pResultExtraData);
+                                                  BOOL *pblModified, LPVOID pResultExtraData);
 #else
 BOOL* pblModified, LPVOID pResultExtraData);
 #endif
 
 // ÓÃ×÷¼ÇÂ¼Ä³ÊôÐÔµÄÊôÐÔÖµ¡£
-union UNIT_PROPERTY_VALUE
-{
-	INT			m_int;			// UD_INT¡¢UD_PICK_INT¡¢UD_PICK_SPEC_INT
-	DOUBLE		m_double;		// UD_DOUBLE
-	BOOL		m_bool;			// UD_BOOL
-	DATE		m_dtDateTime;	// UD_DATE_TIME
-	COLORREF	m_clr;			// UD_COLOR¡¢UD_COLOR_TRANS¡¢UD_COLOR_BACK
-	LPTSTR		m_szText;		// UD_TEXT¡¢UD_PICK_TEXT¡¢UD_EDIT_PICK_TEXT¡¢
-	// UD_DATA_SOURCE_NAME¡¢UD_DATA_PROVIDER_NAME¡¢UD_DSCOL_NAME¡¢
-	// UD_ODBC_CONNECT_STR¡¢UD_ODBC_SELECT_STR
-	LPTSTR		m_szFileName;	// UD_FILE_NAME
+union UNIT_PROPERTY_VALUE {
+    INT m_int; // UD_INT¡¢UD_PICK_INT¡¢UD_PICK_SPEC_INT
+    DOUBLE m_double; // UD_DOUBLE
+    BOOL m_bool; // UD_BOOL
+    DATE m_dtDateTime; // UD_DATE_TIME
+    COLORREF m_clr; // UD_COLOR¡¢UD_COLOR_TRANS¡¢UD_COLOR_BACK
+    LPTSTR m_szText; // UD_TEXT¡¢UD_PICK_TEXT¡¢UD_EDIT_PICK_TEXT¡¢
+    // UD_DATA_SOURCE_NAME¡¢UD_DATA_PROVIDER_NAME¡¢UD_DSCOL_NAME¡¢
+    // UD_ODBC_CONNECT_STR¡¢UD_ODBC_SELECT_STR
+    LPTSTR m_szFileName; // UD_FILE_NAME
 
-	struct
-	{
-		LPBYTE		m_pData;
-		INT			m_nDataSize;
-	} m_data;
+    struct {
+        LPBYTE m_pData;
+        INT m_nDataSize;
+    } m_data;
 };
-typedef union UNIT_PROPERTY_VALUE* PUNIT_PROPERTY_VALUE;
+
+typedef union UNIT_PROPERTY_VALUE *PUNIT_PROPERTY_VALUE;
 
 //   Í¨ÖªÄ³Ò»°ãÊôÐÔ£¨·Ç¶¨ÖÆÊôÐÔ£©Êý¾Ý±»ÓÃ»§ÐÞ¸Ä£¬¸ù¾ÝÉèÖÃÐÞ¸ÄÄÚ²¿Êý¾Ý¼°ÍâÐÎ£¬Èç¹ûÈ·ÊµÐèÒª
 // ÖØÐÂ´´½¨²ÅÄÜÐÞ¸ÄÍâÐÎ£¬·µ»ØÕæ¡£ÈÎºÎÇé¿öÏÂÈç¹ûÓÐÏàÓ¦ÌáÊ¾ÐÅÏ¢£¬·µ»Øµ½ppszTipTextÖÐ¡£
 //   ×¢Òâ£º±ØÐë½øÐÐÖµµÄºÏ·¨ÐÔÐ£Ñé¡£
-typedef BOOL(WINAPI* PFN_NOTIFY_PROPERTY_CHANGED) (HUNIT hUnit, INT nPropertyIndex,
+typedef BOOL (WINAPI*PFN_NOTIFY_PROPERTY_CHANGED)(HUNIT hUnit, INT nPropertyIndex,
 #ifndef __GCC_
-	PUNIT_PROPERTY_VALUE pPropertyVaule, LPTSTR* ppszTipText);
+                                                  PUNIT_PROPERTY_VALUE pPropertyVaule, LPTSTR *ppszTipText);
 #else
 PUNIT_PROPERTY_VALUE pPropertyVaule, LPTSTR* ppszTipText);
 #endif
@@ -611,20 +609,20 @@ PUNIT_PROPERTY_VALUE pPropertyVaule, LPTSTR* ppszTipText);
 // È¡Ä³ÊôÐÔÊý¾Ýµ½pPropertyVauleÖÐ£¬³É¹¦·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
 // !! 1¡¢¶ÔÓÚÔËÐÐÊ±¿ÉÄÜ±»ÓÃ»§²Ù×÷¸Ä±ä£¨²»¿¼ÂÇÖ±½Óµ÷ÓÃAPIº¯Êý£©µÄÊôÐÔ£¬ÔÚÔËÐÐÊ±±ØÐëÈ¡ÆäÏÖÐÐÊµ¼ÊÖµ¡£
 // !! 2¡¢¶ÔÓÚÈ¡»ØµÄÎÄ±¾»ò×Ö½Ú¼¯µÈ·ÖÅäÓÐ¶îÍâÄÚ´æµÄÊý¾ÝÖ¸Õë£¬±ØÐë×ÔÐÐÊÍ·Å£¬Ò×³ÌÐò²¢²»»á½«ÆäÊÍ·Å¡£
-typedef BOOL(WINAPI* PFN_GET_PROPERTY_DATA) (HUNIT hUnit, INT nPropertyIndex,
-	PUNIT_PROPERTY_VALUE pPropertyVaule);
+typedef BOOL (WINAPI*PFN_GET_PROPERTY_DATA)(HUNIT hUnit, INT nPropertyIndex,
+                                            PUNIT_PROPERTY_VALUE pPropertyVaule);
 
 // È¡È«²¿ÊôÐÔÊý¾Ý
-typedef HGLOBAL(WINAPI* PFN_GET_ALL_PROPERTY_DATA) (HUNIT hUnit);
+typedef HGLOBAL (WINAPI*PFN_GET_ALL_PROPERTY_DATA)(HUNIT hUnit);
 
 // È¡´°¿ÚµÄÍ¼±êÊôÐÔÊý¾Ý£¨½öÓÃÓÚ´°¿Ú£©
-typedef HGLOBAL(WINAPI* PFN_GET_ICON_PROPERTY_DATA) (LPBYTE pAllData, INT nAllDataSize);
+typedef HGLOBAL (WINAPI*PFN_GET_ICON_PROPERTY_DATA)(LPBYTE pAllData, INT nAllDataSize);
 
 // Ñ¯ÎÊ×é¼þÊÇ·ñÐèÒªÖ¸¶¨µÄ°´¼üÐÅÏ¢£¬Èç¹ûÐèÒª£¬·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
-typedef BOOL(WINAPI* PFN_IS_NEED_THIS_KEY) (HUNIT hUnit, WORD wKey);
+typedef BOOL (WINAPI*PFN_IS_NEED_THIS_KEY)(HUNIT hUnit, WORD wKey);
 
 // ÏûÏ¢¹ýÂË(½ö¶ÔÏûÏ¢¹ýÂË´°¿Ú×é¼þÓÐÐ§,¼´¾ßÓÐLDT_MSG_FILTER_CONTROL±ê¼Ç)£¬±»¹ýÂËµô·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
-typedef BOOL(WINAPI* PFN_MESSAGE_FILTER) (void* pMsg); // Windows²Ù×÷ÏµÍ³ÖÐpMsgÎªMSG*Ö¸Õë¡£
+typedef BOOL (WINAPI*PFN_MESSAGE_FILTER)(void *pMsg); // Windows²Ù×÷ÏµÍ³ÖÐpMsgÎªMSG*Ö¸Õë¡£
 
 ////////////////////////////////////
 
@@ -634,181 +632,179 @@ typedef BOOL(WINAPI* PFN_MESSAGE_FILTER) (void* pMsg); // Windows²Ù×÷ÏµÍ³ÖÐpMsgÎ
 //!!!   ×¢Òâm_pElementBeginÓëm_pPropertyBeginÖ»ÄÜÓÐÒ»¸ö²»ÎªNULL£¬m_nElementCountÓë
 //!!! m_nPropertyCountÖ»ÄÜÓÐÒ»¸ö²»Îª0¡£
 
-typedef struct  // ¿â¶¨ÒåÊý¾ÝÀàÐÍ½á¹¹
+typedef struct // ¿â¶¨ÒåÊý¾ÝÀàÐÍ½á¹¹
 {
-	LPTSTR m_szName;  // Êý¾ÝÀàÐÍµÄÖÐÎÄÃû³Æ£¨Èç£º¡°ÕûÊý¡±£¬¡°¸ß¾«¶ÈÊý¡±µÈµÈ£©¡£
-	LPTSTR m_szEgName;
-	// Êý¾ÝÀàÐÍµÄÓ¢ÎÄÃû³Æ£¨Èç£º¡°int¡±£¬¡°double¡±µÈµÈ£©£¬¿ÉÎª¿Õ»òNULL¡£
-	LPTSTR m_szExplain;   // Êý¾ÝÀàÐÍµÄÏêÏ¸½âÊÍ£¬ÈçÎÞÔò¿ÉÎªNULL¡£
+    LPTSTR m_szName; // Êý¾ÝÀàÐÍµÄÖÐÎÄÃû³Æ£¨Èç£º¡°ÕûÊý¡±£¬¡°¸ß¾«¶ÈÊý¡±µÈµÈ£©¡£
+    LPTSTR m_szEgName;
+    // Êý¾ÝÀàÐÍµÄÓ¢ÎÄÃû³Æ£¨Èç£º¡°int¡±£¬¡°double¡±µÈµÈ£©£¬¿ÉÎª¿Õ»òNULL¡£
+    LPTSTR m_szExplain; // Êý¾ÝÀàÐÍµÄÏêÏ¸½âÊÍ£¬ÈçÎÞÔò¿ÉÎªNULL¡£
 
-	INT m_nCmdCount;
-	// ±¾ÀàÐÍÖÐÌá¹©µÄ³ÉÔ±ÃüÁîµÄÊýÄ¿£¨¿ÉÎª0£©¡£
-	LPINT m_pnCmdsIndex;	// Ë³Ðò¼ÇÂ¼±¾ÀàÐÍÖÐËùÓÐ³ÉÔ±ÃüÁîÔÚ¿âµÄÃüÁî±íÖÐµÄË÷ÒýÖµ£¬¿ÉÎªNULL¡£
+    INT m_nCmdCount;
+    // ±¾ÀàÐÍÖÐÌá¹©µÄ³ÉÔ±ÃüÁîµÄÊýÄ¿£¨¿ÉÎª0£©¡£
+    LPINT m_pnCmdsIndex; // Ë³Ðò¼ÇÂ¼±¾ÀàÐÍÖÐËùÓÐ³ÉÔ±ÃüÁîÔÚ¿âµÄÃüÁî±íÖÐµÄË÷ÒýÖµ£¬¿ÉÎªNULL¡£
 
-	//   ±¾ÀàÐÍÊÇ·ñÎªÒþº¬ÀàÐÍ£¨¼´²»ÄÜÓÉÓÃ»§Ö±½ÓÓÃ×÷¶¨ÒåµÄÀàÐÍ£¬Èç±»·ÏÆú
-	// µ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÀàÐÍ£©¡£
+    //   ±¾ÀàÐÍÊÇ·ñÎªÒþº¬ÀàÐÍ£¨¼´²»ÄÜÓÉÓÃ»§Ö±½ÓÓÃ×÷¶¨ÒåµÄÀàÐÍ£¬Èç±»·ÏÆú
+    // µ«ÎªÁË±£³Ö¼æÈÝÐÔÓÖÒª´æÔÚµÄÀàÐÍ£©¡£
 #define		LDT_IS_HIDED				(1 << 0)
-// ±¾ÀàÐÍÔÚ±¾¿âÖÐ²»ÄÜÊ¹ÓÃ£¬¾ßÓÐ´Ë±êÖ¾Ò»¶¨Òþº¬¡£
-// ¼´Ê¹¾ßÓÐ´Ë±êÖ¾£¬±¾ÀàÐÍµÄÀàÐÍÊý¾ÝÒ²±ØÐëÍêÕû¶¨Òå¡£
+    // ±¾ÀàÐÍÔÚ±¾¿âÖÐ²»ÄÜÊ¹ÓÃ£¬¾ßÓÐ´Ë±êÖ¾Ò»¶¨Òþº¬¡£
+    // ¼´Ê¹¾ßÓÐ´Ë±êÖ¾£¬±¾ÀàÐÍµÄÀàÐÍÊý¾ÝÒ²±ØÐëÍêÕû¶¨Òå¡£
 #define		LDT_IS_ERROR				(1 << 1)
-//   ÊÇ·ñÎª´°¿Ú»ò¿ÉÔÚ´°¿ÚÄÚÊ¹ÓÃµÄ×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôòm_nElementCount±ØÎª0£¬
+    //   ÊÇ·ñÎª´°¿Ú»ò¿ÉÔÚ´°¿ÚÄÚÊ¹ÓÃµÄ×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôòm_nElementCount±ØÎª0£¬
 #define		LDT_WIN_UNIT				(1 << 6)
-// ÊÇ·ñÎªÈÝÆ÷×é¼þ£¬ÈçÓÐ´Ë±êÖ¾£¬LDT_WIN_UNIT±ØÖÃÎ»¡£
+    // ÊÇ·ñÎªÈÝÆ÷×é¼þ£¬ÈçÓÐ´Ë±êÖ¾£¬LDT_WIN_UNIT±ØÖÃÎ»¡£
 #define		LDT_IS_CONTAINER			(1 << 7)
-//ÊÇ·ñÎªTAB¿Ø¼þ(Ñ¡Ôñ¼Ð) 4.0ÐÂÔö
+    //ÊÇ·ñÎªTAB¿Ø¼þ(Ñ¡Ôñ¼Ð) 4.0ÐÂÔö
 #define		LDT_IS_TAB_UNIT				(1 << 8)
-// ½öÓÃ×÷Ìá¹©¹¦ÄÜµÄ´°¿Ú×é¼þ£¨ÈçÊ±ÖÓ£©£¬Èç´Ë±êÖ¾ÖÃÎ»ÔòLDT_WIN_UNIT±ØÖÃÎ»¡£
-// ¾ßÓÐ´Ë±êÖ¾µÄ×é¼þ³ß´ç¹Ì¶¨Îª32*32£¬²¢ÇÒÔÚÔËÐÐÊ±ÎÞ¿ÉÊÓÍâÐÎ¡£
+    // ½öÓÃ×÷Ìá¹©¹¦ÄÜµÄ´°¿Ú×é¼þ£¨ÈçÊ±ÖÓ£©£¬Èç´Ë±êÖ¾ÖÃÎ»ÔòLDT_WIN_UNIT±ØÖÃÎ»¡£
+    // ¾ßÓÐ´Ë±êÖ¾µÄ×é¼þ³ß´ç¹Ì¶¨Îª32*32£¬²¢ÇÒÔÚÔËÐÐÊ±ÎÞ¿ÉÊÓÍâÐÎ¡£
 #define		LDT_IS_FUNCTION_PROVIDER	(1 << 15)
-// ½öÓÃ×÷´°¿Ú×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôò±íÊ¾´Ë×é¼þ²»ÄÜ½ÓÊÕÊäÈë½¹µã£¬²»ÄÜTAB¼üÍ£Áô¡£
+    // ½öÓÃ×÷´°¿Ú×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôò±íÊ¾´Ë×é¼þ²»ÄÜ½ÓÊÕÊäÈë½¹µã£¬²»ÄÜTAB¼üÍ£Áô¡£
 #define		LDT_CANNOT_GET_FOCUS		(1 << 16)
-// ½öÓÃ×÷´°¿Ú×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôò±íÊ¾´Ë×é¼þÄ¬ÈÏ²»Í£ÁôTAB¼ü£¬Ê¹ÓÃ±¾±êÖ¾±ØÐëÉÏ±êÖ¾ÖÃÎ»¡£
+    // ½öÓÃ×÷´°¿Ú×é¼þ£¬Èç´Ë±êÖ¾ÖÃÎ»Ôò±íÊ¾´Ë×é¼þÄ¬ÈÏ²»Í£ÁôTAB¼ü£¬Ê¹ÓÃ±¾±êÖ¾±ØÐëÉÏ±êÖ¾ÖÃÎ»¡£
 #define		LDT_DEFAULT_NO_TABSTOP		(1 << 17)
-// ÊÇ·ñÎªÃ¶¾ÙÊý¾ÝÀàÐÍ¡£
+    // ÊÇ·ñÎªÃ¶¾ÙÊý¾ÝÀàÐÍ¡£
 #define		LDT_ENUM				    (1 << 22)   // 3.7ÐÂÔö¡£
-// ÊÇ·ñÎªÏûÏ¢¹ýÂË×é¼þ¡£
+    // ÊÇ·ñÎªÏûÏ¢¹ýÂË×é¼þ¡£
 #define		LDT_MSG_FILTER_CONTROL		(1 << 5)
-//!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾Êý¾ÝÀàÐÍËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
+    //!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚÖ¸¶¨±¾Êý¾ÝÀàÐÍËùÖ§³ÖµÄ²Ù×÷ÏµÍ³¡£
 #define _DT_OS(os)     (os)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_dwState¡£
 #define _TEST_DT_OS(m_dwState,os)    ((_DT_OS (os) & m_dwState) != 0) // ÓÃ×÷²âÊÔÖ¸¶¨Êý¾ÝÀàÐÍÊÇ·ñÖ§³ÖÖ¸¶¨²Ù×÷ÏµÍ³¡£
-	DWORD m_dwState;
+    DWORD m_dwState;
 
-	////////////////////////////////////////////
-	// ÒÔÏÂ±äÁ¿Ö»ÓÐÔÚÎª´°¿Ú¡¢²Ëµ¥×é¼þÇÒ²»ÎªÃ¶¾ÙÊý¾ÝÀàÐÍÊ±²ÅÓÐÐ§¡£
+    ////////////////////////////////////////////
+    // ÒÔÏÂ±äÁ¿Ö»ÓÐÔÚÎª´°¿Ú¡¢²Ëµ¥×é¼þÇÒ²»ÎªÃ¶¾ÙÊý¾ÝÀàÐÍÊ±²ÅÓÐÐ§¡£
 
-	DWORD m_dwUnitBmpID;		// Ö¸¶¨ÔÚ¿âÖÐµÄ×é¼þÍ¼Ïñ×ÊÔ´ID£¬0ÎªÎÞ¡£
-	// ÔÚOCX°ü×°¿âÖÐ£¬m_dwUnitBmpIDÖ¸¶¨±¸ÓÃÍ¼Ïñ×ÊÔ´ID¡£
+    DWORD m_dwUnitBmpID; // Ö¸¶¨ÔÚ¿âÖÐµÄ×é¼þÍ¼Ïñ×ÊÔ´ID£¬0ÎªÎÞ¡£
+    // ÔÚOCX°ü×°¿âÖÐ£¬m_dwUnitBmpIDÖ¸¶¨±¸ÓÃÍ¼Ïñ×ÊÔ´ID¡£
 
-	INT m_nEventCount;
-	PEVENT_INFO2 m_pEventBegin;	// ¶¨Òå±¾×é¼þµÄËùÓÐÊÂ¼þ¡£
+    INT m_nEventCount;
+    PEVENT_INFO2 m_pEventBegin; // ¶¨Òå±¾×é¼þµÄËùÓÐÊÂ¼þ¡£
 
-	INT m_nPropertyCount;
-	PUNIT_PROPERTY m_pPropertyBegin;
+    INT m_nPropertyCount;
+    PUNIT_PROPERTY m_pPropertyBegin;
 
-	PFN_GET_INTERFACE m_pfnGetInterface;
+    PFN_GET_INTERFACE m_pfnGetInterface;
 
-	////////////////////////////////////////////
-	// ÒÔÏÂ±äÁ¿Ö»ÓÐÔÚ²»Îª´°¿Ú¡¢²Ëµ¥×é¼þ»òÎªÃ¶¾ÙÊý¾ÝÀàÐÍÊ±²ÅÓÐÐ§¡£
+    ////////////////////////////////////////////
+    // ÒÔÏÂ±äÁ¿Ö»ÓÐÔÚ²»Îª´°¿Ú¡¢²Ëµ¥×é¼þ»òÎªÃ¶¾ÙÊý¾ÝÀàÐÍÊ±²ÅÓÐÐ§¡£
 
-		// ±¾Êý¾ÝÀàÐÍÖÐ×ÓÊý¾Ý×é¼þµÄÊýÄ¿¡£ÈçÎª´°¿Ú¡¢²Ëµ¥×é¼þ£¬´Ë±äÁ¿Öµ±ØÎª0¡£
-	INT	m_nElementCount;
-	PLIB_DATA_TYPE_ELEMENT m_pElementBegin;  // Ö¸Ïò×ÓÊý¾Ý³ÉÔ±Êý×é¡£
+    // ±¾Êý¾ÝÀàÐÍÖÐ×ÓÊý¾Ý×é¼þµÄÊýÄ¿¡£ÈçÎª´°¿Ú¡¢²Ëµ¥×é¼þ£¬´Ë±äÁ¿Öµ±ØÎª0¡£
+    INT m_nElementCount;
+    PLIB_DATA_TYPE_ELEMENT m_pElementBegin; // Ö¸Ïò×ÓÊý¾Ý³ÉÔ±Êý×é¡£
 } LIB_DATA_TYPE_INFO;
-typedef LIB_DATA_TYPE_INFO* PLIB_DATA_TYPE_INFO;
+
+typedef LIB_DATA_TYPE_INFO *PLIB_DATA_TYPE_INFO;
 
 /*////////////////////////////////////////////*/
 
-typedef struct  // ¿â³£Á¿Êý¾Ý½á¹¹
+typedef struct // ¿â³£Á¿Êý¾Ý½á¹¹
 {
-	LPTSTR	m_szName;
-	LPTSTR	m_szEgName;
-	LPTSTR	m_szExplain;
+    LPTSTR m_szName;
+    LPTSTR m_szEgName;
+    LPTSTR m_szExplain;
 
-	SHORT	m_shtLayout;
+    SHORT m_shtLayout;
 
 #define	CT_NULL			0
 #define	CT_NUM			1	// value sample: 3.1415926
 #define	CT_BOOL			2	// value sample: 1
 #define	CT_TEXT			3	// value sample: "abc"
-	SHORT	m_shtType;
+    SHORT m_shtType;
 
-	LPTSTR	m_szText;		// CT_TEXT
-	DOUBLE	m_dbValue;		// CT_NUM¡¢CT_BOOL
+    LPTSTR m_szText; // CT_TEXT
+    DOUBLE m_dbValue; // CT_NUM¡¢CT_BOOL
 } LIB_CONST_INFO;
-typedef LIB_CONST_INFO* PLIB_CONST_INFO;
+
+typedef LIB_CONST_INFO *PLIB_CONST_INFO;
 
 //////////////////////////////////////////// ³£ÓÃÊý¾Ý½á¹¹¡£
 
-typedef union
-{
-	BYTE	m_byte;
-	SHORT	m_short;
-	INT		m_int;
-	INT64	m_int64;
-	FLOAT	m_float;
-	DOUBLE	m_double;
+typedef union {
+    BYTE m_byte;
+    SHORT m_short;
+    INT m_int;
+    INT64 m_int64;
+    FLOAT m_float;
+    DOUBLE m_double;
 }
-SYS_NUM_VALUE, * PSYS_NUM_VALUE;
+        SYS_NUM_VALUE, *PSYS_NUM_VALUE;
 
-typedef struct
-{
-	DWORD m_dwFormID;
-	DWORD m_dwUnitID;
+typedef struct {
+    DWORD m_dwFormID;
+    DWORD m_dwUnitID;
 }
-MUNIT, * PMUNIT;
+        MUNIT, *PMUNIT;
 
-typedef struct
-{
-	DWORD m_dwStatmentSubCodeAdr;   // ¼ÇÂ¼¿ÉÖØµ÷ÓÃÓï¾ä×Ó³ÌÐò´úÂëµÄ½øÈëµØÖ·¡£
-	DWORD m_dwSubEBP;       // ¼ÇÂ¼¸Ã×ÓÓï¾äËù´¦×Ó³ÌÐòµÄEBPÖ¸Õë£¬ÒÔ±ã·ÃÎÊ¸Ã×Ó³ÌÐòÖÐµÄ¾Ö²¿±äÁ¿¡£
+typedef struct {
+    DWORD m_dwStatmentSubCodeAdr; // ¼ÇÂ¼¿ÉÖØµ÷ÓÃÓï¾ä×Ó³ÌÐò´úÂëµÄ½øÈëµØÖ·¡£
+    DWORD m_dwSubEBP; // ¼ÇÂ¼¸Ã×ÓÓï¾äËù´¦×Ó³ÌÐòµÄEBPÖ¸Õë£¬ÒÔ±ã·ÃÎÊ¸Ã×Ó³ÌÐòÖÐµÄ¾Ö²¿±äÁ¿¡£
 }
-STATMENT_CALL_DATA, * PSTATMENT_CALL_DATA;
+        STATMENT_CALL_DATA, *PSTATMENT_CALL_DATA;
 
 #ifndef __GCC_
 #pragma pack (push, old_value)   // ±£´æVC++±àÒëÆ÷½á¹¹¶ÔÆë×Ö½ÚÊý¡£
 #pragma pack (1)    // ÉèÖÃÎªÒÔÒ»×Ö½Ú¶ÔÆë¡£
 #endif
 
-typedef struct
-{
-	union
-	{
-		BYTE	      m_byte;         // SDT_BYTE
-		SHORT	      m_short;        // SDT_SHORT
-		INT		      m_int;          // SDT_INT
-		DWORD	      m_uint;         // (DWORD)SDT_INT
-		INT64	      m_int64;        // SDT_INT64
-		FLOAT	      m_float;        // SDT_FLOAT
-		DOUBLE	      m_double;       // SDT_DOUBLE
-		DATE          m_date;         // SDT_DATE_TIME
-		BOOL          m_bool;         // SDT_BOOL
-		char* m_pText;        // SDT_TEXT£¬²»¿ÉÄÜÎªNULL¡£
-		// !!!ÎªÁË±ÜÃâÐÞ¸Äµ½³£Á¿¶Î(m_pTextÓÐ¿ÉÄÜÖ¸Ïò³£Á¿¶ÎÇøÓò)ÖÐµÄÊý¾Ý£¬
-		// Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ£¬ÏÂÍ¬¡£
-		LPBYTE        m_pBin;         // SDT_BIN£¬²»¿ÉÄÜÎªNULL£¬!!!Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ¡£
-		DWORD         m_dwSubCodeAdr; // SDT_SUB_PTR£¬¼ÇÂ¼×Ó³ÌÐò´úÂëµØÖ·¡£
-		STATMENT_CALL_DATA  m_statment;     // SDT_STATMENTÊý¾ÝÀàÐÍ¡£
-		MUNIT         m_unit;         // ´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ¡£
-		void* m_pCompoundData;// ¸´ºÏÊý¾ÝÀàÐÍÊý¾ÝÖ¸Õë£¬Ö¸ÕëËùÖ¸ÏòÊý¾ÝµÄ¸ñÊ½Çë¼û run.h ¡£
-		// ¿ÉÒÔÖ±½Ó¸ü¸ÄÆäÖÐµÄÊý¾Ý³ÉÔ±£¬µ«ÊÇÈç¹ûÐèÒª±ØÐëÊ×ÏÈÊÍ·Å¸Ã³ÉÔ±¡£
-		void* m_pAryData;     // Êý×éÊý¾ÝÖ¸Õë£¬Ö¸ÕëËùÖ¸ÏòÊý¾ÝµÄ¸ñÊ½Çë¼û run.h ¡£
-		// ×¢ÒâÈç¹ûÎªÎÄ±¾»ò×Ö½Ú¼¯Êý×é£¬Ôò³ÉÔ±Êý¾ÝÖ¸Õë¿ÉÄÜÎªNULL¡£
-		// !!! Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ¡£
+typedef struct {
+    union {
+        BYTE m_byte; // SDT_BYTE
+        SHORT m_short; // SDT_SHORT
+        INT m_int; // SDT_INT
+        DWORD m_uint; // (DWORD)SDT_INT
+        INT64 m_int64; // SDT_INT64
+        FLOAT m_float; // SDT_FLOAT
+        DOUBLE m_double; // SDT_DOUBLE
+        DATE m_date; // SDT_DATE_TIME
+        BOOL m_bool; // SDT_BOOL
+        char *m_pText; // SDT_TEXT£¬²»¿ÉÄÜÎªNULL¡£
+        // !!!ÎªÁË±ÜÃâÐÞ¸Äµ½³£Á¿¶Î(m_pTextÓÐ¿ÉÄÜÖ¸Ïò³£Á¿¶ÎÇøÓò)ÖÐµÄÊý¾Ý£¬
+        // Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ£¬ÏÂÍ¬¡£
+        LPBYTE m_pBin; // SDT_BIN£¬²»¿ÉÄÜÎªNULL£¬!!!Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ¡£
+        DWORD m_dwSubCodeAdr; // SDT_SUB_PTR£¬¼ÇÂ¼×Ó³ÌÐò´úÂëµØÖ·¡£
+        STATMENT_CALL_DATA m_statment; // SDT_STATMENTÊý¾ÝÀàÐÍ¡£
+        MUNIT m_unit; // ´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ¡£
+        void *m_pCompoundData; // ¸´ºÏÊý¾ÝÀàÐÍÊý¾ÝÖ¸Õë£¬Ö¸ÕëËùÖ¸ÏòÊý¾ÝµÄ¸ñÊ½Çë¼û run.h ¡£
+        // ¿ÉÒÔÖ±½Ó¸ü¸ÄÆäÖÐµÄÊý¾Ý³ÉÔ±£¬µ«ÊÇÈç¹ûÐèÒª±ØÐëÊ×ÏÈÊÍ·Å¸Ã³ÉÔ±¡£
+        void *m_pAryData; // Êý×éÊý¾ÝÖ¸Õë£¬Ö¸ÕëËùÖ¸ÏòÊý¾ÝµÄ¸ñÊ½Çë¼û run.h ¡£
+        // ×¢ÒâÈç¹ûÎªÎÄ±¾»ò×Ö½Ú¼¯Êý×é£¬Ôò³ÉÔ±Êý¾ÝÖ¸Õë¿ÉÄÜÎªNULL¡£
+        // !!! Ö»¿É¶ÁÈ¡¶ø²»¿É¸ü¸ÄÆäÖÐµÄÄÚÈÝ¡£
 
-// ÎªÖ¸Ïò±äÁ¿µØÖ·µÄÖ¸Õë£¬½öµ±´«Èë²ÎÊýµ½¿âÃüÁîÊµÏÖº¯ÊýÊ±²ÅÓÐÓÃ¡£
-		BYTE* m_pByte;         // SDT_BYTE*
-		SHORT* m_pShort;        // SDT_SHORT*
-		INT* m_pInt;          // SDT_INT*
-		DWORD* m_pUInt;         // ((DWORD)SDT_INT)*
-		INT64* m_pInt64;        // SDT_INT64*
-		FLOAT* m_pFloat;        // SDT_FLOAT*
-		DOUBLE* m_pDouble;       // SDT_DOUBLE*
-		DATE* m_pDate;         // SDT_DATE_TIME*
-		BOOL* m_pBool;         // SDT_BOOL*
-		char** m_ppText;        // SDT_TEXT£¬*m_ppText¿ÉÄÜÎªNULL¡£
-		// ×¢ÒâÐ´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÇ°Öµ£¬¼´£ºMFree (*m_ppText)¡£
-		// !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppTextËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
-		LPBYTE* m_ppBin;         // SDT_BIN£¬*m_ppBin¿ÉÄÜÎªNULL¡£
-		// ×¢ÒâÐ´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÇ°Öµ£¬¼´£ºMFree (*m_ppBin)¡£
-		// !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppBinËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
-		DWORD* m_pdwSubCodeAdr; // SDT_SUB_PTR£¬×Ó³ÌÐò´úÂëµØÖ·±äÁ¿¡£
-		PSTATMENT_CALL_DATA m_pStatment;   // SDT_STATMENTÊý¾ÝÀàÐÍ±äÁ¿¡£
-		PMUNIT   m_pUnit;           // ´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ±äÁ¿¡£
-		void** m_ppCompoundData;   // ¸´ºÏÊý¾ÝÀàÐÍ±äÁ¿¡£
-		// ¿ÉÒÔÖ±½Ó¸ü¸ÄÆäÖÐµÄÊý¾Ý³ÉÔ±£¬µ«ÊÇÈç¹ûÐèÒª±ØÐëÊ×ÏÈÊÍ·Å¸Ã³ÉÔ±¡£
-		void** m_ppAryData;        // Êý×éÊý¾Ý±äÁ¿£¬×¢Òâ£º
-		// 1¡¢Ð´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÔ­Öµ£¨Ê¹ÓÃNRS_FREE_VARÍ¨Öª£©¡£
-		// 2¡¢±äÁ¿Èç¹ûÎªÎÄ±¾»ò×Ö½Ú¼¯Êý×é£¬Ôò³ÉÔ±Êý¾ÝÖ¸Õë¿ÉÄÜÎªNULL¡£
-		// !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppAryDataËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
-	};
+        // ÎªÖ¸Ïò±äÁ¿µØÖ·µÄÖ¸Õë£¬½öµ±´«Èë²ÎÊýµ½¿âÃüÁîÊµÏÖº¯ÊýÊ±²ÅÓÐÓÃ¡£
+        BYTE *m_pByte; // SDT_BYTE*
+        SHORT *m_pShort; // SDT_SHORT*
+        INT *m_pInt; // SDT_INT*
+        DWORD *m_pUInt; // ((DWORD)SDT_INT)*
+        INT64 *m_pInt64; // SDT_INT64*
+        FLOAT *m_pFloat; // SDT_FLOAT*
+        DOUBLE *m_pDouble; // SDT_DOUBLE*
+        DATE *m_pDate; // SDT_DATE_TIME*
+        BOOL *m_pBool; // SDT_BOOL*
+        char **m_ppText; // SDT_TEXT£¬*m_ppText¿ÉÄÜÎªNULL¡£
+        // ×¢ÒâÐ´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÇ°Öµ£¬¼´£ºMFree (*m_ppText)¡£
+        // !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppTextËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
+        LPBYTE *m_ppBin; // SDT_BIN£¬*m_ppBin¿ÉÄÜÎªNULL¡£
+        // ×¢ÒâÐ´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÇ°Öµ£¬¼´£ºMFree (*m_ppBin)¡£
+        // !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppBinËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
+        DWORD *m_pdwSubCodeAdr; // SDT_SUB_PTR£¬×Ó³ÌÐò´úÂëµØÖ·±äÁ¿¡£
+        PSTATMENT_CALL_DATA m_pStatment; // SDT_STATMENTÊý¾ÝÀàÐÍ±äÁ¿¡£
+        PMUNIT m_pUnit; // ´°¿Ú×é¼þ¡¢²Ëµ¥Êý¾ÝÀàÐÍ±äÁ¿¡£
+        void **m_ppCompoundData; // ¸´ºÏÊý¾ÝÀàÐÍ±äÁ¿¡£
+        // ¿ÉÒÔÖ±½Ó¸ü¸ÄÆäÖÐµÄÊý¾Ý³ÉÔ±£¬µ«ÊÇÈç¹ûÐèÒª±ØÐëÊ×ÏÈÊÍ·Å¸Ã³ÉÔ±¡£
+        void **m_ppAryData; // Êý×éÊý¾Ý±äÁ¿£¬×¢Òâ£º
+        // 1¡¢Ð´ÈëÐÂÖµÖ®Ç°±ØÐëÊÍ·ÅÔ­Öµ£¨Ê¹ÓÃNRS_FREE_VARÍ¨Öª£©¡£
+        // 2¡¢±äÁ¿Èç¹ûÎªÎÄ±¾»ò×Ö½Ú¼¯Êý×é£¬Ôò³ÉÔ±Êý¾ÝÖ¸Õë¿ÉÄÜÎªNULL¡£
+        // !!!²»¿ÉÖ±½Ó¸ü¸Ä*m_ppAryDataËùÖ¸ÏòµÄÄÚÈÝ£¬Ö»ÄÜÊÍ·ÅÔ­Ö¸Õëºó»»ÈëÐÂÖ¸Õë¡£
+    };
 
-	// 1¡¢µ±ÓÃ×÷´«Èë²ÎÊýÊ±£¬Èç¹û¸Ã²ÎÊý¾ßÓÐ AS_RECEIVE_VAR_OR_ARRAY »ò
-	//    AS_RECEIVE_ALL_TYPE_DATA ±êÖ¾£¬ÇÒÎªÊý×éÊý¾Ý£¬Ôò°üº¬Êý×é±êÖ¾ DT_IS_ARY £¬
-	//    ÕâÒ²ÊÇ DT_IS_ARY ±êÖ¾µÄÎ¨Ò»Ê¹ÓÃ³¡ºÏ¡£
-	// 2¡¢µ±ÓÃ×÷´«µÝ²ÎÊýÊý¾ÝÊ±£¬Èç¹ûÎª¿Õ°×Êý¾Ý£¬ÔòÎª _SDT_NULL ¡£
-	DATA_TYPE m_dtDataType;
+    // 1¡¢µ±ÓÃ×÷´«Èë²ÎÊýÊ±£¬Èç¹û¸Ã²ÎÊý¾ßÓÐ AS_RECEIVE_VAR_OR_ARRAY »ò
+    //    AS_RECEIVE_ALL_TYPE_DATA ±êÖ¾£¬ÇÒÎªÊý×éÊý¾Ý£¬Ôò°üº¬Êý×é±êÖ¾ DT_IS_ARY £¬
+    //    ÕâÒ²ÊÇ DT_IS_ARY ±êÖ¾µÄÎ¨Ò»Ê¹ÓÃ³¡ºÏ¡£
+    // 2¡¢µ±ÓÃ×÷´«µÝ²ÎÊýÊý¾ÝÊ±£¬Èç¹ûÎª¿Õ°×Êý¾Ý£¬ÔòÎª _SDT_NULL ¡£
+    DATA_TYPE m_dtDataType;
 } MDATA_INF;
-typedef MDATA_INF* PMDATA_INF;
+
+typedef MDATA_INF *PMDATA_INF;
 
 #ifndef __GCC_
 #pragma pack (pop, old_value)    // »Ö¸´VC++±àÒëÆ÷½á¹¹¶ÔÆë×Ö½ÚÊý¡£
@@ -820,27 +816,25 @@ typedef MDATA_INF* PMDATA_INF;
 // ¿â¿ÉÒÔÍ¨ÖªÏµÍ³µÄÂëÖµ£º
 
 #ifndef __GCC_
-struct MDATA
-{
-	MDATA()
-	{
-		m_pData = NULL;
-		m_nDataSize = 0;
-	}
+struct MDATA {
+    MDATA() {
+        m_pData = NULL;
+        m_nDataSize = 0;
+    }
 #else
 typedef struct
 {
 #endif
 
-	LPBYTE	m_pData;
-	INT		m_nDataSize;
+    LPBYTE m_pData;
+    INT m_nDataSize;
 
 #ifndef __GCC_
 };
 #else
 } MDATA;
 #endif
-typedef MDATA* PMDATA;
+typedef MDATA *PMDATA;
 
 // ÓÃ×÷µÚÒ»ÀàÊÂ¼þÍ¨Öª¡£
 #ifndef __GCC_
@@ -849,52 +843,50 @@ struct EVENT_NOTIFY
 typedef struct
 #endif
 {
-	// ¼ÇÂ¼ÊÂ¼þµÄÀ´Ô´
-	DWORD	m_dwFormID;		// ´°¿Ú ID
-	DWORD	m_dwUnitID;		// ´°¿Ú×é¼þ ID
-	INT		m_nEventIndex;	// ÊÂ¼þË÷Òý
+    // ¼ÇÂ¼ÊÂ¼þµÄÀ´Ô´
+    DWORD m_dwFormID; // ´°¿Ú ID
+    DWORD m_dwUnitID; // ´°¿Ú×é¼þ ID
+    INT m_nEventIndex; // ÊÂ¼þË÷Òý
 
-	INT		m_nArgCount;		// ÊÂ¼þËù´«µÝµÄ²ÎÊýÊýÄ¿£¬×î¶à 5 ¸ö¡£
-	INT		m_nArgValue[5];	// ¼ÇÂ¼¸÷²ÎÊýÖµ£¬SDT_BOOL ÐÍ²ÎÊýÖµÎª 1 »ò 0¡£
+    INT m_nArgCount; // ÊÂ¼þËù´«µÝµÄ²ÎÊýÊýÄ¿£¬×î¶à 5 ¸ö¡£
+    INT m_nArgValue[5]; // ¼ÇÂ¼¸÷²ÎÊýÖµ£¬SDT_BOOL ÐÍ²ÎÊýÖµÎª 1 »ò 0¡£
 
-	//!!! ×¢ÒâÏÂÃæÁ½¸ö³ÉÔ±ÔÚÃ»ÓÐ¶¨Òå·µ»ØÖµµÄÊÂ¼þ´¦ÀíÖÐÎÞÐ§¡£
-	// ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóÊÇ·ñÓÐ·µ»ØÖµ
-	BOOL	m_blHasRetVal;
-	// ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóµÄ·µ»ØÖµ£¬Âß¼­ÖµÓÃÊýÖµ 0£¨¼Ù£© ºÍ 1£¨Õæ£© ·µ»Ø¡£
-	INT		m_nRetVal;
+    //!!! ×¢ÒâÏÂÃæÁ½¸ö³ÉÔ±ÔÚÃ»ÓÐ¶¨Òå·µ»ØÖµµÄÊÂ¼þ´¦ÀíÖÐÎÞÐ§¡£
+    // ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóÊÇ·ñÓÐ·µ»ØÖµ
+    BOOL m_blHasRetVal;
+    // ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóµÄ·µ»ØÖµ£¬Âß¼­ÖµÓÃÊýÖµ 0£¨¼Ù£© ºÍ 1£¨Õæ£© ·µ»Ø¡£
+    INT m_nRetVal;
 
-	/////////////////////////////////////
+    /////////////////////////////////////
 
 #ifndef __GCC_
-	EVENT_NOTIFY(DWORD dwFormID, DWORD dwUnitID, INT nEventIndex)
-	{
-		m_dwFormID = dwFormID;
-		m_dwUnitID = dwUnitID;
-		m_nEventIndex = nEventIndex;
+    EVENT_NOTIFY(DWORD dwFormID, DWORD dwUnitID, INT nEventIndex) {
+        m_dwFormID = dwFormID;
+        m_dwUnitID = dwUnitID;
+        m_nEventIndex = nEventIndex;
 
-		m_nArgCount = 0;
-		m_blHasRetVal = FALSE;
-		m_nRetVal = 0;
-	}
+        m_nArgCount = 0;
+        m_blHasRetVal = FALSE;
+        m_nRetVal = 0;
+    }
 };
 #else
 } EVENT_NOTIFY;
 #endif
-typedef EVENT_NOTIFY* PEVENT_NOTIFY;
+typedef EVENT_NOTIFY *PEVENT_NOTIFY;
 
-typedef struct
-{
-	MDATA_INF m_inf;
+typedef struct {
+    MDATA_INF m_inf;
 
-	// m_infÖÐÊÇ·ñÎªÖ¸ÕëÊý¾Ý¡£
-	//!!! ×¢ÒâÈç¹û m_inf.m_dtDataType ÎªÎÄ±¾ÐÍ¡¢×Ö½Ú¼¯ÐÍ¡¢¿â¶¨ÒåÊý¾ÝÀàÐÍ£¨³ý¿ª´°¿Úµ¥Ôª¼°²Ëµ¥Êý¾ÝÀàÐÍ£©£¬
-	// ±ØÐë´«µÝÖ¸Õë£¬¼´±¾±ê¼Ç±ØÐëÖÃÎ»¡£
+    // m_infÖÐÊÇ·ñÎªÖ¸ÕëÊý¾Ý¡£
+    //!!! ×¢ÒâÈç¹û m_inf.m_dtDataType ÎªÎÄ±¾ÐÍ¡¢×Ö½Ú¼¯ÐÍ¡¢¿â¶¨ÒåÊý¾ÝÀàÐÍ£¨³ý¿ª´°¿Úµ¥Ôª¼°²Ëµ¥Êý¾ÝÀàÐÍ£©£¬
+    // ±ØÐë´«µÝÖ¸Õë£¬¼´±¾±ê¼Ç±ØÐëÖÃÎ»¡£
 #define EAV_IS_POINTER  (1 << 0)
 #define EAV_IS_WINUNIT  (1 << 1)    // ²¹³äËµÃ÷m_inf.m_dtDataTypeÊý¾ÝÀàÐÍÊÇ·ñÎª´°¿Úµ¥Ôª£¬
-									// !!!×¢ÒâÈç¹ûm_inf.m_dtDataTypeÎª´°¿Úµ¥Ôª£¬´Ë±ê¼Ç±ØÐëÖÃÎ»¡£
-	DWORD m_dwState;
+    // !!!×¢ÒâÈç¹ûm_inf.m_dtDataTypeÎª´°¿Úµ¥Ôª£¬´Ë±ê¼Ç±ØÐëÖÃÎ»¡£
+    DWORD m_dwState;
 }
-EVENT_ARG_VALUE, * PEVENT_ARG_VALUE;
+        EVENT_ARG_VALUE, *PEVENT_ARG_VALUE;
 
 // ÓÃ×÷µÚ¶þÀàÊÂ¼þÍ¨Öª¡£
 #ifndef __GCC_
@@ -903,260 +895,258 @@ struct EVENT_NOTIFY2
 typedef struct
 #endif
 {
-	// ¼ÇÂ¼ÊÂ¼þµÄÀ´Ô´
-	DWORD m_dwFormID;  // ´°¿Ú ID
-	DWORD m_dwUnitID;  // ´°¿Ú×é¼þ ID
-	INT m_nEventIndex;  // ÊÂ¼þË÷Òý
+    // ¼ÇÂ¼ÊÂ¼þµÄÀ´Ô´
+    DWORD m_dwFormID; // ´°¿Ú ID
+    DWORD m_dwUnitID; // ´°¿Ú×é¼þ ID
+    INT m_nEventIndex; // ÊÂ¼þË÷Òý
 
 #define MAX_EVENT2_ARG_COUNT    12
-	INT m_nArgCount;  // ÊÂ¼þËù´«µÝµÄ²ÎÊýÊýÄ¿£¬×î¶à MAX_EVENT2_ARG_COUNT ¸ö¡£
-	EVENT_ARG_VALUE m_arg[MAX_EVENT2_ARG_COUNT];  // ¼ÇÂ¼¸÷²ÎÊýÖµ¡£
+    INT m_nArgCount; // ÊÂ¼þËù´«µÝµÄ²ÎÊýÊýÄ¿£¬×î¶à MAX_EVENT2_ARG_COUNT ¸ö¡£
+    EVENT_ARG_VALUE m_arg[MAX_EVENT2_ARG_COUNT]; // ¼ÇÂ¼¸÷²ÎÊýÖµ¡£
 
-	//!!! ×¢ÒâÏÂÃæ³ÉÔ±ÔÚÃ»ÓÐ¶¨Òå·µ»ØÖµµÄÊÂ¼þ´¦ÀíÖÐÎÞÐ§¡£
-	// ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóÊÇ·ñÓÐ·µ»ØÖµ
-	BOOL m_blHasRetVal;
-	// ¼ÇÂ¼ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóµÄ·µ»ØÖµ£¬×¢ÒâÆäÖÐµÄm_infRetData.m_dtDataType³ÉÔ±Î´±»Ê¹ÓÃ¡£
-	MDATA_INF m_infRetData;
+    //!!! ×¢ÒâÏÂÃæ³ÉÔ±ÔÚÃ»ÓÐ¶¨Òå·µ»ØÖµµÄÊÂ¼þ´¦ÀíÖÐÎÞÐ§¡£
+    // ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóÊÇ·ñÓÐ·µ»ØÖµ
+    BOOL m_blHasRetVal;
+    // ¼ÇÂ¼ÓÃ»§ÊÂ¼þ´¦Àí×Ó³ÌÐò´¦ÀíÍê±ÏÊÂ¼þºóµÄ·µ»ØÖµ£¬×¢ÒâÆäÖÐµÄm_infRetData.m_dtDataType³ÉÔ±Î´±»Ê¹ÓÃ¡£
+    MDATA_INF m_infRetData;
 
-	/////////////////////////////////////
+    /////////////////////////////////////
 
 #ifndef __GCC_
-	EVENT_NOTIFY2(DWORD dwFormID, DWORD dwUnitID, INT nEventIndex)
-	{
-		m_dwFormID = dwFormID;
-		m_dwUnitID = dwUnitID;
-		m_nEventIndex = nEventIndex;
-		m_nArgCount = 0;
-		m_blHasRetVal = FALSE;
-		m_infRetData.m_dtDataType = _SDT_NULL;
-	}
+    EVENT_NOTIFY2(DWORD dwFormID, DWORD dwUnitID, INT nEventIndex) {
+        m_dwFormID = dwFormID;
+        m_dwUnitID = dwUnitID;
+        m_nEventIndex = nEventIndex;
+        m_nArgCount = 0;
+        m_blHasRetVal = FALSE;
+        m_infRetData.m_dtDataType = _SDT_NULL;
+    }
 };
 #else
 } EVENT_NOTIFY2;
 #endif
-typedef EVENT_NOTIFY2* PEVENT_NOTIFY2;
+typedef EVENT_NOTIFY2 *PEVENT_NOTIFY2;
 
-typedef struct
-{
-	HICON	m_hBigIcon;
-	HICON	m_hSmallIcon;
+typedef struct {
+    HICON m_hBigIcon;
+    HICON m_hSmallIcon;
 } APP_ICON;
-typedef APP_ICON* PAPP_ICON;
+
+typedef APP_ICON *PAPP_ICON;
 
 /*///////////////////////*/
 
 // NES_ ºêÎª½ö±»Ò×±à¼­»·¾³´¦ÀíµÄÍ¨Öª¡£
 #define NES_GET_MAIN_HWND			        1
-	// È¡Ò×±à¼­»·¾³Ö÷´°¿ÚµÄ¾ä±ú£¬ÓÃ×÷Ö§³ÖÖ§³Ö¿âµÄAddIn¡£
+// È¡Ò×±à¼­»·¾³Ö÷´°¿ÚµÄ¾ä±ú£¬ÓÃ×÷Ö§³ÖÖ§³Ö¿âµÄAddIn¡£
 #define	NES_RUN_FUNC				        2
-	// Í¨ÖªÒ×±à¼­»·¾³ÔËÐÐÖ¸¶¨µÄ¹¦ÄÜ£¬·µ»ØÒ»¸öBOOLÖµ¡£
-	// dwParam1Îª¹¦ÄÜºÅ¡£
-	// dwParam2ÎªÒ»¸öË«DWORDÊý×éÖ¸Õë,·Ö±ðÌá¹©¹¦ÄÜ²ÎÊý1ºÍ2¡£
+// Í¨ÖªÒ×±à¼­»·¾³ÔËÐÐÖ¸¶¨µÄ¹¦ÄÜ£¬·µ»ØÒ»¸öBOOLÖµ¡£
+// dwParam1Îª¹¦ÄÜºÅ¡£
+// dwParam2ÎªÒ»¸öË«DWORDÊý×éÖ¸Õë,·Ö±ðÌá¹©¹¦ÄÜ²ÎÊý1ºÍ2¡£
 #define NES_PICK_IMAGE_INDEX_DLG            7
-	// Í¨ÖªÒ×±à¼­»·¾³ÏÔÊ¾Ò»¸ö¶Ô»°¿òÁÐ³öÖ¸¶¨Í¼Æ¬×éÄÚµÄËùÓÐÍ¼Æ¬£¬²¢·µ»ØÓÃ»§ËùÑ¡ÔñÍ¼Æ¬µÄË÷ÒýºÅ¡£
-	// dwParam1ÎªËùÓûä¯ÀÀµÄÓÐÐ§µÄÍ¼Æ¬×é¾ä±ú¡£
-	//   dwParam2Èç¹û²»ÎªNULL£¬ÔòÏµÍ³ÈÏÎª´ËÎªÒ»¸ö±à¼­¿òHWND´°¿Ú¾ä±ú£¬µ±ÓÃ»§×ö³öÓÐÐ§Ñ¡Ôñºó£¬
-	// ÏµÍ³½«×Ô¶¯¸ü¸Ä´Ë±à¼­¿òµÄÄÚÈÝ²¢½«½¹µã×ªÒÆÉÏÈ¥¡£
-	// ·µ»ØÓÃ»§ËùÑ¡ÔñÍ¼Æ¬µÄË÷ÒýºÅ(-1±íÊ¾ÓÃ»§Ñ¡ÔñÎÞÍ¼Æ¬)£¬Èç¹ûÓÃ»§Î´Ñ¡Ôñ£¬Ôò·µ»Ø-2¡£
+// Í¨ÖªÒ×±à¼­»·¾³ÏÔÊ¾Ò»¸ö¶Ô»°¿òÁÐ³öÖ¸¶¨Í¼Æ¬×éÄÚµÄËùÓÐÍ¼Æ¬£¬²¢·µ»ØÓÃ»§ËùÑ¡ÔñÍ¼Æ¬µÄË÷ÒýºÅ¡£
+// dwParam1ÎªËùÓûä¯ÀÀµÄÓÐÐ§µÄÍ¼Æ¬×é¾ä±ú¡£
+//   dwParam2Èç¹û²»ÎªNULL£¬ÔòÏµÍ³ÈÏÎª´ËÎªÒ»¸ö±à¼­¿òHWND´°¿Ú¾ä±ú£¬µ±ÓÃ»§×ö³öÓÐÐ§Ñ¡Ôñºó£¬
+// ÏµÍ³½«×Ô¶¯¸ü¸Ä´Ë±à¼­¿òµÄÄÚÈÝ²¢½«½¹µã×ªÒÆÉÏÈ¥¡£
+// ·µ»ØÓÃ»§ËùÑ¡ÔñÍ¼Æ¬µÄË÷ÒýºÅ(-1±íÊ¾ÓÃ»§Ñ¡ÔñÎÞÍ¼Æ¬)£¬Èç¹ûÓÃ»§Î´Ñ¡Ôñ£¬Ôò·µ»Ø-2¡£
 
 // NAS_ ºêÎª¼È±»Ò×±à¼­»·¾³ÓÖ±»Ò×ÔËÐÐ»·¾³´¦ÀíµÄÍ¨Öª¡£
 #define	NAS_GET_APP_ICON			        1000
-	// Í¨ÖªÏµÍ³´´½¨²¢·µ»Ø³ÌÐòµÄÍ¼±ê¡£
-	// dwParam1ÎªPAPP_ICONÖ¸Õë¡£
+// Í¨ÖªÏµÍ³´´½¨²¢·µ»Ø³ÌÐòµÄÍ¼±ê¡£
+// dwParam1ÎªPAPP_ICONÖ¸Õë¡£
 #define NAS_GET_LIB_DATA_TYPE_INFO          1002
-	// ·µ»ØÖ¸¶¨¿â¶¨ÒåÊý¾ÝÀàÐÍµÄPLIB_DATA_TYPE_INFO¶¨ÒåÐÅÏ¢Ö¸Õë¡£
-	// dwParam1ÎªÓû¼ì²éµÄÊý¾ÝÀàÐÍ¡£
-	// Èç¹û¸ÃÊý¾ÝÀàÐÍÎÞÐ§»òÕß²»Îª¿â¶¨ÒåÊý¾ÝÀàÐÍ£¬Ôò·µ»ØNULL£¬·ñÔò·µ»ØPLIB_DATA_TYPE_INFOÖ¸Õë¡£
+// ·µ»ØÖ¸¶¨¿â¶¨ÒåÊý¾ÝÀàÐÍµÄPLIB_DATA_TYPE_INFO¶¨ÒåÐÅÏ¢Ö¸Õë¡£
+// dwParam1ÎªÓû¼ì²éµÄÊý¾ÝÀàÐÍ¡£
+// Èç¹û¸ÃÊý¾ÝÀàÐÍÎÞÐ§»òÕß²»Îª¿â¶¨ÒåÊý¾ÝÀàÐÍ£¬Ôò·µ»ØNULL£¬·ñÔò·µ»ØPLIB_DATA_TYPE_INFOÖ¸Õë¡£
 #define NAS_GET_HBITMAP                     1003
-	// dwParam1ÎªÍ¼Æ¬Êý¾ÝÖ¸Õë£¬dwParam2ÎªÍ¼Æ¬Êý¾Ý³ß´ç¡£
-	// Èç¹û³É¹¦·µ»Ø·ÇNULLµÄHBITMAP¾ä±ú£¨×¢ÒâÊ¹ÓÃÍê±ÏºóÊÍ·Å£©£¬·ñÔò·µ»ØNULL¡£
+// dwParam1ÎªÍ¼Æ¬Êý¾ÝÖ¸Õë£¬dwParam2ÎªÍ¼Æ¬Êý¾Ý³ß´ç¡£
+// Èç¹û³É¹¦·µ»Ø·ÇNULLµÄHBITMAP¾ä±ú£¨×¢ÒâÊ¹ÓÃÍê±ÏºóÊÍ·Å£©£¬·ñÔò·µ»ØNULL¡£
 #define NAS_GET_LANG_ID                     1004
-	// ·µ»Øµ±Ç°ÏµÍ³»òÔËÐÐ»·¾³ËùÖ§³ÖµÄÓïÑÔID£¬¾ßÌåIDÖµÇë¼ûlang.h
+// ·µ»Øµ±Ç°ÏµÍ³»òÔËÐÐ»·¾³ËùÖ§³ÖµÄÓïÑÔID£¬¾ßÌåIDÖµÇë¼ûlang.h
 #define NAS_GET_VER                         1005
-	// ·µ»Øµ±Ç°ÏµÍ³»òÔËÐÐ»·¾³µÄ°æ±¾ºÅ£¬LOWORDÎªÖ÷°æ±¾ºÅ£¬HIWORDÎª´Î°æ±¾ºÅ¡£
+// ·µ»Øµ±Ç°ÏµÍ³»òÔËÐÐ»·¾³µÄ°æ±¾ºÅ£¬LOWORDÎªÖ÷°æ±¾ºÅ£¬HIWORDÎª´Î°æ±¾ºÅ¡£
 #define NAS_GET_PATH                        1006
-	/* ·µ»Øµ±Ç°¿ª·¢»òÔËÐÐ»·¾³µÄÄ³Ò»ÀàÄ¿Â¼»òÎÄ¼þÃû£¬Ä¿Â¼ÃûÒÔ¡°\¡±½áÊø¡£
-	   dwParam1: Ö¸¶¨ËùÐèÒªµÄÄ¿Â¼£¬¿ÉÒÔÎªÒÔÏÂÖµ£º
-		 A¡¢¿ª·¢¼°ÔËÐÐ»·¾³ÏÂ¾ùÓÐÐ§µÄÄ¿Â¼:
-			1: ¿ª·¢»òÔËÐÐ»·¾³ÏµÍ³Ëù´¦µÄÄ¿Â¼£»
-		 B¡¢¿ª·¢»·¾³ÏÂÓÐÐ§µÄÄ¿Â¼(½ö¿ª·¢»·¾³ÖÐÓÐÐ§):
-			1001: ÏµÍ³Àý³ÌºÍÖ§³Ö¿âÀý³ÌËùÔÚÄ¿Â¼Ãû
-			1002: ÏµÍ³¹¤¾ßËùÔÚÄ¿Â¼
-			1003: ÏµÍ³°ïÖúÐÅÏ¢ËùÔÚÄ¿Â¼
-			1004: ±£´æËùÓÐµÇ¼Çµ½ÏµÍ³ÖÐÒ×Ä£¿éµÄÄ¿Â¼
-			1005: Ö§³Ö¿âËùÔÚµÄÄ¿Â¼
-			1006: °²×°¹¤¾ßËùÔÚÄ¿Â¼
-		 C¡¢ÔËÐÐ»·¾³ÏÂÓÐÐ§µÄÄ¿Â¼(½öÔËÐÐ»·¾³ÖÐÓÐÐ§):
-			2001: ÓÃ»§EXEÎÄ¼þËù´¦Ä¿Â¼£»
-			2002: ÓÃ»§EXEÎÄ¼þÃû£»
-	   dwParam2: ½ÓÊÕ»º³åÇøµØÖ·£¬³ß´ç±ØÐëÎªMAX_PATH¡£
-	*/
+/* ·µ»Øµ±Ç°¿ª·¢»òÔËÐÐ»·¾³µÄÄ³Ò»ÀàÄ¿Â¼»òÎÄ¼þÃû£¬Ä¿Â¼ÃûÒÔ¡°\¡±½áÊø¡£
+   dwParam1: Ö¸¶¨ËùÐèÒªµÄÄ¿Â¼£¬¿ÉÒÔÎªÒÔÏÂÖµ£º
+     A¡¢¿ª·¢¼°ÔËÐÐ»·¾³ÏÂ¾ùÓÐÐ§µÄÄ¿Â¼:
+        1: ¿ª·¢»òÔËÐÐ»·¾³ÏµÍ³Ëù´¦µÄÄ¿Â¼£»
+     B¡¢¿ª·¢»·¾³ÏÂÓÐÐ§µÄÄ¿Â¼(½ö¿ª·¢»·¾³ÖÐÓÐÐ§):
+        1001: ÏµÍ³Àý³ÌºÍÖ§³Ö¿âÀý³ÌËùÔÚÄ¿Â¼Ãû
+        1002: ÏµÍ³¹¤¾ßËùÔÚÄ¿Â¼
+        1003: ÏµÍ³°ïÖúÐÅÏ¢ËùÔÚÄ¿Â¼
+        1004: ±£´æËùÓÐµÇ¼Çµ½ÏµÍ³ÖÐÒ×Ä£¿éµÄÄ¿Â¼
+        1005: Ö§³Ö¿âËùÔÚµÄÄ¿Â¼
+        1006: °²×°¹¤¾ßËùÔÚÄ¿Â¼
+     C¡¢ÔËÐÐ»·¾³ÏÂÓÐÐ§µÄÄ¿Â¼(½öÔËÐÐ»·¾³ÖÐÓÐÐ§):
+        2001: ÓÃ»§EXEÎÄ¼þËù´¦Ä¿Â¼£»
+        2002: ÓÃ»§EXEÎÄ¼þÃû£»
+   dwParam2: ½ÓÊÕ»º³åÇøµØÖ·£¬³ß´ç±ØÐëÎªMAX_PATH¡£
+*/
 #define NAS_CREATE_CWND_OBJECT_FROM_HWND    1007
-	// Í¨¹ýÖ¸¶¨HWND¾ä±ú´´½¨Ò»¸öCWND¶ÔÏó£¬·µ»ØÆäÖ¸Õë£¬¼Ç×¡´ËÖ¸Õë±ØÐëÍ¨¹ýµ÷ÓÃNRS_DELETE_CWND_OBJECTÀ´ÊÍ·Å
-	// dwParam1ÎªHWND¾ä±ú
-	// ³É¹¦·µ»ØCWnd*Ö¸Õë£¬Ê§°Ü·µ»ØNULL
+// Í¨¹ýÖ¸¶¨HWND¾ä±ú´´½¨Ò»¸öCWND¶ÔÏó£¬·µ»ØÆäÖ¸Õë£¬¼Ç×¡´ËÖ¸Õë±ØÐëÍ¨¹ýµ÷ÓÃNRS_DELETE_CWND_OBJECTÀ´ÊÍ·Å
+// dwParam1ÎªHWND¾ä±ú
+// ³É¹¦·µ»ØCWnd*Ö¸Õë£¬Ê§°Ü·µ»ØNULL
 #define NAS_DELETE_CWND_OBJECT              1008
-	// É¾³ýÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏó
-	// dwParam1ÎªÓûÉ¾³ýµÄCWnd¶ÔÏóÖ¸Õë
+// É¾³ýÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏó
+// dwParam1ÎªÓûÉ¾³ýµÄCWnd¶ÔÏóÖ¸Õë
 #define NAS_DETACH_CWND_OBJECT              1009
-	// È¡ÏûÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏóÓëÆäÖÐHWNDµÄ°ó¶¨
-	// dwParam1ÎªCWnd¶ÔÏóÖ¸Õë
-	// ³É¹¦·µ»ØHWND,Ê§°Ü·µ»Ø0
+// È¡ÏûÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏóÓëÆäÖÐHWNDµÄ°ó¶¨
+// dwParam1ÎªCWnd¶ÔÏóÖ¸Õë
+// ³É¹¦·µ»ØHWND,Ê§°Ü·µ»Ø0
 #define NAS_GET_HWND_OF_CWND_OBJECT         1010
-	// »ñÈ¡Í¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏóÖÐµÄHWND
-	// dwParam1ÎªCWnd¶ÔÏóÖ¸Õë
-	// ³É¹¦·µ»ØHWND,Ê§°Ü·µ»Ø0
+// »ñÈ¡Í¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏóÖÐµÄHWND
+// dwParam1ÎªCWnd¶ÔÏóÖ¸Õë
+// ³É¹¦·µ»ØHWND,Ê§°Ü·µ»Ø0
 #define NAS_ATTACH_CWND_OBJECT              1011
-	// ½«Ö¸¶¨HWNDÓëÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏó°ó¶¨ÆðÀ´
-	// dwParam1ÎªHWND
-	// dwParam2ÎªCWnd¶ÔÏóÖ¸Õë
-	// ³É¹¦·µ»Ø1,Ê§°Ü·µ»Ø0
+// ½«Ö¸¶¨HWNDÓëÍ¨¹ýNRS_CREATE_CWND_OBJECT_FROM_HWND´´½¨µÄCWND¶ÔÏó°ó¶¨ÆðÀ´
+// dwParam1ÎªHWND
+// dwParam2ÎªCWnd¶ÔÏóÖ¸Õë
+// ³É¹¦·µ»Ø1,Ê§°Ü·µ»Ø0
 #define	NAS_IS_EWIN							1014
-	// Èç¹ûÖ¸¶¨´°¿ÚÎªÒ×ÓïÑÔ´°¿Ú»òÒ×ÓïÑÔ×é¼þ£¬·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
-	// dwParam1ÎªÓû²âÊÔµÄHWND.
+// Èç¹ûÖ¸¶¨´°¿ÚÎªÒ×ÓïÑÔ´°¿Ú»òÒ×ÓïÑÔ×é¼þ£¬·µ»ØÕæ£¬·ñÔò·µ»Ø¼Ù¡£
+// dwParam1ÎªÓû²âÊÔµÄHWND.
 
 // NRS_ ºêÎª½öÄÜ±»Ò×ÔËÐÐ»·¾³´¦ÀíµÄÍ¨Öª¡£
 #define NRS_UNIT_DESTROIED			        2000
-	// Í¨ÖªÏµÍ³Ö¸¶¨µÄ×é¼þÒÑ¾­±»Ïú»Ù¡£
-	// dwParam1ÎªdwFormID
-	// dwParam2ÎªdwUnitID
+// Í¨ÖªÏµÍ³Ö¸¶¨µÄ×é¼þÒÑ¾­±»Ïú»Ù¡£
+// dwParam1ÎªdwFormID
+// dwParam2ÎªdwUnitID
 #define NRS_CONVERT_NUM_TO_INT              2001
-	// ×ª»»ÆäËüÊýÖµ¸ñÊ½µ½ÕûÊý¡£
-	// dwParam1Îª PMDATA_INF Ö¸Õë£¬Æä m_dtDataType ±ØÐëÎªÊýÖµÐÍ¡£
-	// ·µ»Ø×ª»»ºóµÄÕûÊýÖµ¡£
+// ×ª»»ÆäËüÊýÖµ¸ñÊ½µ½ÕûÊý¡£
+// dwParam1Îª PMDATA_INF Ö¸Õë£¬Æä m_dtDataType ±ØÐëÎªÊýÖµÐÍ¡£
+// ·µ»Ø×ª»»ºóµÄÕûÊýÖµ¡£
 #define NRS_GET_CMD_LINE_STR			    2002
-	// È¡µ±Ç°ÃüÁîÐÐÎÄ±¾
-	// ·µ»ØÃüÁîÐÐÎÄ±¾Ö¸Õë£¬ÓÐ¿ÉÄÜÎª¿Õ´®¡£
+// È¡µ±Ç°ÃüÁîÐÐÎÄ±¾
+// ·µ»ØÃüÁîÐÐÎÄ±¾Ö¸Õë£¬ÓÐ¿ÉÄÜÎª¿Õ´®¡£
 #define NRS_GET_EXE_PATH_STR                2003
-	// È¡µ±Ç°Ö´ÐÐÎÄ¼þËù´¦Ä¿Â¼Ãû³Æ
-	// ·µ»Øµ±Ç°Ö´ÐÐÎÄ¼þËù´¦Ä¿Â¼ÎÄ±¾Ö¸Õë¡£
+// È¡µ±Ç°Ö´ÐÐÎÄ¼þËù´¦Ä¿Â¼Ãû³Æ
+// ·µ»Øµ±Ç°Ö´ÐÐÎÄ¼þËù´¦Ä¿Â¼ÎÄ±¾Ö¸Õë¡£
 #define NRS_GET_EXE_NAME				    2004
-	// È¡µ±Ç°Ö´ÐÐÎÄ¼þÃû³Æ
-	// ·µ»Øµ±Ç°Ö´ÐÐÎÄ¼þÃû³ÆÎÄ±¾Ö¸Õë¡£
+// È¡µ±Ç°Ö´ÐÐÎÄ¼þÃû³Æ
+// ·µ»Øµ±Ç°Ö´ÐÐÎÄ¼þÃû³ÆÎÄ±¾Ö¸Õë¡£
 #define NRS_GET_UNIT_PTR				    2006
-	// È¡×é¼þ¶ÔÏóÖ¸Õë
-	// dwParam1ÎªWinFormµÄID
-	// dwParam2ÎªWinUnitµÄID
-	// ³É¹¦·µ»ØÓÐÐ§µÄ×é¼þ¶ÔÏóCWnd*Ö¸Õë£¬Ê§°Ü·µ»Ø0¡£
+// È¡×é¼þ¶ÔÏóÖ¸Õë
+// dwParam1ÎªWinFormµÄID
+// dwParam2ÎªWinUnitµÄID
+// ³É¹¦·µ»ØÓÐÐ§µÄ×é¼þ¶ÔÏóCWnd*Ö¸Õë£¬Ê§°Ü·µ»Ø0¡£
 #define NRS_GET_AND_CHECK_UNIT_PTR			2007
-	// È¡×é¼þ¶ÔÏóÖ¸Õë
-	// dwParam1ÎªWinFormµÄID
-	// dwParam2ÎªWinUnitµÄID
-	// ³É¹¦·µ»ØÓÐÐ§µÄ×é¼þ¶ÔÏóCWnd*Ö¸Õë£¬Ê§°Ü±¨¸æÔËÐÐÊ±´íÎó²¢ÍË³ö³ÌÐò¡£
+// È¡×é¼þ¶ÔÏóÖ¸Õë
+// dwParam1ÎªWinFormµÄID
+// dwParam2ÎªWinUnitµÄID
+// ³É¹¦·µ»ØÓÐÐ§µÄ×é¼þ¶ÔÏóCWnd*Ö¸Õë£¬Ê§°Ü±¨¸æÔËÐÐÊ±´íÎó²¢ÍË³ö³ÌÐò¡£
 #define NRS_EVENT_NOTIFY				    2008
-	// ÒÔµÚÒ»Àà·½Ê½Í¨ÖªÏµÍ³²úÉúÁËÊÂ¼þ¡£
-	// dwParam1ÎªPEVENT_NOTIFYÖ¸Õë¡£
-	//   Èç¹û·µ»Ø 0 £¬±íÊ¾´ËÊÂ¼þÒÑ±»ÏµÍ³Å×Æú£¬·ñÔò±íÊ¾ÏµÍ³ÒÑ¾­³É¹¦´«µÝ´ËÊÂ¼þµ½ÓÃ»§
-	// ÊÂ¼þ´¦Àí×Ó³ÌÐò¡£
+// ÒÔµÚÒ»Àà·½Ê½Í¨ÖªÏµÍ³²úÉúÁËÊÂ¼þ¡£
+// dwParam1ÎªPEVENT_NOTIFYÖ¸Õë¡£
+//   Èç¹û·µ»Ø 0 £¬±íÊ¾´ËÊÂ¼þÒÑ±»ÏµÍ³Å×Æú£¬·ñÔò±íÊ¾ÏµÍ³ÒÑ¾­³É¹¦´«µÝ´ËÊÂ¼þµ½ÓÃ»§
+// ÊÂ¼þ´¦Àí×Ó³ÌÐò¡£
 #define	NRS_DO_EVENTS			            2018
-	// Í¨ÖªÏµÍ³·¢ËÍËùÓÐ´ý´¦ÀíÊÂ¼þ¡£
+// Í¨ÖªÏµÍ³·¢ËÍËùÓÐ´ý´¦ÀíÊÂ¼þ¡£
 #define NRS_GET_UNIT_DATA_TYPE              2022
-	// dwParam1ÎªWinFormµÄID
-	// dwParam2ÎªWinUnitµÄID
-	// ³É¹¦·µ»ØÓÐÐ§µÄ DATA_TYPE £¬Ê§°Ü·µ»Ø 0 ¡£
+// dwParam1ÎªWinFormµÄID
+// dwParam2ÎªWinUnitµÄID
+// ³É¹¦·µ»ØÓÐÐ§µÄ DATA_TYPE £¬Ê§°Ü·µ»Ø 0 ¡£
 #define NRS_FREE_ARY                        2023
-	// ÊÍ·ÅÖ¸¶¨Êý×éÊý¾Ý¡£
-	// dwParam1Îª¸ÃÊý¾ÝµÄDATA_TYPE£¬Ö»ÄÜÎªÏµÍ³Êý¾ÝÀàÐÍ¡£
-	// dwParam2ÎªÖ¸Ïò¸ÃÊý×éÊý¾ÝµÄÖ¸Õë¡£
+// ÊÍ·ÅÖ¸¶¨Êý×éÊý¾Ý¡£
+// dwParam1Îª¸ÃÊý¾ÝµÄDATA_TYPE£¬Ö»ÄÜÎªÏµÍ³Êý¾ÝÀàÐÍ¡£
+// dwParam2ÎªÖ¸Ïò¸ÃÊý×éÊý¾ÝµÄÖ¸Õë¡£
 #define NRS_MALLOC                          2024
-	// ·ÖÅäÖ¸¶¨¿Õ¼äµÄÄÚ´æ£¬ËùÓÐÓëÒ×³ÌÐò½»»¥µÄÄÚ´æ¶¼±ØÐëÊ¹ÓÃ±¾Í¨Öª·ÖÅä¡£
-	//   dwParam1ÎªÓûÐèÇóÄÚ´æ×Ö½ÚÊý¡£
-	//   dwParam2ÈçÎª0£¬ÔòÈç¹û·ÖÅäÊ§°Ü¾Í×Ô¶¯±¨¸æÔËÐÐÊ±´í²¢ÍË³ö³ÌÐò¡£
-	// Èç²»Îª0£¬ÔòÈç¹û·ÖÅäÊ§°Ü¾Í·µ»ØNULL¡£
-	//   ·µ»ØËù·ÖÅäÄÚ´æµÄÊ×µØÖ·¡£
+// ·ÖÅäÖ¸¶¨¿Õ¼äµÄÄÚ´æ£¬ËùÓÐÓëÒ×³ÌÐò½»»¥µÄÄÚ´æ¶¼±ØÐëÊ¹ÓÃ±¾Í¨Öª·ÖÅä¡£
+//   dwParam1ÎªÓûÐèÇóÄÚ´æ×Ö½ÚÊý¡£
+//   dwParam2ÈçÎª0£¬ÔòÈç¹û·ÖÅäÊ§°Ü¾Í×Ô¶¯±¨¸æÔËÐÐÊ±´í²¢ÍË³ö³ÌÐò¡£
+// Èç²»Îª0£¬ÔòÈç¹û·ÖÅäÊ§°Ü¾Í·µ»ØNULL¡£
+//   ·µ»ØËù·ÖÅäÄÚ´æµÄÊ×µØÖ·¡£
 #define NRS_MFREE                           2025
-	// ÊÍ·ÅÒÑ·ÖÅäµÄÖ¸¶¨ÄÚ´æ¡£
-	// dwParam1ÎªÓûÊÍ·ÅÄÚ´æµÄÊ×µØÖ·¡£
+// ÊÍ·ÅÒÑ·ÖÅäµÄÖ¸¶¨ÄÚ´æ¡£
+// dwParam1ÎªÓûÊÍ·ÅÄÚ´æµÄÊ×µØÖ·¡£
 #define NRS_MREALLOC                        2026
-	// ÖØÐÂ·ÖÅäÄÚ´æ¡£
-	//   dwParam1ÎªÓûÖØÐÂ·ÖÅäÄÚ´æ³ß´çµÄÊ×µØÖ·¡£
-	//   dwParam2ÎªÓûÖØÐÂ·ÖÅäµÄÄÚ´æ×Ö½ÚÊý¡£
-	// ·µ»ØËùÖØÐÂ·ÖÅäÄÚ´æµÄÊ×µØÖ·£¬Ê§°Ü×Ô¶¯±¨¸æÔËÐÐÊ±´í²¢ÍË³ö³ÌÐò¡£
+// ÖØÐÂ·ÖÅäÄÚ´æ¡£
+//   dwParam1ÎªÓûÖØÐÂ·ÖÅäÄÚ´æ³ß´çµÄÊ×µØÖ·¡£
+//   dwParam2ÎªÓûÖØÐÂ·ÖÅäµÄÄÚ´æ×Ö½ÚÊý¡£
+// ·µ»ØËùÖØÐÂ·ÖÅäÄÚ´æµÄÊ×µØÖ·£¬Ê§°Ü×Ô¶¯±¨¸æÔËÐÐÊ±´í²¢ÍË³ö³ÌÐò¡£
 #define	NRS_RUNTIME_ERR			            2027
-	// Í¨ÖªÏµÍ³ÒÑ¾­²úÉúÔËÐÐÊ±´íÎó¡£
-	// dwParam1Îªchar*Ö¸Õë£¬ËµÃ÷´íÎóÎÄ±¾¡£
+// Í¨ÖªÏµÍ³ÒÑ¾­²úÉúÔËÐÐÊ±´íÎó¡£
+// dwParam1Îªchar*Ö¸Õë£¬ËµÃ÷´íÎóÎÄ±¾¡£
 #define	NRS_EXIT_PROGRAM                    2028
-	// Í¨ÖªÏµÍ³ÍË³öÓÃ»§³ÌÐò¡£
-	// dwParam1ÎªÍË³ö´úÂë£¬¸Ã´úÂë½«±»·µ»Øµ½²Ù×÷ÏµÍ³¡£
+// Í¨ÖªÏµÍ³ÍË³öÓÃ»§³ÌÐò¡£
+// dwParam1ÎªÍË³ö´úÂë£¬¸Ã´úÂë½«±»·µ»Øµ½²Ù×÷ÏµÍ³¡£
 #define NRS_GET_PRG_TYPE                    2030
-	// ·µ»Øµ±Ç°ÓÃ»§³ÌÐòµÄÀàÐÍ£¬ÎªPT_DEBUG_RUN_VER£¨µ÷ÊÔ°æ£©»òPT_RELEASE_RUN_VER£¨·¢²¼°æ£©¡£
+// ·µ»Øµ±Ç°ÓÃ»§³ÌÐòµÄÀàÐÍ£¬ÎªPT_DEBUG_RUN_VER£¨µ÷ÊÔ°æ£©»òPT_RELEASE_RUN_VER£¨·¢²¼°æ£©¡£
 #define NRS_EVENT_NOTIFY2				    2031
-	// ÒÔµÚ¶þÀà·½Ê½Í¨ÖªÏµÍ³²úÉúÁËÊÂ¼þ¡£
-	// dwParam1ÎªPEVENT_NOTIFY2Ö¸Õë¡£
-	//   Èç¹û·µ»Ø 0 £¬±íÊ¾´ËÊÂ¼þÒÑ±»ÏµÍ³Å×Æú£¬·ñÔò±íÊ¾ÏµÍ³ÒÑ¾­³É¹¦´«µÝ´ËÊÂ¼þµ½ÓÃ»§
-	// ÊÂ¼þ´¦Àí×Ó³ÌÐò¡£
+// ÒÔµÚ¶þÀà·½Ê½Í¨ÖªÏµÍ³²úÉúÁËÊÂ¼þ¡£
+// dwParam1ÎªPEVENT_NOTIFY2Ö¸Õë¡£
+//   Èç¹û·µ»Ø 0 £¬±íÊ¾´ËÊÂ¼þÒÑ±»ÏµÍ³Å×Æú£¬·ñÔò±íÊ¾ÏµÍ³ÒÑ¾­³É¹¦´«µÝ´ËÊÂ¼þµ½ÓÃ»§
+// ÊÂ¼þ´¦Àí×Ó³ÌÐò¡£
 #define NRS_GET_WINFORM_COUNT               2032
-	// ·µ»Øµ±Ç°³ÌÐòµÄ´°ÌåÊýÄ¿¡£
+// ·µ»Øµ±Ç°³ÌÐòµÄ´°ÌåÊýÄ¿¡£
 #define NRS_GET_WINFORM_HWND                2033
-	// ·µ»ØÖ¸¶¨´°ÌåµÄ´°¿Ú¾ä±ú£¬Èç¹û¸Ã´°ÌåÉÐÎ´±»ÔØÈë£¬·µ»ØNULL¡£
-	// dwParam1Îª´°ÌåË÷Òý¡£
+// ·µ»ØÖ¸¶¨´°ÌåµÄ´°¿Ú¾ä±ú£¬Èç¹û¸Ã´°ÌåÉÐÎ´±»ÔØÈë£¬·µ»ØNULL¡£
+// dwParam1Îª´°ÌåË÷Òý¡£
 #define NRS_GET_BITMAP_DATA                 2034
-	// ·µ»ØÖ¸¶¨HBITMAPµÄÍ¼Æ¬Êý¾Ý£¬³É¹¦·µ»Ø°üº¬BMPÍ¼Æ¬Êý¾ÝµÄHGLOBAL¾ä±ú£¬Ê§°Ü·µ»ØNULL¡£
-	// dwParam1ÎªÓû»ñÈ¡ÆäÍ¼Æ¬Êý¾ÝµÄHBITMAP¡£
+// ·µ»ØÖ¸¶¨HBITMAPµÄÍ¼Æ¬Êý¾Ý£¬³É¹¦·µ»Ø°üº¬BMPÍ¼Æ¬Êý¾ÝµÄHGLOBAL¾ä±ú£¬Ê§°Ü·µ»ØNULL¡£
+// dwParam1ÎªÓû»ñÈ¡ÆäÍ¼Æ¬Êý¾ÝµÄHBITMAP¡£
 #define NRS_FREE_COMOBJECT                  2035
-	// Í¨ÖªÏµÍ³ÊÍ·ÅÖ¸¶¨µÄDTP_COM_OBJECTÀàÐÍCOM¶ÔÏó¡£
-	// dwParam1Îª¸ÃCOM¶ÔÏóµÄµØÖ·Ö¸Õë¡£
+// Í¨ÖªÏµÍ³ÊÍ·ÅÖ¸¶¨µÄDTP_COM_OBJECTÀàÐÍCOM¶ÔÏó¡£
+// dwParam1Îª¸ÃCOM¶ÔÏóµÄµØÖ·Ö¸Õë¡£
 #define NRS_CHK_TAB_VISIBLE                 2039
-	// µ±Ñ¡Ôñ¼Ð×Ó¼Ð±»ÇÐ»»ºó, Ê¹ÓÃ±¾ÏûÏ¢Í¨ÖªÒ×ÏµÍ³
+// µ±Ñ¡Ôñ¼Ð×Ó¼Ð±»ÇÐ»»ºó, Ê¹ÓÃ±¾ÏûÏ¢Í¨ÖªÒ×ÏµÍ³
 
 
 /*///////////////////////////////////////////////////////////////////*/
 // ÏµÍ³¿ÉÒÔÍ¨Öª¿âµÄÂëÖµ£º
 #define	NL_SYS_NOTIFY_FUNCTION		    1
-	//   ¸æÖª¿âÍ¨ÖªÏµÍ³ÓÃµÄº¯ÊýÖ¸Õë£¬ÔÚ×°ÔØÖ§³Ö¿âÇ°Í¨Öª£¬¿ÉÄÜÓÐ¶à´Î£¬
-	// ºóÍ¨ÖªµÄÖµÓ¦¸Ã¸²¸ÇÇ°ÃæËùÍ¨ÖªµÄÖµ£©£¬ºöÂÔ·µ»ØÖµ¡£
-	//   ¿â¿É½«´Ëº¯ÊýÖ¸Õë¼ÇÂ¼ÏÂÀ´ÒÔ±ãÔÚÐèÒªÊ±Ê¹ÓÃËüÍ¨ÖªÐÅÏ¢µ½ÏµÍ³¡£
-	//   dwParam1: (PFN_NOTIFY_SYS)
+//   ¸æÖª¿âÍ¨ÖªÏµÍ³ÓÃµÄº¯ÊýÖ¸Õë£¬ÔÚ×°ÔØÖ§³Ö¿âÇ°Í¨Öª£¬¿ÉÄÜÓÐ¶à´Î£¬
+// ºóÍ¨ÖªµÄÖµÓ¦¸Ã¸²¸ÇÇ°ÃæËùÍ¨ÖªµÄÖµ£©£¬ºöÂÔ·µ»ØÖµ¡£
+//   ¿â¿É½«´Ëº¯ÊýÖ¸Õë¼ÇÂ¼ÏÂÀ´ÒÔ±ãÔÚÐèÒªÊ±Ê¹ÓÃËüÍ¨ÖªÐÅÏ¢µ½ÏµÍ³¡£
+//   dwParam1: (PFN_NOTIFY_SYS)
 #define NL_FREE_LIB_DATA                6
-	// Í¨ÖªÖ§³Ö¿âÊÍ·Å×ÊÔ´×¼±¸ÍË³ö¼°ÊÍ·ÅÖ¸¶¨µÄ¸½¼ÓÊý¾Ý¡£
+// Í¨ÖªÖ§³Ö¿âÊÍ·Å×ÊÔ´×¼±¸ÍË³ö¼°ÊÍ·ÅÖ¸¶¨µÄ¸½¼ÓÊý¾Ý¡£
 
 #define NL_GET_CMD_FUNC_NAMES            14
-	// ·µ»ØËùÓÐÃüÁîÊµÏÖº¯ÊýµÄµÄº¯ÊýÃû³ÆÊý×é(char*[]), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
+// ·µ»ØËùÓÐÃüÁîÊµÏÖº¯ÊýµÄµÄº¯ÊýÃû³ÆÊý×é(char*[]), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
 #define NL_GET_NOTIFY_LIB_FUNC_NAME      15
-	// ·µ»Ø´¦ÀíÏµÍ³Í¨ÖªµÄº¯ÊýÃû³Æ(PFN_NOTIFY_LIBº¯ÊýÃû³Æ), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
+// ·µ»Ø´¦ÀíÏµÍ³Í¨ÖªµÄº¯ÊýÃû³Æ(PFN_NOTIFY_LIBº¯ÊýÃû³Æ), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
 #define NL_GET_DEPENDENT_LIBS            16
-	// ·µ»Ø¾²Ì¬¿âËùÒÀÀµµÄÆäËü¾²Ì¬¿âÎÄ¼þÃûÁÐ±í(¸ñÊ½Îª\0·Ö¸ôµÄÎÄ±¾,½áÎ²Á½¸ö\0), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
-	// kernel32.lib user32.lib gdi32.lib µÈ³£ÓÃµÄÏµÍ³¿â²»ÐèÒª·ÅÔÚ´ËÁÐ±íÖÐ
-	// ·µ»ØNULL»òNR_ERR±íÊ¾²»Ö¸¶¨ÒÀÀµÎÄ¼þ
+// ·µ»Ø¾²Ì¬¿âËùÒÀÀµµÄÆäËü¾²Ì¬¿âÎÄ¼þÃûÁÐ±í(¸ñÊ½Îª\0·Ö¸ôµÄÎÄ±¾,½áÎ²Á½¸ö\0), Ö§³Ö¾²Ì¬±àÒëµÄ¶¯Ì¬¿â±ØÐë´¦Àí
+// kernel32.lib user32.lib gdi32.lib µÈ³£ÓÃµÄÏµÍ³¿â²»ÐèÒª·ÅÔÚ´ËÁÐ±íÖÐ
+// ·µ»ØNULL»òNR_ERR±íÊ¾²»Ö¸¶¨ÒÀÀµÎÄ¼þ
 #define NL_UNLOAD_FROM_IDE               17
-	// µ±Ö§³Ö¿âÔÚIDEÖÐ±»ÓÃ»§È¡ÏûÑ¡Ôñºó·¢ËÍ±¾Í¨Öª
+// µ±Ö§³Ö¿âÔÚIDEÖÐ±»ÓÃ»§È¡ÏûÑ¡Ôñºó·¢ËÍ±¾Í¨Öª
 #define NR_DELAY_FREE  2015
 // ·µ»ØNR_DELAY_FREE±íÊ¾±¾Ö§³Ö¿âÐèÒª±»ÑÓ³ÙÊÍ·Å
 #define NL_IDE_READY                     18
-	// µ±IDEÒÑ¾­×¼±¸ºÃ½ÓÊÜÓÃ»§²Ù×÷ºó,´ËÍ¨Öª±»·¢ËÍµ½ËùÓÐ¾ßÓÐLBS_IDE_PLUGIN±êÖ¾µÄÖ§³Ö¿â.
-	// ×¢Òâ: µ±ÓÃ»§ÔÚÖ§³Ö¿âÅäÖÃ¶Ô»°¿òÖÐÈ¡ÏûÒÑÑ¡ÔñÖ§³Ö¿â»òÑ¡ÔñÐÂµÄÖ§³Ö¿âºó,±¾Í¨Öª»á±»ÔÙ´Î·¢ËÍ,Ö§³Ö¿âÄÚÐèÒª´¦ÀíºÃ´ËÖÖÇé¿ö.
+// µ±IDEÒÑ¾­×¼±¸ºÃ½ÓÊÜÓÃ»§²Ù×÷ºó,´ËÍ¨Öª±»·¢ËÍµ½ËùÓÐ¾ßÓÐLBS_IDE_PLUGIN±êÖ¾µÄÖ§³Ö¿â.
+// ×¢Òâ: µ±ÓÃ»§ÔÚÖ§³Ö¿âÅäÖÃ¶Ô»°¿òÖÐÈ¡ÏûÒÑÑ¡ÔñÖ§³Ö¿â»òÑ¡ÔñÐÂµÄÖ§³Ö¿âºó,±¾Í¨Öª»á±»ÔÙ´Î·¢ËÍ,Ö§³Ö¿âÄÚÐèÒª´¦ÀíºÃ´ËÖÖÇé¿ö.
 #define NL_RIGHT_POPUP_MENU_SHOW         19
-	// µ±ÓÃ»§ÔÚIDEÖÐµ¥»÷Êó±êÓÒ¼ü¼´½«µ¯³ö²Ëµ¥Ç°,´ËÍ¨Öª±»·¢ËÍµ½ËùÓÐ¾ßÓÐLBS_IDE_PLUGIN±êÖ¾µÄÖ§³Ö¿â.
-	// dwParam1: Óûµ¯³ö²Ëµ¥¾ä±ú(HMENU)
-	// dwParam2: Óûµ¯³ö²Ëµ¥ÔÚÒ×ÓïÑÔÖ÷³ÌÐò(e.exe)ÖÐµÄ×ÊÔ´ID
+// µ±ÓÃ»§ÔÚIDEÖÐµ¥»÷Êó±êÓÒ¼ü¼´½«µ¯³ö²Ëµ¥Ç°,´ËÍ¨Öª±»·¢ËÍµ½ËùÓÐ¾ßÓÐLBS_IDE_PLUGIN±êÖ¾µÄÖ§³Ö¿â.
+// dwParam1: Óûµ¯³ö²Ëµ¥¾ä±ú(HMENU)
+// dwParam2: Óûµ¯³ö²Ëµ¥ÔÚÒ×ÓïÑÔÖ÷³ÌÐò(e.exe)ÖÐµÄ×ÊÔ´ID
 #define NL_ADD_NEW_ELEMENT               20
-typedef enum
-{
-	NAN_NEW_VAR,  // ±äÁ¿
-	NAN_NEW_SUB,  // ×Ó³ÌÐò
-	NAN_NEW_CONST_RES  // ³£Á¿×ÊÔ´
+
+typedef enum {
+    NAN_NEW_VAR, // ±äÁ¿
+    NAN_NEW_SUB, // ×Ó³ÌÐò
+    NAN_NEW_CONST_RES // ³£Á¿×ÊÔ´
 }
-ADD_NEW_ELEMENT_TYPE;  // Óû¼ÓÈëÐÂ³ÉÔ±µÄÀàÐÍ
-typedef enum
-{
-	NVET_GLOBAL_VAR,  // È«¾Ö±äÁ¿
-	NVET_MOD_VAR,  // Ä£¿é±äÁ¿
-	NVET_LOCAL_VAR  // ¾Ö²¿±äÁ¿
+ADD_NEW_ELEMENT_TYPE; // Óû¼ÓÈëÐÂ³ÉÔ±µÄÀàÐÍ
+typedef enum {
+    NVET_GLOBAL_VAR, // È«¾Ö±äÁ¿
+    NVET_MOD_VAR, // Ä£¿é±äÁ¿
+    NVET_LOCAL_VAR // ¾Ö²¿±äÁ¿
 }
-NEW_VAR_EXTENT_TYPE;  // ÐÂ±äÁ¿µÄ·¶Î§ÀàÐÍ
-typedef struct
-{
-	const TCHAR* m_szNewVarName;  // in ÐÂ±äÁ¿µÄÃû³Æ
-	DATA_TYPE m_dtNewVar;  // out ÓÃ×÷·µ»ØÐÂ±äÁ¿µÄÊý¾ÝÀàÐÍ
-	NEW_VAR_EXTENT_TYPE m_enNewVarExtentType;  // out ÓÃ×÷·µ»ØÐÂ±äÁ¿µÄ·¶Î§ÀàÐÍ
+NEW_VAR_EXTENT_TYPE; // ÐÂ±äÁ¿µÄ·¶Î§ÀàÐÍ
+typedef struct {
+    const TCHAR *m_szNewVarName; // in ÐÂ±äÁ¿µÄÃû³Æ
+    DATA_TYPE m_dtNewVar; // out ÓÃ×÷·µ»ØÐÂ±äÁ¿µÄÊý¾ÝÀàÐÍ
+    NEW_VAR_EXTENT_TYPE m_enNewVarExtentType; // out ÓÃ×÷·µ»ØÐÂ±äÁ¿µÄ·¶Î§ÀàÐÍ
 }
 RES_NEW_VAR_INFO;
-typedef struct
-{
-	const TCHAR* m_szNewConstName;  // in ÐÂ³£Á¿µÄÃû³Æ
-	TCHAR m_acConstInitialValue[256];  // out ÓÃ×÷·µ»ØÐÂ³£Á¿µÄ³õÊ¼Öµ
+
+typedef struct {
+    const TCHAR *m_szNewConstName; // in ÐÂ³£Á¿µÄÃû³Æ
+    TCHAR m_acConstInitialValue[256]; // out ÓÃ×÷·µ»ØÐÂ³£Á¿µÄ³õÊ¼Öµ
 }
 RES_NEW_CONST_RES_INFO;
+
 // µ±IDE×¼±¸ÏÔÊ¾ÐÂ¼ÓÈë³ÉÔ±¶Ô»°¿òÖ®Ç°,´ËÍ¨Öª±»·¢ËÍµ½ËùÓÐ¾ßÓÐLBS_IDE_PLUGIN±êÖ¾µÄÖ§³Ö¿â.
 // ·µ»Ø1±íÊ¾¸ÃÍ¨Öª±»´¦ÀíÇÒIDE¸ù¾Ý·µ»ØÄÚÈÝÌí¼ÓËùÖ¸¶¨µÄÐÂ³ÉÔ±,·µ»Ø2±íÊ¾¸ÃÍ¨Öª±»´¦ÀíÇÒIDEÖÐÖ¹Ìí¼ÓÐÂ³ÉÔ±,·µ»Ø0±íÊ¾Î´±»´¦Àí.
 // dwParam1: Ìá¹©Óû¼ÓÈë³ÉÔ±µÄÀàÐÍ(ADD_NEW_ELEMENT_TYPE)
@@ -1171,9 +1161,11 @@ RES_NEW_CONST_RES_INFO;
 #define NR_ERR		-1
 
 #ifndef __GCC_
-typedef INT(WINAPI* PFN_NOTIFY_LIB) (INT nMsg, DWORD dwParam1, DWORD dwParam2);
+typedef INT (WINAPI*PFN_NOTIFY_LIB)(INT nMsg, DWORD dwParam1, DWORD dwParam2);
+
 // ´Ëº¯ÊýÓÃ×÷ÏµÍ³Í¨Öª¿âÓÐ¹ØÊÂ¼þ¡£
-typedef INT(WINAPI* PFN_NOTIFY_SYS) (INT nMsg, DWORD dwParam1, DWORD dwParam2);
+typedef INT (WINAPI*PFN_NOTIFY_SYS)(INT nMsg, DWORD dwParam1, DWORD dwParam2);
+
 // ´Ëº¯ÊýÓÃ×÷¿âÍ¨ÖªÏµÍ³ÓÐ¹ØÊÂ¼þ¡£
 #else
 typedef INT(WINAPI* PFN_NOTIFY_LIB) (INT nMsg, DWORD dwParam1, DWORD dwParam2);
@@ -1188,126 +1180,127 @@ typedef INT(WINAPI* PFN_NOTIFY_SYS) (INT nMsg, DWORD dwParam1, DWORD dwParam2);
    3¡¢!!!Èç¹ûÖ¸¶¨¿âÃüÁî·µ»ØÊý¾ÝÀàÐÍ²»Îª _SDT_ALL £¬¿ÉÒÔ
 	  ²»Ìî³ä pRetData->m_dtDataType£¬Èç¹ûÎª _SDT_ALL £¬Ôò±ØÐëÌîÐ´£»
    4¡¢pArgInf Ìá¹©²ÎÊýÊý¾Ý±¾Éí£¬ËùÖ¸ÏòµÄ MDATA_INF ÃèÊöÃ¿¸öÊäÈë²ÎÊý£¬ÊýÄ¿µÈÍ¬ÓÚ nArgCount ¡£*/
-typedef void (*PFN_EXECUTE_CMD) (PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+typedef void (*PFN_EXECUTE_CMD)(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
+
 // ÔËÐÐÖ§³Ö¿âÖÐADDIN¹¦ÄÜµÄº¯Êý
-typedef INT(WINAPI* PFN_RUN_ADDIN_FN) (INT nAddInFnIndex);
+typedef INT (WINAPI*PFN_RUN_ADDIN_FN)(INT nAddInFnIndex);
+
 // ´´½¨¿âÖÐÌá¹©µÄ³¬¼¶Ä£°å³ÌÐòµÄº¯Êý
-typedef INT(WINAPI* PFN_SUPER_TEMPLATE) (INT nTemplateIndex);
+typedef INT (WINAPI*PFN_SUPER_TEMPLATE)(INT nTemplateIndex);
 
 ////////////////////////////////////////////////////
 
 #define		LIB_FORMAT_VER		20000101	// ¿â¸ñÊ½ºÅ
 
-typedef struct
-{
-	DWORD				m_dwLibFormatVer;
-	// ¿â¸ñÊ½ºÅ£¬Ó¦¸ÃµÈÓÚLIB_FORMAT_VER¡£Ö÷ÒªÓÃÍ¾ÈçÏÂ£º
-	//   Æ©Èç krnln.fnX ¿â£¬ÔÚ×öÆäËüÓë´ËÍ¬Ãûµ«¹¦ÄÜÍêÈ«²»Ò»ÖÂµÄ¿âÊ±£¬Ó¦µ±¸Ä±ä´Ë¸ñÊ½ºÅ£¬
-	// ÒÔ·ÀÖ¹´íÎó×°ÔØ¡£
+typedef struct {
+    DWORD m_dwLibFormatVer;
+    // ¿â¸ñÊ½ºÅ£¬Ó¦¸ÃµÈÓÚLIB_FORMAT_VER¡£Ö÷ÒªÓÃÍ¾ÈçÏÂ£º
+    //   Æ©Èç krnln.fnX ¿â£¬ÔÚ×öÆäËüÓë´ËÍ¬Ãûµ«¹¦ÄÜÍêÈ«²»Ò»ÖÂµÄ¿âÊ±£¬Ó¦µ±¸Ä±ä´Ë¸ñÊ½ºÅ£¬
+    // ÒÔ·ÀÖ¹´íÎó×°ÔØ¡£
 
-	LPTSTR				m_szGuid;
-	// ¶ÔÓ¦ÓÚ±¾¿âµÄÎ¨Ò»GUID´®£¬²»ÄÜÎªNULL»ò¿Õ£¬¿âµÄËùÓÐ°æ±¾´Ë´®¶¼Ó¦ÏàÍ¬¡£
-	// Èç¹ûÎªActiveX¿Ø¼þ£¬´Ë´®¼ÇÂ¼ÆäCLSID¡£
-	INT					m_nMajorVersion;	// ±¾¿âµÄÖ÷°æ±¾ºÅ£¬±ØÐë´óÓÚ0¡£
-	INT					m_nMinorVersion;	// ±¾¿âµÄ´Î°æ±¾ºÅ¡£
+    LPTSTR m_szGuid;
+    // ¶ÔÓ¦ÓÚ±¾¿âµÄÎ¨Ò»GUID´®£¬²»ÄÜÎªNULL»ò¿Õ£¬¿âµÄËùÓÐ°æ±¾´Ë´®¶¼Ó¦ÏàÍ¬¡£
+    // Èç¹ûÎªActiveX¿Ø¼þ£¬´Ë´®¼ÇÂ¼ÆäCLSID¡£
+    INT m_nMajorVersion; // ±¾¿âµÄÖ÷°æ±¾ºÅ£¬±ØÐë´óÓÚ0¡£
+    INT m_nMinorVersion; // ±¾¿âµÄ´Î°æ±¾ºÅ¡£
 
-	INT					m_nBuildNumber;
-	// ¹¹½¨°æ±¾ºÅ£¬ÎÞÐè¶Ô´Ë°æ±¾ºÅ×÷ÈÎºÎ´¦Àí¡£
-	//   ±¾°æ±¾ºÅ½öÓÃ×÷Çø·ÖÏàÍ¬ÕýÊ½°æ±¾ºÅµÄÏµÍ³Èí¼þ£¨Æ©Èç½ö½öÐÞ¸ÄÁË¼¸¸ö BUG£¬
-	// ²»ÖµµÃÉý¼¶ÕýÊ½°æ±¾µÄÏµÍ³Èí¼þ£©¡£ÈÎºÎ¹«²¼¹ý¸øÓÃ»§Ê¹ÓÃµÄ°æ±¾Æä¹¹½¨°æ±¾
-	// ºÅ¶¼Ó¦¸Ã²»Ò»Ñù¡£
-	//   ¸³ÖµÊ±Ó¦¸ÃË³ÐòµÝÔö¡£
+    INT m_nBuildNumber;
+    // ¹¹½¨°æ±¾ºÅ£¬ÎÞÐè¶Ô´Ë°æ±¾ºÅ×÷ÈÎºÎ´¦Àí¡£
+    //   ±¾°æ±¾ºÅ½öÓÃ×÷Çø·ÖÏàÍ¬ÕýÊ½°æ±¾ºÅµÄÏµÍ³Èí¼þ£¨Æ©Èç½ö½öÐÞ¸ÄÁË¼¸¸ö BUG£¬
+    // ²»ÖµµÃÉý¼¶ÕýÊ½°æ±¾µÄÏµÍ³Èí¼þ£©¡£ÈÎºÎ¹«²¼¹ý¸øÓÃ»§Ê¹ÓÃµÄ°æ±¾Æä¹¹½¨°æ±¾
+    // ºÅ¶¼Ó¦¸Ã²»Ò»Ñù¡£
+    //   ¸³ÖµÊ±Ó¦¸ÃË³ÐòµÝÔö¡£
 
-	INT					m_nRqSysMajorVer;		// ËùÐèÒªµÄÒ×ÓïÑÔÏµÍ³µÄÖ÷°æ±¾ºÅ¡£
-	INT					m_nRqSysMinorVer;		// ËùÐèÒªµÄÒ×ÓïÑÔÏµÍ³µÄ´Î°æ±¾ºÅ¡£
-	INT					m_nRqSysKrnlLibMajorVer;	// ËùÐèÒªµÄÏµÍ³ºËÐÄÖ§³Ö¿âµÄÖ÷°æ±¾ºÅ¡£
-	INT					m_nRqSysKrnlLibMinorVer;	// ËùÐèÒªµÄÏµÍ³ºËÐÄÖ§³Ö¿âµÄ´Î°æ±¾ºÅ¡£
+    INT m_nRqSysMajorVer; // ËùÐèÒªµÄÒ×ÓïÑÔÏµÍ³µÄÖ÷°æ±¾ºÅ¡£
+    INT m_nRqSysMinorVer; // ËùÐèÒªµÄÒ×ÓïÑÔÏµÍ³µÄ´Î°æ±¾ºÅ¡£
+    INT m_nRqSysKrnlLibMajorVer; // ËùÐèÒªµÄÏµÍ³ºËÐÄÖ§³Ö¿âµÄÖ÷°æ±¾ºÅ¡£
+    INT m_nRqSysKrnlLibMinorVer; // ËùÐèÒªµÄÏµÍ³ºËÐÄÖ§³Ö¿âµÄ´Î°æ±¾ºÅ¡£
 
-	LPTSTR				m_szName;
-	// ¿âÃû£¬²»ÄÜÎªNULL»ò¿Õ¡£
-	INT					m_nLanguage;	// ¿âËùÖ§³ÖµÄÓïÑÔ¡£
-	LPTSTR				m_szExplain;	// ¿âÏêÏ¸½âÊÍ
+    LPTSTR m_szName;
+    // ¿âÃû£¬²»ÄÜÎªNULL»ò¿Õ¡£
+    INT m_nLanguage; // ¿âËùÖ§³ÖµÄÓïÑÔ¡£
+    LPTSTR m_szExplain; // ¿âÏêÏ¸½âÊÍ
 
 #define		LBS_FUNC_NO_RUN_CODE		(1 << 2)
-	// ±¾¿â½öÎªÉùÃ÷¿â£¬Ã»ÓÐ¶ÔÓ¦¹¦ÄÜµÄÖ§³Ö´úÂë£¬Òò´Ë²»ÄÜÔËÐÐ¡£
+    // ±¾¿â½öÎªÉùÃ÷¿â£¬Ã»ÓÐ¶ÔÓ¦¹¦ÄÜµÄÖ§³Ö´úÂë£¬Òò´Ë²»ÄÜÔËÐÐ¡£
 #define		LBS_NO_EDIT_INFO			(1 << 3)
-	// ±¾¿âÄÚÎÞ¹©±à¼­ÓÃµÄÐÅÏ¢£¨±à¼­ÐÅÏ¢Ö÷ÒªÎª£º¸÷ÖÖÃû³Æ¡¢½âÊÍ×Ö·û´®µÈ£©¡£
+    // ±¾¿âÄÚÎÞ¹©±à¼­ÓÃµÄÐÅÏ¢£¨±à¼­ÐÅÏ¢Ö÷ÒªÎª£º¸÷ÖÖÃû³Æ¡¢½âÊÍ×Ö·û´®µÈ£©¡£
 #define		LBS_IS_DB_LIB				(1 << 5)
-	// ±¾¿âÊÇ·ñÎªÊý¾Ý¿â²Ù×÷Ö§³Ö¿â¡£
-//!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚ±íÃ÷±¾Ö§³Ö¿â¾ßÓÐµÄËùÓÐ²Ù×÷ÏµÍ³°æ±¾¡£
+    // ±¾¿âÊÇ·ñÎªÊý¾Ý¿â²Ù×÷Ö§³Ö¿â¡£
+    //!!! ×¢Òâ¸ßÎ»°üº¬ __OS_xxxx ºêÓÃÓÚ±íÃ÷±¾Ö§³Ö¿â¾ßÓÐµÄËùÓÐ²Ù×÷ÏµÍ³°æ±¾¡£
 #define _LIB_OS(os)     (os)  // ÓÃ×÷×ª»»osÀàÐÍÒÔ±ã¼ÓÈëµ½m_dwState¡£
 #define _TEST_LIB_OS(m_dwState,os)    ((_LIB_OS (os) & m_dwState) != 0) // ÓÃ×÷²âÊÔÖ§³Ö¿âÊÇ·ñ¾ßÓÐÖ¸¶¨²Ù×÷ÏµÍ³µÄ°æ±¾¡£
 #define		LBS_LIB_INFO2      		    (1 << 7)
-	// ±¾ÐÅÏ¢½á¹¹Êµ¼ÊÉÏÊÇ·ñÎªLIB_INFO2
+    // ±¾ÐÅÏ¢½á¹¹Êµ¼ÊÉÏÊÇ·ñÎªLIB_INFO2
 #define LBS_IDE_PLUGIN                  (1 << 8)
-	// ±¾Ö§³Ö¿âÊÇ·ñÎªÒ×ÓïÑÔIDE²å¼þ. ×¢Òâ: Ö»ÓÐÉèÖÃÁË´Ë±êÖ¾µÄÖ§³Ö¿â,²Å»á½ÓÊÕµ½À´×ÔÒ×ÓïÑÔIDEµÄNL_IDE_READYºÍNL_RIGHT_POPUP_MENU_SHOWµÈÏà¹ØÍ¨Öª.
-	DWORD				m_dwState;
+    // ±¾Ö§³Ö¿âÊÇ·ñÎªÒ×ÓïÑÔIDE²å¼þ. ×¢Òâ: Ö»ÓÐÉèÖÃÁË´Ë±êÖ¾µÄÖ§³Ö¿â,²Å»á½ÓÊÕµ½À´×ÔÒ×ÓïÑÔIDEµÄNL_IDE_READYºÍNL_RIGHT_POPUP_MENU_SHOWµÈÏà¹ØÍ¨Öª.
+    DWORD m_dwState;
 
-	//////////////////
-	LPTSTR				m_szAuthor;
-	LPTSTR				m_szZipCode;
-	LPTSTR				m_szAddress;
-	LPTSTR				m_szPhoto;
-	LPTSTR				m_szFax;
-	LPTSTR				m_szEmail;
-	LPTSTR				m_szHomePage;
-	LPTSTR				m_szOther;
+    //////////////////
+    LPTSTR m_szAuthor;
+    LPTSTR m_szZipCode;
+    LPTSTR m_szAddress;
+    LPTSTR m_szPhoto;
+    LPTSTR m_szFax;
+    LPTSTR m_szEmail;
+    LPTSTR m_szHomePage;
+    LPTSTR m_szOther;
 
-	//////////////////
-	INT                 m_nDataTypeCount;	// ±¾¿âÖÐ×Ô¶¨ÒåÊý¾ÝÀàÐÍµÄÊýÄ¿¡£
-	PLIB_DATA_TYPE_INFO m_pDataType;		// ±¾¿âÖÐËùÓÐµÄ×Ô¶¨ÒåÊý¾ÝÀàÐÍ¡£
-	//   ¿ÉÒÔ²Î¿¼Ê¹ÓÃÏµÍ³ºËÐÄÖ§³Ö¿âÖÐµÄ×Ô¶¨ÒåÊý¾ÝÀàÐÍ£¬ÏµÍ³ºËÐÄÖ§³Ö¿âÔÚ³ÌÐò
-	// µÄ¿âµÇ¼ÇÊý×éÖÐµÄË÷ÒýÖµ¼Ó1ºóµÄÖµÎª1¡£
+    //////////////////
+    INT m_nDataTypeCount; // ±¾¿âÖÐ×Ô¶¨ÒåÊý¾ÝÀàÐÍµÄÊýÄ¿¡£
+    PLIB_DATA_TYPE_INFO m_pDataType; // ±¾¿âÖÐËùÓÐµÄ×Ô¶¨ÒåÊý¾ÝÀàÐÍ¡£
+    //   ¿ÉÒÔ²Î¿¼Ê¹ÓÃÏµÍ³ºËÐÄÖ§³Ö¿âÖÐµÄ×Ô¶¨ÒåÊý¾ÝÀàÐÍ£¬ÏµÍ³ºËÐÄÖ§³Ö¿âÔÚ³ÌÐò
+    // µÄ¿âµÇ¼ÇÊý×éÖÐµÄË÷ÒýÖµ¼Ó1ºóµÄÖµÎª1¡£
 
-	INT					m_nCategoryCount;	// È«¾ÖÃüÁîÀà±ðÊýÄ¿£¬¿ÉÎª0¡£
-	LPTSTR				m_szzCategory;		// È«¾ÖÃüÁîÀà±ðËµÃ÷±í
+    INT m_nCategoryCount; // È«¾ÖÃüÁîÀà±ðÊýÄ¿£¬¿ÉÎª0¡£
+    LPTSTR m_szzCategory; // È«¾ÖÃüÁîÀà±ðËµÃ÷±í
 
-	// ±¾¿âÖÐÌá¹©µÄËùÓÐÃüÁî£¨È«¾ÖÃüÁî¼°¶ÔÏóÃüÁî£©µÄÊýÄ¿£¨¿ÉÎª0£©¡£
-	INT					m_nCmdCount;
-	PCMD_INFO			m_pBeginCmdInfo;	// ¿ÉÎªNULL
-	PFN_EXECUTE_CMD* m_pCmdsFunc;		// Ö¸ÏòÃ¿¸öÃüÁîµÄÊµÏÖ´úÂëÊ×µØÖ·£¬¿ÉÎªNULL
+    // ±¾¿âÖÐÌá¹©µÄËùÓÐÃüÁî£¨È«¾ÖÃüÁî¼°¶ÔÏóÃüÁî£©µÄÊýÄ¿£¨¿ÉÎª0£©¡£
+    INT m_nCmdCount;
+    PCMD_INFO m_pBeginCmdInfo; // ¿ÉÎªNULL
+    PFN_EXECUTE_CMD *m_pCmdsFunc; // Ö¸ÏòÃ¿¸öÃüÁîµÄÊµÏÖ´úÂëÊ×µØÖ·£¬¿ÉÎªNULL
 
-	PFN_RUN_ADDIN_FN	m_pfnRunAddInFn;	// ¿ÉÎªNULL
-	//     ÓÐ¹ØAddIn¹¦ÄÜµÄËµÃ÷£¬Á½¸ö×Ö·û´®ËµÃ÷Ò»¸ö¹¦ÄÜ¡£µÚÒ»¸öÎª¹¦ÄÜÃû³Æ
-	// £¨½öÏÞÒ»ÐÐ20×Ö·û£¬Èç¹ûÏ£Íû×ÔÐÐ³õÊ¼Î»ÖÃ¶ø²»±»×Ô¶¯¼ÓÈëµ½¹¤¾ß²Ëµ¥£¬Ôò
-	// Ãû³ÆÓ¦¸ÃÒÔ@¿ªÊ¼£¬´ËÊ±»á½ÓÊÕµ½ÖµÎª -(nAddInFnIndex + 1) µÄµ÷ÓÃÍ¨Öª£©£¬
-	// µÚ¶þ¸öÎª¹¦ÄÜÏêÏ¸½éÉÜ£¨½öÏÞÒ»ÐÐ60×Ö·û£©£¬×îºóÓÉÁ½¸ö¿Õ´®½áÊø¡£
-	LPTSTR				m_szzAddInFnInfo;
+    PFN_RUN_ADDIN_FN m_pfnRunAddInFn; // ¿ÉÎªNULL
+    //     ÓÐ¹ØAddIn¹¦ÄÜµÄËµÃ÷£¬Á½¸ö×Ö·û´®ËµÃ÷Ò»¸ö¹¦ÄÜ¡£µÚÒ»¸öÎª¹¦ÄÜÃû³Æ
+    // £¨½öÏÞÒ»ÐÐ20×Ö·û£¬Èç¹ûÏ£Íû×ÔÐÐ³õÊ¼Î»ÖÃ¶ø²»±»×Ô¶¯¼ÓÈëµ½¹¤¾ß²Ëµ¥£¬Ôò
+    // Ãû³ÆÓ¦¸ÃÒÔ@¿ªÊ¼£¬´ËÊ±»á½ÓÊÕµ½ÖµÎª -(nAddInFnIndex + 1) µÄµ÷ÓÃÍ¨Öª£©£¬
+    // µÚ¶þ¸öÎª¹¦ÄÜÏêÏ¸½éÉÜ£¨½öÏÞÒ»ÐÐ60×Ö·û£©£¬×îºóÓÉÁ½¸ö¿Õ´®½áÊø¡£
+    LPTSTR m_szzAddInFnInfo;
 
-	PFN_NOTIFY_LIB		m_pfnNotify;		// ²»ÄÜÎªNULL
+    PFN_NOTIFY_LIB m_pfnNotify; // ²»ÄÜÎªNULL
 
-	// ³¬¼¶Ä£°åÔÝÊ±±£Áô²»ÓÃ¡£
-	PFN_SUPER_TEMPLATE	m_pfnSuperTemplate;	// ¿ÉÎªNULL
-	//     ÓÐ¹ØSuperTemplateµÄËµÃ÷£¬Á½¸ö×Ö·û´®ËµÃ÷Ò»¸öSuperTemplate¡£
-	// µÚÒ»¸öÎªSuperTemplateÃû³Æ£¨½öÏÞÒ»ÐÐ30×Ö·û£©£¬µÚ¶þ¸öÎªÏêÏ¸½éÉÜ£¨²»ÏÞ£©£¬
-	// ×îºóÓÉÁ½¸ö¿Õ´®½áÊø¡£
-	LPTSTR m_szzSuperTemplateInfo;
+    // ³¬¼¶Ä£°åÔÝÊ±±£Áô²»ÓÃ¡£
+    PFN_SUPER_TEMPLATE m_pfnSuperTemplate; // ¿ÉÎªNULL
+    //     ÓÐ¹ØSuperTemplateµÄËµÃ÷£¬Á½¸ö×Ö·û´®ËµÃ÷Ò»¸öSuperTemplate¡£
+    // µÚÒ»¸öÎªSuperTemplateÃû³Æ£¨½öÏÞÒ»ÐÐ30×Ö·û£©£¬µÚ¶þ¸öÎªÏêÏ¸½éÉÜ£¨²»ÏÞ£©£¬
+    // ×îºóÓÉÁ½¸ö¿Õ´®½áÊø¡£
+    LPTSTR m_szzSuperTemplateInfo;
 
-	// ±¾¿âÔ¤ÏÈ¶¨ÒåµÄËùÓÐ³£Á¿¡£
-	INT	m_nLibConstCount;
-	PLIB_CONST_INFO m_pLibConst;
+    // ±¾¿âÔ¤ÏÈ¶¨ÒåµÄËùÓÐ³£Á¿¡£
+    INT m_nLibConstCount;
+    PLIB_CONST_INFO m_pLibConst;
 
-	LPTSTR m_szzDependFiles;	// ¿ÉÎªNULL
-	// ±¾¿âÕý³£ÔËÐÐËùÐèÒªÒÀÀµµÄÆäËûÖ§³ÖÎÄ¼þ
+    LPTSTR m_szzDependFiles; // ¿ÉÎªNULL
+    // ±¾¿âÕý³£ÔËÐÐËùÐèÒªÒÀÀµµÄÆäËûÖ§³ÖÎÄ¼þ
 }
-LIB_INFO, * PLIB_INFO;
+        LIB_INFO, *PLIB_INFO;
 
 #define	FUNCNAME_GET_LIB_INFO		"GetNewInf"     // ´ËÃû³Æ±ØÐë¹Ì¶¨(3.0ÒÔÇ°Îª"GetLibInf")
-typedef PLIB_INFO(WINAPI* PFN_GET_LIB_INFO) ();	// È¡Ö§³Ö¿âÐÅÏ¢º¯Êý
-typedef INT(*PFN_ADD_IN_FUNC) ();
+
+typedef PLIB_INFO (WINAPI*PFN_GET_LIB_INFO)(); // È¡Ö§³Ö¿âÐÅÏ¢º¯Êý
+typedef INT (*PFN_ADD_IN_FUNC)();
 
 // µ±LBS_LIB_INFO2±»ÖÃÎ»Ê±FUNCNAME_GET_LIB_INFOÊµ¼Ê·µ»ØµÄÊÇ´ËÐÅÏ¢½á¹¹
-typedef struct
-{
-	LIB_INFO m_infLib;
+typedef struct {
+    LIB_INFO m_infLib;
 
-	// Ö§³Ö¿âÊÚÈ¨ÐÅÏ¢
-	LPTSTR m_szHardwareCode;  // // Ìá¹©¸øÖ§³Ö¿â¹ºÂòÕßµÄ±¾¼ÆËã»úÓ²¼þÌØÕ÷Âë,ÈçÎÞÔòÎªNULL»ò¿ÕÎÄ±¾.
-	LPTSTR m_szBuyingTips;  // Ìá¹©¸øÖ§³Ö¿â¹ºÂòÕßµÄÌáÊ¾ÐÅÏ¢,ÈçÎÞÔòÎªNULL»ò¿ÕÎÄ±¾.
-	LPTSTR m_szBuyingURL;  // Èç¹û²»ÎªNULL»ò¿ÕÎÄ±¾,ÔòÌá¹©Ò»¸öÓÃ×÷½ÓÊÜ¹ºÂòÐÅÏ¢µÄURL,ÓÃ»§Ñ¡Ôñ¹ºÂò±¾Ö§³Ö¿âÊ±ÏµÍ³½«×Ô¶¯µ÷ÓÃä¯ÀÀÆ÷´ò¿ª´ËURL,²¢½«Ïà¹ØÓÃ»§ÐÅÏ¢²ÎÊý¸½ÔÚÆäºó.
-	LPTSTR m_szLicenseToUserName;  // ±¾Ö§³Ö¿âËùÊÚÈ¨¸øµÄÓÃ»§Ãû³Æ,Èç¹ûÎªNULL/¿ÕÎÄ±¾,ËµÃ÷µ±Ç°Ê¹ÓÃÕßÉÐÎ´µÃµ½ÊÚÈ¨.
+    // Ö§³Ö¿âÊÚÈ¨ÐÅÏ¢
+    LPTSTR m_szHardwareCode; // // Ìá¹©¸øÖ§³Ö¿â¹ºÂòÕßµÄ±¾¼ÆËã»úÓ²¼þÌØÕ÷Âë,ÈçÎÞÔòÎªNULL»ò¿ÕÎÄ±¾.
+    LPTSTR m_szBuyingTips; // Ìá¹©¸øÖ§³Ö¿â¹ºÂòÕßµÄÌáÊ¾ÐÅÏ¢,ÈçÎÞÔòÎªNULL»ò¿ÕÎÄ±¾.
+    LPTSTR m_szBuyingURL; // Èç¹û²»ÎªNULL»ò¿ÕÎÄ±¾,ÔòÌá¹©Ò»¸öÓÃ×÷½ÓÊÜ¹ºÂòÐÅÏ¢µÄURL,ÓÃ»§Ñ¡Ôñ¹ºÂò±¾Ö§³Ö¿âÊ±ÏµÍ³½«×Ô¶¯µ÷ÓÃä¯ÀÀÆ÷´ò¿ª´ËURL,²¢½«Ïà¹ØÓÃ»§ÐÅÏ¢²ÎÊý¸½ÔÚÆäºó.
+    LPTSTR m_szLicenseToUserName; // ±¾Ö§³Ö¿âËùÊÚÈ¨¸øµÄÓÃ»§Ãû³Æ,Èç¹ûÎªNULL/¿ÕÎÄ±¾,ËµÃ÷µ±Ç°Ê¹ÓÃÕßÉÐÎ´µÃµ½ÊÚÈ¨.
 }
-LIB_INFO2, * PLIB_INFO2;
+        LIB_INFO2, *PLIB_INFO2;
 
 /*////////////////////////////////////////////*/
 
@@ -1323,25 +1316,22 @@ LIB_INFO2, * PLIB_INFO2;
 
 /*////////////////////////////////////////////*/
 
-typedef struct
-{
-	char* DllFileName;
-	char* DllCmdName;
+typedef struct {
+    char *DllFileName;
+    char *DllCmdName;
 }
-DLLCMD, * PDLLCMD;
+        DLLCMD, *PDLLCMD;
 
-typedef struct
-{
-	char LibName[256];
-	HMODULE LibHandle;
-	PLIB_INFO LibInfo;
+typedef struct {
+    char LibName[256];
+    HMODULE LibHandle;
+    PLIB_INFO LibInfo;
 }
-LIBINFO, * PLIBINFO;
+        LIBINFO, *PLIBINFO;
 
-typedef struct
-{
-	char LibName[256];
-	char GUID[256];
+typedef struct {
+    char LibName[256];
+    char GUID[256];
 }
 LIBSTRINGINFO;
 

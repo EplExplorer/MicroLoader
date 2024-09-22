@@ -9,23 +9,23 @@
 // 核心服务数量
 #define ESERVERCOUNT 13
 
-typedef struct
-{
-	DWORD CmdOffset;
-	PFN_EXECUTE_CMD CmdPoint;
+typedef struct {
+    DWORD CmdOffset;
+    PFN_EXECUTE_CMD CmdPoint;
 }
 KernelCmd;
 
-typedef void(__stdcall* UNKNOWFUN)(void);
-typedef INT(__stdcall* ERRORCALLBACK)(int nCode, char* errText);
+typedef void (__stdcall*UNKNOWFUN)(void);
 
-void _cdecl krnl_MFree(void* lpMem);
+typedef INT (__stdcall*ERRORCALLBACK)(int nCode, char *errText);
 
-void* _cdecl krnl_MMalloc(DWORD dwSize);
+void _cdecl krnl_MFree(void *lpMem);
+
+void * _cdecl krnl_MMalloc(DWORD dwSize);
 
 void _cdecl krnl_MOtherHelp(DWORD lpCallBack);
 
-void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize);
+void * _cdecl krnl_MRealloc(void *lpMem, DWORD dwSize);
 
 void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos);
 
@@ -44,4 +44,4 @@ void _stdcall krnl_MCallDllCmd(void);
 
 void InitServerPointTable(void);
 
-void UpdataServerPointTable(void* pBase, DWORD nHelpOffset);
+void UpdataServerPointTable(void *pBase, DWORD nHelpOffset);
