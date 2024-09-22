@@ -299,6 +299,7 @@ int main()
         return 0;
     }
 
+
     // 重定位代码
     RelocECode(ECodeHeaderInfo, ECodeSections);
 
@@ -307,9 +308,7 @@ int main()
     UpdataServerPointTable(ECodeHeaderInfo, ((PSECTION_INFO)ECodeSections.pHelpFuncSectionOffset)->m_nRecordOffset);
 
     // 至此初始化操作全部完成，转交控制权给易程序
-    ECodeStart();
-
-    krnl_MExitProcess(0);
+    krnl_MExitProcess(ECodeStart());
 
     return 0;
 
