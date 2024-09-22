@@ -313,7 +313,6 @@ void* _cdecl krnl_GetLibCmdAddress(DWORD LibCmdNO) {
 	return &(LibInfo->LibInfo->m_pCmdsFunc);
 }
 
-// 还有问题
 __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 
 	__asm {
@@ -326,7 +325,7 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 		mov esp, ebp  // 清除栈中的参数
 		mov edx, eax // 将地址传给edx
 
-		add ebx, [edx] // 计算有问题
+		add ebx, [edx]
 		lea edx, dword ptr ss : [esp + 0x0c]
 		sub esp, 0x0c
 		push edx
