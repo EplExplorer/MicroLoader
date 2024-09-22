@@ -2,9 +2,6 @@
 
 #include "krnln.h"
 
-#include "../EContext.h"
-#include "../EHelpFunc.h"
-
 extern EContext* AppContext;
 
 //其他 - 置错误提示管理
@@ -20,8 +17,10 @@ extern EContext* AppContext;
 	3、无论如何，当该子程序调用退出后，系统将自动将整个应用程序关闭。  如果省略本参数，系统将恢复错误提示的默认处理方式。
 */
 void _cdecl krnln_SetErrorManger(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf) {
-	if (pArgInf->m_dtDataType == SDT_SUB_PTR && pArgInf->m_pdwSubCodeAdr)
-		AppContext->ErrorCallBack = (ERRORCALLBACK)pArgInf->m_pdwSubCodeAdr;
+	if (pArgInf->m_dtDataType == SDT_SUB_PTR && pArgInf[0].m_pdwSubCodeAdr)
+		AppContext->ErrorCallBack = (ERRORCALLBACK)pArgInf[0].m_pdwSubCodeAdr;
 	else
 		AppContext->ErrorCallBack = NULL;
 }
+
+REGISTER_FUNCTION(0xa08, krnln_SetErrorManger)

@@ -27,30 +27,8 @@ char *DefaultSystemAPI[] = {
     NULL
 };
 
-#include "krnln/krnln_bnot.hpp"
-#include "krnln/krnln_SetErrorManger.hpp"
+KernelCmd KernelBaseCmd;
 
-KernelCmd KernelBaseCmd[] = {
-
-    // 注: 从静态编译link.dll中提取的epk无法正常使用,因为其中call的偏移量已被修改成实际静态库中的地址
-    // 在这里添加偏移量对应的函数指针
-    // {偏移量, 指针}
-    {0xc0, krnln_bnot},
-    {0xa08, krnln_SetErrorManger},
-
-
-    //{0xc4, band},
-    //{0xc8, bor},
-    //{0xcc, bxor},
-
-    //{0x9f8, shl},
-    //{0x9fc, shr},
-
-    //{0x90c, pstr},
-    //{0x910, pbin},
-
-    {static_cast<DWORD>(-1), nullptr},
-};
 
 void _cdecl krnl_MFree(void *lpMem) {
     if (HeapValidate(AppContext->Heap, HEAP_NO_SERIALIZE, lpMem) == 0) {
@@ -92,24 +70,13 @@ void * _cdecl krnl_MMalloc(DWORD dwSize) {
     return pData;
 }
 
-__declspec(naked) void _cdecl krnl_MExitProcess(DWORD uExitCode) {
-    __asm {
-            push ebp
-            mov ebp, esp
-            }
-
+void _cdecl krnl_MExitProcess(DWORD uExitCode) {
     if (AppContext->ExitCallBack != 0) {
         UNKNOWFUN callback = (UNKNOWFUN) AppContext->ExitCallBack;
         callback();
     }
-
     FreeContext();
-
     ExitProcess(uExitCode);
-
-    __asm {
-            ret
-            }
 }
 
 void _cdecl krnl_MOtherHelp(DWORD lpCallBack) {
@@ -313,12 +280,9 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 }
 
 void * _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
-    DWORD i = 0;
-    while (KernelBaseCmd[i].CmdOffset != -1) {
-        if (KernelBaseCmd[i].CmdOffset == LibCmdNO) {
-            return &(KernelBaseCmd[i].CmdPoint);
-        }
-        i++;
+    auto it = KernelBaseCmd.find(LibCmdNO);
+    if (it != KernelBaseCmd.end()) {
+        return &(it->second);
     }
 
     char ErrorString[256];

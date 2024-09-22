@@ -10,7 +10,9 @@
     参数<1>的名称为“欲取反的数值”，类型为“整数型（int）”。
 */
 void _cdecl krnln_bnot(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf) {
-    pRetData->m_int = ~(pArgInf->m_int);
+    pRetData->m_int = ~(pArgInf[0].m_int);
     pRetData->m_dtDataType = SDT_INT;
     return;
 }
+
+REGISTER_FUNCTION(0xc0, krnln_bnot)
