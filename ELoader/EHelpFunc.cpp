@@ -33,13 +33,11 @@ char* DefaultSystemAPI[] = {
 
 KernelCmd KernelBaseCmd[] = {
 
+	// 注: 从静态编译link.dll中提取的epk无法正常使用,因为其中call的偏移量已被修改成实际静态库中的地址
 	// 在这里添加偏移量对应的函数指针
 	// {偏移量, 指针}
 	{0xc0, krnln_bnot},
-
-	// 不知道什么情况偏移量对不上
-	// {0xa08, krnln_SetErrorManger},
-	{0x282, krnln_SetErrorManger},
+	{0xa08, krnln_SetErrorManger},
 
 
 	//{0xc4, band},
