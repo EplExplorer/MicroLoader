@@ -255,7 +255,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 			if (pfn != NULL)
 			{
 #ifdef _DEBUG
-				LOG(INFO) << "调用api dll: " << DefaultSystemAPI[i] << "symbol: " << DllCmd->DllCmdName;
+				LOG(INFO) << "调用api dll: " << DefaultSystemAPI[i] << " symbol: " << DllCmd->DllCmdName;
 #endif
 				return pfn;
 			}
@@ -281,7 +281,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 		if (pfn != NULL)
 		{
 #ifdef _DEBUG
-			LOG(INFO) << "调用api dll: " << DllCmd->DllFileName << "symbol: " << DllCmd->DllCmdName;
+			LOG(INFO) << "调用api dll: " << DllCmd->DllFileName << " symbol: " << DllCmd->DllCmdName;
 #endif
 			return pfn;
 		}
