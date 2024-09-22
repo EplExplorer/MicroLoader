@@ -1,6 +1,9 @@
 
 #include "EContext.h"
 
+// 引入日志库
+#include "logger/easylogging++.h"
+
 EContext* AppContext;
 
 void InitContext(PFN_NOTIFY_SYS NotifySys)
@@ -9,10 +12,20 @@ void InitContext(PFN_NOTIFY_SYS NotifySys)
 	AppContext->Heap = GetProcessHeap();
 	AppContext->NotifySys = NotifySys;
     AppContext->IsErrorCallBack = false;
+
+#ifdef _DEBUG
+    LOG(INFO) << "AppContext 初始化完毕";
+    LOG(INFO) << "Heap: " << AppContext->Heap;
+#endif
+
 }
 
 void FreeContext()
 {
+
+#ifdef _DEBUG
+    LOG(INFO) << "退出程序并开始释放资源";
+#endif
 
 	// 释放dll引用数据
 	if (AppContext->DllCmdHead != NULL) {
@@ -22,8 +35,14 @@ void FreeContext()
     if (AppContext->LibInfoHead != NULL) {
         PLIBINFO LibInfo = AppContext->LibInfoHead;
         for (UINT32 i = 1; i <= AppContext->LibCount; i++) {
+
+#ifdef _DEBUG
+            LOG(INFO) << "正在卸载" << LibInfo->LibName;
+#endif
+
             if (LibInfo->LibHandle == NULL ||
                 LibInfo->LibInfo == NULL) {
+                LibInfo++;
                 continue;
             }
 

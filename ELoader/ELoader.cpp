@@ -1,6 +1,11 @@
 ﻿
 #include "ELoader.h"
 
+// 引入日志库
+#include "logger/easylogging++.h"
+
+INITIALIZE_EASYLOGGINGPP
+
 extern EContext* AppContext;
 
 DWORD FindECode()
@@ -23,10 +28,18 @@ DWORD FindECode()
     bool FindOK = false;
     char SectionName[IMAGE_SIZEOF_SHORT_NAME + 1];
 
+#ifdef _DEBUG
+    LOG(INFO) << "开始寻找区段";
+#endif
+
     for (int i = 1; i <= NumberOfSections; i++) {
 
         memcpy(SectionName, SectionHeader->Name, IMAGE_SIZEOF_SHORT_NAME);
         SectionName[IMAGE_SIZEOF_SHORT_NAME] = 0;
+
+#ifdef _DEBUG
+        LOG(INFO) << SectionName;
+#endif
 
         // 寻找易格式所在节的方法是：简单的比较当前SectionName是否是“.ecode”
         if (strcmp(SectionName, ESECTIONNAME) == 0) {
@@ -60,11 +73,25 @@ ESections LoadSections(PAPP_HEADER_INFO lpHeader)
     result.pVarSectionOffset = (void*)((UINT32)lpHeader + 
         lpHeader->m_nVarSectionOffset);
 
+#ifdef _DEBUG
+    LOG(INFO) << "易格式体数据装载完成";
+    LOG(INFO) << "m_nConstSectionOffset: " << (DWORD)result.pConstSectionOffset;
+    LOG(INFO) << "pWinFormSectionOffset: " << (DWORD)result.pWinFormSectionOffset;
+    LOG(INFO) << "pHelpFuncSectionOffset: " << (DWORD)result.pHelpFuncSectionOffset;
+    LOG(INFO) << "pCodeSectionOffset: " << (DWORD)result.pCodeSectionOffset;
+    LOG(INFO) << "pVarSectionOffset: " << (DWORD)result.pVarSectionOffset;
+#endif
+
     return result;
 }
 
 PDLLCMD LoadImportDll(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 {
+
+#ifdef _DEBUG
+    LOG(INFO) << "开始读取dll引用";
+#endif
+
     if (lpHeader->m_nDllCmdCount > 0)
     {
         PDLLCMD EDllCmd = (PDLLCMD)malloc(sizeof(DLLCMD) * lpHeader->m_nDllCmdCount);
@@ -84,6 +111,12 @@ PDLLCMD LoadImportDll(PAPP_HEADER_INFO lpHeader, ESections lpSections)
                         sizeof(APP_HEADER_INFO) +
                         (i + lpHeader->m_nDllCmdCount - 1) *
                         sizeof(INT))));
+
+#ifdef _DEBUG
+            LOG(INFO) << "dll: " << EDllCmd->DllFileName;
+            LOG(INFO) << "symbol: " << EDllCmd->DllCmdName;
+#endif
+
             EDllCmd++;
         }
 
@@ -95,6 +128,11 @@ PDLLCMD LoadImportDll(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 
 PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
 {
+
+#ifdef _DEBUG
+    LOG(INFO) << "开始装载支持库";
+#endif
+
     // 获取需要的支持库
     char* LibStringHead = (char*)((DWORD)lpHeader + sizeof(APP_HEADER_INFO) +
         lpHeader->m_nDllCmdCount * sizeof(INT) * 2);
@@ -136,6 +174,11 @@ PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
         }
         LibStringInfo.GUID[temp - strlen(LibStringInfo.LibName) - 1] = 0;
 
+#ifdef _DEBUG
+        LOG(INFO) << "name: " << LibStringInfo.LibName;
+        LOG(INFO) << "guid: " << LibStringInfo.GUID;
+#endif
+
         // 初始化装载信息
         LibInfo->LibHandle = NULL;
         LibInfo->LibInfo = NULL;
@@ -171,6 +214,13 @@ PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
         {
             Success = true;
         }
+
+#ifdef _DEBUG
+        if (Success)
+            LOG(INFO) << LibStringInfo.LibName << "装载成功";
+        else
+            LOG(INFO) << LibStringInfo.LibName << "装载失败";
+#endif
 
         // 支持库被成功装载就开始获取信息
         if (Success)
@@ -224,6 +274,11 @@ PLIBINFO LoadImportLib(PAPP_HEADER_INFO lpHeader, DWORD* dwCount)
 
 void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 {
+
+#ifdef _DEBUG
+    LOG(INFO) << "开始重定位";
+#endif
+
     DWORD temp = (DWORD)lpHeader->m_nBeginSectionOffset;
 
     while (temp != 0xFFFFFFFF) {
@@ -233,6 +288,11 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
             PRELOCATION_INF RelocationInfo =
                 (PRELOCATION_INF)((UINT32)SectionInfo + sizeof(SECTION_INFO));
             for (int i = 1; i <= (UINT32)SectionInfo->m_nReLocationItemCount; i++) {
+
+#ifdef _DEBUG
+                LOG(INFO) << "type: " << RelocationInfo->m_btType;
+                LOG(INFO) << "offset: " << RelocationInfo->m_dwOffset;
+#endif
 
                 UINT32* ptemp = (UINT32*)((UINT32)lpHeader +
                     SectionInfo->m_nRecordOffset +
@@ -311,6 +371,11 @@ int main()
     INT nProtectESP = 0;
     INT nProtectEBP = 0;
 
+#ifdef _DEBUG
+    LOG(INFO) << "开始执行";
+    LOG(INFO) << "ECodeStart: " << (DWORD)ECodeStart;
+#endif
+
     // 备份 esp 与 ebp
     _asm {
         mov nProtectESP, esp;
@@ -319,6 +384,10 @@ int main()
         mov ebp, nProtectEBP;
         mov esp, nProtectESP;
     }
+
+#ifdef _DEBUG
+    LOG(INFO) << "程序正常退出";
+#endif
 
     krnl_MExitProcess(0);
 

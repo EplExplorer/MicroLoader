@@ -1,6 +1,9 @@
 
 #include "EHelpFunc.h"
 
+// 引入日志库
+#include "logger/easylogging++.h"
+
 extern EContext* AppContext;
 
 DWORD ServerPointTable[ESERVERCOUNT];
@@ -58,6 +61,11 @@ KernelCmd KernelBaseCmd[] = {
 
 void _cdecl krnl_MFree(void* lpMem)
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "内存释放 lpMem: " << (DWORD)lpMem;
+#endif
+
 	if (HeapValidate(AppContext->Heap, HEAP_NO_SERIALIZE, lpMem) == 0)
 	{
 		return;
@@ -68,6 +76,11 @@ void _cdecl krnl_MFree(void* lpMem)
 
 void* _cdecl krnl_MMalloc(DWORD dwSize)
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "内存分配 dwSize: " << dwSize;
+#endif
+
 	void* pData = HeapAlloc(AppContext->Heap, HEAP_ZERO_MEMORY, dwSize);
 
 	if (!pData)
@@ -103,6 +116,10 @@ void* _cdecl krnl_MMalloc(DWORD dwSize)
 void _cdecl krnl_MExitProcess(DWORD uExitCode)
 {
 
+#ifdef _DEBUG
+	LOG(INFO) << "程序退出 uExitCode: " << uExitCode;
+#endif
+
 	if (AppContext->ExitCallBack != 0) {
 		UNKNOWFUN callback = (UNKNOWFUN)AppContext->ExitCallBack;
 		callback();
@@ -116,11 +133,21 @@ void _cdecl krnl_MExitProcess(DWORD uExitCode)
 
 void _cdecl krnl_MOtherHelp(DWORD lpCallBack) 
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "krnl_MOtherHelp lpCallBack:" << (DWORD)lpCallBack;
+#endif
+
 	AppContext->ExitCallBack = (void*)lpCallBack;
 }
 
 void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "重分配内存 lpMem: " << (DWORD)lpMem << " dwSize: " << dwSize;
+#endif
+
 	void* pData;
 
 	if (lpMem)
@@ -160,6 +187,11 @@ void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 
 void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "易语言抛出异常 nMsg: " << nMsg << " dwMethodId: " << dwMethodId << " dwPos: " << dwPos;
+#endif
+
 	char ErrorString[255];
 
 	LPSTR ptxt = NULL;
@@ -245,6 +277,9 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 			
 			if (pfn != NULL)
 			{
+#ifdef _DEBUG
+				LOG(INFO) << "调用api dll: " << DefaultSystemAPI[i] << "symbol: " << DllCmd->DllCmdName;
+#endif
 				return pfn;
 			}
 			else
@@ -268,6 +303,9 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 
 		if (pfn != NULL)
 		{
+#ifdef _DEBUG
+			LOG(INFO) << "调用api dll: " << DllCmd->DllFileName << "symbol: " << DllCmd->DllCmdName;
+#endif
 			return pfn;
 		}
 		else
@@ -294,6 +332,11 @@ void* _cdecl krnl_GetLibCmdAddress(DWORD LibCmdNO) {
 
 	PLIBINFO LibInfo = AppContext->LibInfoHead;
 	LibInfo += LibCmdNO;
+
+#ifdef _DEBUG
+	LOG(INFO) << "调用支持库 name: " << LibInfo->LibName << " handle: " << LibInfo->LibHandle;
+#endif
+
 	if (LibInfo->LibHandle == NULL || LibInfo->LibInfo == NULL) {
 		char ErrorString[256];
 
@@ -340,6 +383,10 @@ __declspec(naked) void _cdecl krnl_MCallLibCmd(void) {
 }
 
 void* _cdecl krnl_GetKrnlnCmdAddress(DWORD LibCmdNO) {
+
+#ifdef _DEBUG
+	LOG(INFO) << "调用核心库 offset: " << LibCmdNO;
+#endif
 
 	DWORD i = 0;
 	while (KernelBaseCmd[i].CmdOffset != -1) {

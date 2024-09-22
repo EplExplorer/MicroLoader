@@ -1,10 +1,18 @@
 
 #include "ENotifySys.h"
 
+// 引入日志库
+#include "logger/easylogging++.h"
+
 extern EContext* AppContext;
 
 INT WINAPI ENotifySys(INT nMsg, DWORD dwParam1, DWORD dwParam2)
 {
+
+#ifdef _DEBUG
+	LOG(INFO) << "收到消息 nMsg: " << nMsg << " dwParam1" << dwParam1 << " dwParam2" << dwParam2;
+#endif
+
 	switch (nMsg)
 	{
 	case  NRS_MALLOC:

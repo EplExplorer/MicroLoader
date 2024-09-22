@@ -8,7 +8,8 @@ add_executable(MicroLoader
         ELoader/EContext.cpp
         ELoader/EHelpFunc.cpp
         ELoader/ELoader.cpp
-        ELoader/ENotifySys.cpp)
+        ELoader/ENotifySys.cpp
+        ELoader/logger/easylogging++.cc)
 
 add_custom_command(TARGET MicroLoader POST_BUILD
         COMMAND python ${CMAKE_SOURCE_DIR}/tools/inject.py $<TARGET_FILE:MicroLoader>
