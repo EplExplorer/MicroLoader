@@ -288,14 +288,34 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 				(PRELOCATION_INF)((UINT32)SectionInfo + sizeof(SECTION_INFO));
 			for (int i = 1; i <= (UINT32)SectionInfo->m_nReLocationItemCount; i++) {
 
-#ifdef _DEBUG
-				LOG(INFO) << "type: " << RelocationInfo->m_btType;
-				LOG(INFO) << "offset: " << RelocationInfo->m_dwOffset;
-#endif
-
 				UINT32* ptemp = (UINT32*)((UINT32)lpHeader +
 					SectionInfo->m_nRecordOffset +
 					RelocationInfo->m_dwOffset);
+
+#ifdef _DEBUG
+				// 打印数据
+				if (strcmp(SectionInfo->m_szName, "code") == 0 || strcmp(SectionInfo->m_szName, "@code") == 0)
+				{
+					switch (RelocationInfo->m_btType) {
+					case RT_HELP_FUNC:
+						LOG(INFO) << "调用核心服务: " << (DWORD)ptemp;
+						break;
+					case RT_CONST: {
+						void* data = (void*)((*ptemp) + (UINT32)lpHeader + ((PSECTION_INFO)lpSections.pConstSectionOffset)->m_nRecordOffset);
+
+						// 不打印字节集和其他数据
+						if (*(DWORD*)data != 1 && *(DWORD*)data != 0)
+							LOG(INFO) << "引用字符串: " << (char*)data;
+					}
+						break;
+					default:
+						break;
+					}
+				}
+
+				LOG(INFO) << "type: " << RelocationInfo->m_btType;
+				LOG(INFO) << "offset: " << RelocationInfo->m_dwOffset;
+#endif
 
 				switch (RelocationInfo->m_btType) {
 				case RT_HELP_FUNC:
