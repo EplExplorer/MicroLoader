@@ -303,14 +303,18 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 				{
 					switch (RelocationInfo->m_btType) {
 					case RT_HELP_FUNC:
-						LOG(INFO) << "调用核心服务: " << (DWORD)ptemp;
+						// 打印核心服务表下标
+						LOG(INFO) << "调用核心服务: " << (DWORD)(*ptemp) / 4;
+						LOG(INFO) << "地址: " << (DWORD)ptemp;
 						break;
 					case RT_CONST: {
 						void* data = (void*)((*ptemp) + (UINT32)lpHeader + ((PSECTION_INFO)lpSections.pConstSectionOffset)->m_nRecordOffset);
 
 						// 不打印字节集和其他数据
-						if (*(DWORD*)data != 1 && *(DWORD*)data != 0)
+						if (*(DWORD*)data != 1 && *(DWORD*)data != 0) {
 							LOG(INFO) << "引用字符串: " << (char*)data;
+							LOG(INFO) << "地址: " << (DWORD)ptemp;
+						}
 					}
 						break;
 					default:
