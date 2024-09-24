@@ -108,7 +108,7 @@ void _cdecl krnl_MOtherHelp(DWORD lpCallBack)
 {
 
 #ifdef _DEBUG
-	LOG(INFO) << "krnl_MOtherHelp lpCallBack:" << (DWORD)lpCallBack;
+	LOG(INFO) << "krnl_MOtherHelp lpCallBack: " << (DWORD)lpCallBack;
 #endif
 
 	AppContext->ExitCallBack = (void*)lpCallBack;
