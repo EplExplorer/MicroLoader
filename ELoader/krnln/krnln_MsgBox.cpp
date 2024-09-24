@@ -1,5 +1,7 @@
 #include "krnln.h"
 
+#include "../utils/DateTimeFormat.hpp"
+
 extern EContext* AppContext;
 
 /*
@@ -73,8 +75,7 @@ void _cdecl krnln_MsgBox(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf)
 			break;
 
 		case SDT_DATE_TIME:
-			// DateTimeFormat(str, ArgInf.m_double);
-			// TODO: DateTimeFormat
+			DateTimeFormat(str, pArgInf[0].m_double);
 			lpText = str;
 		}
 	}
