@@ -293,7 +293,12 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 					RelocationInfo->m_dwOffset);
 
 #ifdef _DEBUG
+
 				// 打印数据
+				LOG(INFO) << "section: " << SectionInfo->m_szName;
+				LOG(INFO) << "type: " << RelocationInfo->m_btType;
+				LOG(INFO) << "offset: " << RelocationInfo->m_dwOffset;
+
 				if (strcmp(SectionInfo->m_szName, "code") == 0 || strcmp(SectionInfo->m_szName, "@code") == 0)
 				{
 					switch (RelocationInfo->m_btType) {
@@ -313,8 +318,7 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 					}
 				}
 
-				LOG(INFO) << "type: " << RelocationInfo->m_btType;
-				LOG(INFO) << "offset: " << RelocationInfo->m_dwOffset;
+				LOG(INFO) << "----------------";
 #endif
 
 				switch (RelocationInfo->m_btType) {
