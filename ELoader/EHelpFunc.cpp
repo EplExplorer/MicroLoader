@@ -264,6 +264,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 		}
 
 		if (pfn == NULL) {
+			MessageBoxA(0, "dll引用失败", "error", MB_ICONERROR);
 			krnl_MExitProcess(0);
 		}
 	}
@@ -283,6 +284,7 @@ void* _cdecl krnl_GetDllCmdAddress(DWORD DllCmdNO)
 		}
 		else
 		{
+			MessageBoxA(0, "dll引用失败", "error", MB_ICONERROR);
 			krnl_MExitProcess(0);
 		}
 	}
