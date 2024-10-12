@@ -3,6 +3,14 @@
 // 引入日志库
 #include "logger/easylogging++.h"
 
+// 控制是否开启gc
+#define USE_BDWGC
+
+// 引入gc
+#ifdef USE_BDWGC
+#include "gc.h"
+#endif // USE_BDWGC
+
 extern EContext* AppContext;
 
 DWORD ServerPointTable[ESERVERCOUNT];
@@ -39,12 +47,16 @@ void _cdecl krnl_MFree(void* lpMem)
 	LOG(INFO) << "内存释放 lpMem: " << (DWORD)lpMem;
 #endif
 
+#ifdef USE_BDWGC
+	GC_free(lpMem);
+#else
 	if (HeapValidate(AppContext->Heap, HEAP_NO_SERIALIZE, lpMem) == 0)
 	{
 		return;
 	}
 
 	HeapFree(AppContext->Heap, 0, lpMem);
+#endif
 }
 
 void* _cdecl krnl_MMalloc(DWORD dwSize)
@@ -54,7 +66,11 @@ void* _cdecl krnl_MMalloc(DWORD dwSize)
 	LOG(INFO) << "内存分配 dwSize: " << dwSize;
 #endif
 
+#ifdef USE_BDWGC
+	void* pData = GC_malloc(dwSize);
+#else
 	void* pData = HeapAlloc(AppContext->Heap, HEAP_ZERO_MEMORY, dwSize);
+#endif
 
 	if (!pData)
 	{
@@ -122,11 +138,22 @@ void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
 #endif
 
 	void* pData;
-
-	if (lpMem)
+#ifdef USE_BDWGC
+	if (lpMem) {
+		pData = GC_realloc(lpMem, dwSize);
+	}
+	else {
+		pData = GC_malloc(dwSize);
+		memset(pData, 0, dwSize);
+	}
+#else
+	if (lpMem) {
 		pData = HeapReAlloc(AppContext->Heap, 0, lpMem, dwSize);
-	else
+	}
+	else {
 		pData = HeapAlloc(AppContext->Heap, HEAP_ZERO_MEMORY, dwSize);
+	}
+#endif
 
 	if (!pData)
 	{

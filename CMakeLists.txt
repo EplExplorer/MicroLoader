@@ -8,12 +8,15 @@ file(GLOB_RECURSE KRNLN_SOURCE "ELoader/krnln/*.cpp")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/source-charset:utf-8>")
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/source-charset:utf-8>")
 
+include_directories(ELoader/bdwgc/include)
+
 add_executable(MicroLoader
         ELoader/EArray.cpp
         ELoader/EContext.cpp
         ELoader/EHelpFunc.cpp
         ELoader/ELoader.cpp
         ELoader/ENotifySys.cpp
+        ELoader/EGC.cpp
         ELoader/logger/easylogging++.cc
         ${KRNLN_SOURCE})
 
