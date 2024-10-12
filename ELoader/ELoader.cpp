@@ -3,6 +3,11 @@
 // 引入日志库
 #include "logger/easylogging++.h"
 
+// 引入gc
+#ifdef USE_BDWGC
+#include "gc.h"
+#endif // USE_BDWGC
+
 INITIALIZE_EASYLOGGINGPP
 
 extern EContext* AppContext;
@@ -355,6 +360,10 @@ void RelocECode(PAPP_HEADER_INFO lpHeader, ESections lpSections)
 
 int main()
 {
+
+#ifdef USE_BDWGC
+	GC_init();
+#endif
 
 	// 初始化上下文
 	InitContext(ENotifySys);

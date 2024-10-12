@@ -3,9 +3,6 @@
 // 引入日志库
 #include "logger/easylogging++.h"
 
-// 控制是否开启gc
-#define USE_BDWGC
-
 // 引入gc
 #ifdef USE_BDWGC
 #include "gc.h"
