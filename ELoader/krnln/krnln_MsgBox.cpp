@@ -92,7 +92,7 @@ void _cdecl krnln_MsgBox(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf)
 			hWnd = (HWND)pArgInf[3].m_int;
 		}
 	}
-	INT nRet = MessageBoxA(hWnd, lpText, lpCaption, uType);
+	INT nRet = MessageBoxA(hWnd, lpText, lpCaption, uType) - 1;
 	pRetData->m_int = nRet;
 	pRetData->m_dtDataType = SDT_INT;
 }
