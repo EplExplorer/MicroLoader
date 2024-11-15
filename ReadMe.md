@@ -6,6 +6,16 @@
 
 ---
 
+# 参考与鸣谢
+
+主要开发者[66hh](https://github.com/66hh/)
+
+主要开发者[futz12](https://github.com/futz12)
+
+monkeycz大佬的文章以及E-Code Explorer: [链接](https://bbs.kanxue.com/thread-18478-1.htm)
+
+# 更新日志
+
 ## 2024/9/21
 
 - 完成重构
@@ -28,7 +38,7 @@
 - 接入bdwgc
 - 修复信息框返回值
 
-## 待办事项
+# 待办事项
 
 - [x] 基础功能
 - [x] 接入gc
@@ -36,14 +46,6 @@
 - [ ] 重构核心服务 
 - [ ] 封装加载器模块
 - [ ] 完善核心库
-
-# 参考与鸣谢
-
-主要开发者[66hh](https://github.com/66hh/)
-
-主要开发者[futz12](https://github.com/futz12)
-
-monkeycz大佬的文章以及E-Code Explorer: [链接](https://bbs.kanxue.com/thread-18478-1.htm)
 
 fjqisba大佬的易语言反编译器: [链接](https://github.com/fjqisba/E-Decompiler)
 
