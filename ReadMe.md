@@ -14,6 +14,10 @@
 
 monkeycz大佬的文章以及E-Code Explorer: [链接](https://bbs.kanxue.com/thread-18478-1.htm)
 
+fjqisba大佬的易语言反编译器: [链接](https://github.com/fjqisba/E-Decompiler)
+
+黑月核心库: [链接](https://github.com/zhongjianhua163/BlackMoonKernelStaticLib)
+
 # 更新日志
 
 ## 2024/9/21
@@ -46,7 +50,3 @@ monkeycz大佬的文章以及E-Code Explorer: [链接](https://bbs.kanxue.com/th
 - [ ] 重构核心服务 
 - [ ] 封装加载器模块
 - [ ] 完善核心库
-
-fjqisba大佬的易语言反编译器: [链接](https://github.com/fjqisba/E-Decompiler)
-
-黑月核心库: [链接](https://github.com/zhongjianhua163/BlackMoonKernelStaticLib)
