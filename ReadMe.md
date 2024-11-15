@@ -50,3 +50,11 @@ fjqisba大佬的易语言反编译器: [链接](https://github.com/fjqisba/E-Dec
 - [ ] 重构核心服务 
 - [ ] 封装加载器模块
 - [ ] 完善核心库
+
+# 编译教程
+
+git clone https://github.com/EplExplorer/MicroLoader
+
+cd MicroLoader
+
+cmake -B build -A win32
