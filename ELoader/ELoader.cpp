@@ -84,7 +84,7 @@ ESections LoadSections(PAPP_HEADER_INFO lpHeader)
 
 #ifdef _DEBUG
 	LOG(INFO) << "易格式体数据装载完成";
-	LOG(INFO) << "m_nConstSectionOffset: " << (DWORD)result.pConstSectionOffset;
+	LOG(INFO) << "pConstSectionOffset: " << (DWORD)result.pConstSectionOffset;
 	LOG(INFO) << "pWinFormSectionOffset: " << (DWORD)result.pWinFormSectionOffset;
 	LOG(INFO) << "pHelpFuncSectionOffset: " << (DWORD)result.pHelpFuncSectionOffset;
 	LOG(INFO) << "pCodeSectionOffset: " << (DWORD)result.pCodeSectionOffset;
