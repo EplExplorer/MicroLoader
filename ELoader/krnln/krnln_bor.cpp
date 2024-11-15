@@ -1,3 +1,8 @@
+/*
+ * 作者: 66hh futz12
+ * 许可证: GPLV3
+ */
+
 #include "krnln.h"
 
 //位运算 - 位或

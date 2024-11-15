@@ -1,3 +1,8 @@
+/*
+ * 作者: 66hh futz12
+ * 许可证: GPLV3
+ */
+
 #include "krnln.h"
 
 //文本操作 - 指针到文本

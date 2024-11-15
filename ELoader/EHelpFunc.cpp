@@ -1,3 +1,8 @@
+/*
+ * 作者: 66hh futz12
+ * 许可证: GPLV3
+ */
+
 #include "EHelpFunc.h"
 
 // 引入日志库
