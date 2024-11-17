@@ -1,6 +1,7 @@
 inject.py 用于将epk注入到loader中
-epk_dumper.e 用于dump epk文件
+epk_dumper.e 用于dump epk文件 (由于输出有问题，现已废弃，请勿使用)
 OffsetExporter 支持库偏移量导出工具
+ecode.hexpat imhex epk文件模式匹配器
 
 dumper用法
 
