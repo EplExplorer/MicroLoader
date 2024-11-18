@@ -122,6 +122,9 @@ code_va = 0
 
 for section in epk.sections:
     
+    if len(section["data"]) == 0:
+        continue
+
     section_types = PE.SECTION_TYPES.DATA
 
     if section["name"] == "code":
@@ -180,6 +183,7 @@ for section_pe in output.sections:
 
 # 修复lief的bug
 output.header.sizeof_optional_header = 0xe0
+output.header.add_characteristic(PE.Header.CHARACTERISTICS.EXECUTABLE_IMAGE)
 
 builder = PE.Builder(output)
 builder.build()
