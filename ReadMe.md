@@ -42,6 +42,11 @@ fjqisba大佬的易语言反编译器: [链接](https://github.com/fjqisba/E-Dec
 - 接入bdwgc
 - 修复信息框返回值
 
+## 2024/11/18
+
+- 添加官方epk读取代码
+- 添加epk重封装脚本
+
 # 待办事项
 
 - [x] 基础功能
