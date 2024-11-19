@@ -10,6 +10,8 @@
 // 核心服务数量
 #define ESERVERCOUNT 13
 
+// 辅助服务数量
+#define EOTHERHELPCOUNT 7
 
 typedef std::map<DWORD, PFN_EXECUTE_CMD> KernelCmd;
 
@@ -20,19 +22,19 @@ void _cdecl krnl_MFree(void* lpMem);
 
 void* _cdecl krnl_MMalloc(DWORD dwSize);
 
-void _cdecl krnl_MOtherHelp(DWORD lpCallBack);
+void _cdecl krnl_MOtherHelp(void);
 
 void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize);
 
 void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos);
 
-void _cdecl krnl_MReadProperty(void);
+uint64_t _cdecl krnl_MReadProperty(DWORD WindowId, DWORD ItemId, DWORD PropertyId, DWORD ExtId);
 
-void _cdecl krnl_MWriteProperty(void);
+void _cdecl krnl_MWriteProperty(DWORD WindowId, DWORD ItemId, DWORD PropertyId, DWORD ExtId, uint64_t Value);
 
-void _cdecl krnl_MMessageLoop(UINT32 Param1);
+void _cdecl krnl_MMessageLoop(void);
 
-void _cdecl krnl_MLoadBeginWin(void);
+void _cdecl krnl_MLoadBeginWin(DWORD WindowId);
 
 void _cdecl krnl_MExitProcess(DWORD uExitCode);
 

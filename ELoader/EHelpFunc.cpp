@@ -17,6 +17,8 @@ extern EContext* AppContext;
 
 DWORD ServerPointTable[ESERVERCOUNT];
 
+DWORD OtherHelpFuncTable[EOTHERHELPCOUNT];
+
 LPSTR sErrorListForE[] =
 {
 	(LPSTR)"数组成员引用下标超出定义范围",
@@ -41,6 +43,69 @@ char* DefaultSystemAPI[] = {
 };
 
 KernelCmd KernelBaseCmd;
+
+void _cdecl krnl_MADir(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MADir";
+#endif
+
+	return;
+}
+
+void _cdecl krnl_MAFindClose(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MAFindClose";
+#endif
+
+	return;
+}
+
+void _cdecl krnl_MACopyConstAry(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MACopyConstAry";
+#endif
+
+	return;
+}
+
+void _cdecl krnl_MANotifyFreeFunc(DWORD lpMem)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MANotifyFreeFunc lpMem: " << lpMem;
+#endif
+
+	return;
+}
+
+void _cdecl krnl_MAReadPackedObjectProperty(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MAReadPackedObjectProperty";
+#endif
+
+	return;
+}
+
+void _cdecl krnl_MAWritePackedObjectProperty(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_MAWritePackedObjectProperty";
+#endif
+
+	return;
+}
+
+void _cdecl krnl_InitUserProgram(void)
+{
+#ifdef _DEBUG
+	LOG(INFO) << "调用辅助服务 krnl_InitUserProgram";
+#endif
+
+	return;
+}
 
 void _cdecl krnl_MFree(void* lpMem)
 {
@@ -122,14 +187,11 @@ void _cdecl krnl_MExitProcess(DWORD uExitCode)
 
 }
 
-void _cdecl krnl_MOtherHelp(DWORD lpCallBack)
+__declspec(naked) void _cdecl krnl_MOtherHelp(void)
 {
-
-#ifdef _DEBUG
-	LOG(INFO) << "krnl_MOtherHelp lpCallBack: " << (DWORD)lpCallBack;
-#endif
-
-	AppContext->ExitCallBack = (void*)lpCallBack;
+	__asm {
+		jmp OtherHelpFuncTable[eax * 4]
+	}
 }
 
 void* _cdecl krnl_MRealloc(void* lpMem, DWORD dwSize)
@@ -237,25 +299,58 @@ void _cdecl krnl_MReportError(DWORD nMsg, DWORD dwMethodId, DWORD dwPos)
 	krnl_MExitProcess(0);
 }
 
-void _cdecl krnl_MReadProperty(void) {
+// 读取组件属性
+uint64_t _cdecl krnl_MReadProperty(DWORD WindowId, DWORD ItemId, DWORD PropertyId, DWORD ExtId) {
+
+#ifdef _DEBUG
+	LOG(INFO) << "读窗口属性 WindowId: " << WindowId << "ItemId: " << ItemId << "PropertyId: " << "ExtId: " << ExtId;
+#endif
+
+#ifndef _DEBUG
 	MessageBoxA(0, "暂不支持窗口相关功能", "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
+#endif
+
+	return 0;
+}
+
+// 写入组件属性
+void _cdecl krnl_MWriteProperty(DWORD WindowId, DWORD ItemId, DWORD PropertyId, DWORD ExtId, uint64_t Value) {
+
+#ifdef _DEBUG
+	LOG(INFO) << "写窗口属性 WindowId: " << WindowId << "ItemId: " << ItemId << "PropertyId: " << "ExtId: " << ExtId << "Value: " << Value;
+#endif
+
+#ifndef _DEBUG
+	MessageBoxA(0, "暂不支持窗口相关功能", "error", MB_ICONERROR);
+	krnl_MExitProcess(0);
+#endif
+
 	return;
 }
 
-void _cdecl krnl_MWriteProperty(void) {
+// 加载启动窗口
+void _cdecl krnl_MLoadBeginWin(DWORD WindowId) {
+
+#ifdef _DEBUG
+	LOG(INFO) << "载入启动窗口 WindowId: " << WindowId;
+#endif
+
+#ifndef _DEBUG
 	MessageBoxA(0, "暂不支持窗口相关功能", "error", MB_ICONERROR);
 	krnl_MExitProcess(0);
+#endif
+
 	return;
 }
 
-void _cdecl krnl_MLoadBeginWin(void) {
-	MessageBoxA(0, "暂不支持窗口相关功能", "error", MB_ICONERROR);
-	krnl_MExitProcess(0);
-	return;
-}
+// 注册窗口消息循环
+void _cdecl krnl_MMessageLoop(void) {
 
-void _cdecl krnl_MMessageLoop(UINT32 Param1) {
+#ifdef _DEBUG
+	LOG(INFO) << "注册窗口消息循环";
+#endif
+
 	return;
 }
 
@@ -455,6 +550,14 @@ void InitServerPointTable(void) {
 	ServerPointTable[10] = (DWORD)krnl_MMessageLoop; // _krnl_MMessageLoop
 	ServerPointTable[11] = (DWORD)krnl_MLoadBeginWin; // _krnl_MLoadBeginWin
 	ServerPointTable[12] = (DWORD)krnl_MOtherHelp; // _krnl_MOtherHelp
+
+	OtherHelpFuncTable[0] = (DWORD)krnl_MADir;
+	OtherHelpFuncTable[1] = (DWORD)krnl_MAFindClose;
+	OtherHelpFuncTable[2] = (DWORD)krnl_MACopyConstAry;
+	OtherHelpFuncTable[3] = (DWORD)krnl_MANotifyFreeFunc;
+	OtherHelpFuncTable[4] = (DWORD)krnl_MAReadPackedObjectProperty;
+	OtherHelpFuncTable[5] = (DWORD)krnl_MAWritePackedObjectProperty;
+	OtherHelpFuncTable[6] = (DWORD)krnl_InitUserProgram;
 }
 
 void UpdataServerPointTable(void* pBase, DWORD nHelpOffset)
