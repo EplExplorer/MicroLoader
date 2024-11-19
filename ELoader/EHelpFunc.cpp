@@ -71,11 +71,13 @@ void _cdecl krnl_MACopyConstAry(void)
 	return;
 }
 
-void _cdecl krnl_MANotifyFreeFunc(DWORD lpMem)
+void _cdecl krnl_MANotifyFreeFunc(void* pNotify)
 {
 #ifdef _DEBUG
-	LOG(INFO) << "调用辅助服务 krnl_MANotifyFreeFunc lpMem: " << lpMem;
+	LOG(INFO) << "调用辅助服务 krnl_MANotifyFreeFunc pNotify: " << pNotify;
 #endif
+
+	AppContext->ExitCallBack = pNotify;
 
 	return;
 }

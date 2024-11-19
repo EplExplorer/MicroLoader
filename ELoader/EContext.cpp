@@ -16,6 +16,7 @@ void InitContext(PFN_NOTIFY_SYS NotifySys)
 	AppContext->Heap = GetProcessHeap();
 	AppContext->NotifySys = NotifySys;
 	AppContext->IsErrorCallBack = false;
+	AppContext->ExitCallBack = 0;
 
 #ifdef _DEBUG
 	LOG(INFO) << "AppContext 初始化完毕";
